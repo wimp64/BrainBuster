@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -22,6 +23,12 @@ public class Profile extends Application {
 
 	@FXML
 	private Label titleLabel;
+
+	@FXML
+	private StackPane zero;
+
+	@FXML
+	private StackPane one;
 
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
@@ -59,4 +66,19 @@ public class Profile extends Application {
 		Stage stage = (Stage) cancel.getScene().getWindow();
 		stage.close();
 	}
+
+	@FXML
+	private void chooseZero() {
+		zero.getStyleClass().add("middle-ch-bg-choose");
+		System.out.println("Hello");
+	}
+
+	@FXML
+	private void chooseOne() {
+		one.getStyleClass().add("middle-ch-bg-eai-choose");
+	}
+
+//	public static void main(String[] args) {
+//		launch(args);
+//	}
 }

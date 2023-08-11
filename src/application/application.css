@@ -98,4 +98,19 @@
 	-fx-background-radius:25px;
 	-fx-cursor:hand;
 }
-.ddd
+.middle-ch-bg-eai-choose{
+	-fx-background-color:#EFE400;
+	-fx-border-color:blue;
+	-fx-border-width: 3px;
+	-fx-border-radius:25px;
+	-fx-background-radius:25px;
+	-fx-cursor:hand;
+}
+.middle-ch-bg-choose{
+	-fx-background-color:WHITE;
+	-fx-background-radius:25px;
+	-fx-border-color:blue;
+	-fx-border-width: 3px;
+	-fx-border-radius:25px;
+	-fx-cursor:hand;
+}

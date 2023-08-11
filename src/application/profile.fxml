@@ -40,21 +40,21 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css">
+                  <StackPane fx:id="zero" onMouseClicked="#chooseZero" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                      <children>
-                        <ImageView fitHeight="70.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Profile/rookie.png" />
                            </image>
                         </ImageView>
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="93.0" prefWidth="97.0" styleClass="middle-ch-bg-eai" stylesheets="@../../../Calculator_Myanmar/src/application/application.css" GridPane.columnIndex="1">
+                  <StackPane fx:id="one" prefHeight="93.0" prefWidth="97.0" styleClass="middle-ch-bg-eai" GridPane.columnIndex="1">
                      <children>
-                        <ImageView fitHeight="73.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="73.0" fitWidth="61.0" onMouseClicked="#chooseOne" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Profile/eaistein.png" />
                            </image>
