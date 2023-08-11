@@ -3,6 +3,7 @@
     -fx-background-color: #DF5A1C;
     -fx-background-radius: 50px;
     -fx-border-radius: 200;
+    -fx-cursor:hand;
 }
 .lets_start:pressed{
 	-fx-scale-x:0.86;
@@ -17,6 +18,7 @@
 	-fx-background-color: WHITE;
 	-fx-background-radius: 50px;
     -fx-border-radius: 200;
+    -fx-cursor:hand;
 }
 .category_button:hover{
 	-fx-background-color: BLACK;
@@ -37,6 +39,7 @@
 .circular-button {
     -fx-background-color: WHITE; /* Set the background color */
     -fx-background-radius: 50%;
+    -fx-cursor:hand;
 }
 .circular-button:pressed{
 	-fx-scale-x:0.97;
@@ -48,6 +51,7 @@
     -fx-background-color: #3662EF;
     -fx-background-radius: 50px;
     -fx-border-radius: 200;
+    -fx-cursor:hand;
 }
 .name:pressed{
 	-fx-scale-x:0.97;
@@ -100,7 +104,7 @@
 }
 .middle-ch-bg-eai-choose{
 	-fx-background-color:#EFE400;
-	-fx-border-color:blue;
+	-fx-border-color:black;
 	-fx-border-width: 3px;
 	-fx-border-radius:25px;
 	-fx-background-radius:25px;
@@ -109,7 +113,7 @@
 .middle-ch-bg-choose{
 	-fx-background-color:WHITE;
 	-fx-background-radius:25px;
-	-fx-border-color:blue;
+	-fx-border-color:black;
 	-fx-border-width: 3px;
 	-fx-border-radius:25px;
 	-fx-cursor:hand;

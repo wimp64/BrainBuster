@@ -18,8 +18,13 @@
    <children>
       <Pane layoutX="-6.0" layoutY="409.0" prefHeight="81.0" prefWidth="528.0" styleClass="profile-under" stylesheets="@application.css">
          <children>
-            <Button fx:id="okBtn" layoutX="405.0" layoutY="24.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="86.0" styleClass="button-ok" stylesheets="@application.css" />
+            <Button fx:id="okBtn" layoutX="405.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#windowOk" prefHeight="44.0" prefWidth="86.0" styleClass="button-ok" stylesheets="@application.css" />
             <Button fx:id="cancel" layoutX="309.0" layoutY="24.0" mnemonicParsing="false" onAction="#windowClose" prefHeight="44.0" prefWidth="86.0" styleClass="button-cancel" stylesheets="@application.css" />
+            <ImageView fitHeight="52.0" fitWidth="51.0" layoutX="39.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Profile/kids_gp.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <ScrollPane hbarPolicy="NEVER" layoutX="2.0" layoutY="74.0" prefHeight="353.0" prefWidth="516.0" styleClass="profile-middle" stylesheets="@application.css">
@@ -40,7 +45,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <StackPane fx:id="zero" onMouseClicked="#chooseZero" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css">
+                  <StackPane fx:id="zero" onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -52,16 +57,16 @@
                         </ImageView>
                      </children>
                   </StackPane>
-                  <StackPane fx:id="one" prefHeight="93.0" prefWidth="97.0" styleClass="middle-ch-bg-eai" GridPane.columnIndex="1">
+                  <StackPane fx:id="one" onMouseClicked="#choose" prefHeight="93.0" prefWidth="97.0" styleClass="middle-ch-bg-eai" GridPane.columnIndex="1">
                      <children>
-                        <ImageView fitHeight="73.0" fitWidth="61.0" onMouseClicked="#chooseOne" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="73.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Profile/eaistein.png" />
                            </image>
                         </ImageView>
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2">
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2">
                      <children>
                         <ImageView fitHeight="72.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -70,27 +75,35 @@
                         </ImageView>
                      </children>
                   </StackPane>
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="1" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="2" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="3" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="4" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="5" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3">
+                     <children>
+                        <ImageView fitHeight="72.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Profile/fire_brain.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="1" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="2" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="3" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="4" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.rowIndex="5" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <StackPane onMouseClicked="#choose" prefHeight="150.0" prefWidth="200.0" styleClass="middle-ch-bg" stylesheets="@application.css" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                </children>
                <padding>
                   <Insets left="30.0" right="30.0" />

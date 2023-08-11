@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Category {
+
 	Scene scene1;
 	Stage currentStage;
 	Stage s;
@@ -35,7 +36,7 @@ public class Category {
 	Button iq_in_button;
 	Button ach_button;
 	Button ach_in_button;
-	Button profile;
+	public static Button profile;
 	Button name;
 
 	Text Myanmar;
@@ -155,6 +156,7 @@ public class Category {
 		rookieImg = new ImageView(Rookie);
 		rookieImg.setFitWidth(55);
 		rookieImg.setFitHeight(77);
+
 		profile.setGraphic(rookieImg);
 
 		root.getChildren().addAll(name, profile);

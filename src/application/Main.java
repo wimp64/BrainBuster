@@ -1,6 +1,7 @@
 package application;
 
 import java.util.Optional;
+import java.util.prefs.Preferences;
 
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
@@ -30,6 +31,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
+	public Preferences pre = Preferences.userRoot().node(this.getClass().getName());
+	String memory = "1";
+
 	Stage primaryStage;
 	public static Scene scene;
 	StackPane root;
@@ -80,6 +84,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		lanSwap = pre.getBoolean(memory, false);
 		this.primaryStage = primaryStage;
 		root = new StackPane();
 		scene = new Scene(root, 1366, 766);
@@ -311,7 +316,8 @@ public class Main extends Application {
 	}
 
 	void LanguageChanged() {
-
+		pre.putBoolean(memory, lanSwap);
+		System.out.println(pre.getBoolean(memory, false));
 		if (lanSwap) {
 			mainText.setVisible(false);
 			centerText.setVisible(false);
@@ -376,7 +382,7 @@ public class Main extends Application {
 				w1.setVisible(false);
 				ls.setVisible(false);
 			}
-			;
+
 			mainText = new ImageView(MainText);
 			mainText.setFitWidth(400);
 			mainText.setFitHeight(275);
@@ -408,6 +414,12 @@ public class Main extends Application {
 			Myanmar.setFont(English_font);
 			Myanmar.setFill(Color.WHITE);
 			Eng.setGraphic(Myanmar);
+
+			Font select_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 16);
+			selectLabel = new Label("Please select your age.");
+			selectLabel.setFont(select_font);
+			selectLabel.setTextFill(Color.BLACK);
+			selectButton = new ButtonType("Select");
 
 			root.getChildren().addAll(mainText, centerText, langText);
 		}

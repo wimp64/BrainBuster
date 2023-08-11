@@ -1,12 +1,16 @@
 package application;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -30,12 +34,19 @@ public class Profile extends Application {
 	@FXML
 	private StackPane one;
 
+	private StackPane selectedPane = null;
+
+	Image eai = new Image("Profile/eaistein.png");
+	ImageView ProfileImg = new ImageView(eai);
+
+	String colorCode = "WHITE";
+	Stage stage;
+
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		scene.setFill(Color.TRANSPARENT);
-
 		bottomBar(loader);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.initStyle(StageStyle.TRANSPARENT);
@@ -63,22 +74,44 @@ public class Profile extends Application {
 
 	@FXML
 	private void windowClose() {
-		Stage stage = (Stage) cancel.getScene().getWindow();
+		stage = (Stage) cancel.getScene().getWindow();
 		stage.close();
 	}
 
+	ImageView im;
+
 	@FXML
-	private void chooseZero() {
-		zero.getStyleClass().add("middle-ch-bg-choose");
-		System.out.println("Hello");
+	private void windowOk() {
+		stage = (Stage) okBtn.getScene().getWindow();
+		stage.close();
+
+		Category.profile.setGraphic(im);
+
+		Category.profile.setStyle("-fx-background-color:" + colorCode);
 	}
 
 	@FXML
-	private void chooseOne() {
-		one.getStyleClass().add("middle-ch-bg-eai-choose");
-	}
+	void choose(MouseEvent event) {
+		StackPane clickPane = (StackPane) event.getSource();
+		im = (ImageView) ((StackPane) event.getSource()).getChildren().get(0);
 
-//	public static void main(String[] args) {
-//		launch(args);
-//	}
+		ObservableList<String> styleClasses = clickPane.getStyleClass();
+
+		if (selectedPane != null) {
+			ObservableList<String> styleClassesSelect = selectedPane.getStyleClass();
+			if (styleClassesSelect.contains("middle-ch-bg-eai-choose")) {
+				selectedPane.getStyleClass().remove("middle-ch-bg-eai-choose");
+			} else {
+				selectedPane.getStyleClass().remove("middle-ch-bg-choose");
+			}
+		}
+
+		if (styleClasses.contains("middle-ch-bg-eai")) {
+			colorCode = "#EFE400";
+			clickPane.getStyleClass().add("middle-ch-bg-eai-choose");
+		} else {
+			clickPane.getStyleClass().add("middle-ch-bg-choose");
+		}
+		selectedPane = clickPane;
+	}
 }
