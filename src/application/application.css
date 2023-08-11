@@ -1,0 +1,100 @@
+/*lets_start*/
+.lets_start {
+    -fx-background-color: #DF5A1C;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 200;
+}
+.lets_start:pressed{
+	-fx-scale-x:0.86;
+	-fx-scale-y:0.86;
+}
+.lets_start:hover{
+	-fx-background-color: #20AB2E;
+}
+
+/*category_button*/
+.category_button{
+	-fx-background-color: WHITE;
+	-fx-background-radius: 50px;
+    -fx-border-radius: 200;
+}
+.category_button:hover{
+	-fx-background-color: BLACK;
+}
+.category_button:pressed{
+	-fx-scale-x:0.86;
+	-fx-scale-y:0.86;
+}
+
+/*category_in_button*/
+.category_in_button{
+	-fx-background-color: BLACK;
+	-fx-background-radius: 50px;
+    -fx-border-radius: 200;
+}
+
+/*profile button */
+.circular-button {
+    -fx-background-color: WHITE; /* Set the background color */
+    -fx-background-radius: 50%;
+}
+.circular-button:pressed{
+	-fx-scale-x:0.97;
+	-fx-scale-y:0.97;
+}
+
+/*name button */
+.name {
+    -fx-background-color: #3662EF;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 200;
+}
+.name:pressed{
+	-fx-scale-x:0.97;
+	-fx-scale-y:0.97;
+}
+
+/*proflie root */
+.root-profile{
+    -fx-background-color:#15A46C;
+    -fx-background-radius:28;
+}
+.profile-under{
+	-fx-background-color:#FFF86B;
+	-fx-background-radius:58;
+}
+.profile-middle{
+	-fx-background-color:#15A46C;
+}
+/* styles.css */
+
+.button-cancel {
+    -fx-background-color:#ED2A2A; /* Set the background color */
+    -fx-background-radius:15px;
+    -fx-cursor:hand;
+}
+.button-cancel:hover{
+	-fx-background-color:#B62C2C;
+}
+.button-ok {
+    -fx-background-color:#13A42B; /* Set the background color */
+    -fx-background-radius:15px;
+    -fx-cursor:hand;
+}
+.button-ok:hover{
+	-fx-background-color:#138626;
+}
+.selectTitle{
+	-fx-background-color:BLACK;
+	-fx-background-radius:10px;
+}
+.middle-ch-bg{
+	-fx-background-color:WHITE;
+	-fx-background-radius:25px;
+	-fx-cursor:hand;
+}
+.middle-ch-bg-eai{
+	-fx-background-color:#EFE400;
+	-fx-background-radius:25px;
+	-fx-cursor:hand;
+}
