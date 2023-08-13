@@ -52,8 +52,8 @@ public class Main extends Application {
 	Button selectButtonNode;
 	ButtonType selectButton;
 
-	public static boolean lanSwap = true;
-	boolean nonesense = false;
+	public static boolean lanSwap;
+	public static boolean nonesense = false;
 
 	Image MainText = new Image("MainT.png");
 	Image CenterText = new Image("CenterT.png");

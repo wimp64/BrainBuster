@@ -118,3 +118,26 @@
 	-fx-border-radius:25px;
 	-fx-cursor:hand;
 }
+.Ez_Btn,.Nm_Btn,.Df_Btn{
+	-fx-background-radius:20px;
+	-fx-cursor:hand;
+	-fx-border-color:white;
+	-fx-border-radius:20px;
+}
+.Ez_Btn{
+	-fx-background-color:#15A46C;
+}
+.Ez_Btn:hover,.Nm_Btn:hover,.Df_Btn:hover{
+	-fx-border-color:black;
+	-fx-border-width:3px;
+}
+.Nm_Btn{
+	-fx-background-color:#7475E8;
+}
+.Df_Btn{
+	-fx-background-color:#FF4444;
+}
+.SQUARE{
+	-fx-background-color:WHITE;
+	-fx-background-radius:35px;
+}

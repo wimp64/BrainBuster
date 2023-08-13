@@ -118,7 +118,7 @@ public class Category {
 		currentStage.show();
 	}
 
-	private void back() {
+	private void back(ActionEvent event) {
 		s = currentStage;
 		currentStage.setHeight(s.getHeight());
 		currentStage.setWidth(s.getWidth());
@@ -136,7 +136,7 @@ public class Category {
 			Stage news = new Stage();
 			Profile p = new Profile();
 			try {
-				p.start(news);
+				p.start(news, languageChange);
 			} catch (Exception a) {
 
 			}
@@ -166,7 +166,7 @@ public class Category {
 		back = new Button();
 		back.getStyleClass().add("lets_start");
 		back.setPrefSize(60, 60);
-		back.setOnAction(a -> back());
+		back.setOnAction(a -> back(a));
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
 		back.setGraphic(backArrow);
@@ -310,6 +310,10 @@ public class Category {
 		StackPane.setAlignment(math_button, Pos.CENTER_RIGHT);
 		StackPane.setMargin(math_button, new Insets(0, 150, 300, 0));
 
+		math_button.setOnAction(event -> {
+			Difficulty d = new Difficulty();
+			d.switchToDifficulty(event, languageChange);
+		});
 		root.getChildren().addAll(math_button);
 	}
 
@@ -344,6 +348,11 @@ public class Category {
 		StackPane.setAlignment(lg_button, Pos.CENTER_RIGHT);
 		StackPane.setMargin(lg_button, new Insets(0, 150, 25, 0));
 
+		lg_button.setOnAction(event -> {
+			Difficulty d = new Difficulty();
+			d.switchToDifficulty(event, languageChange);
+		});
+
 		root.getChildren().addAll(lg_button);
 	}
 
@@ -377,6 +386,11 @@ public class Category {
 		});
 		StackPane.setAlignment(iq_button, Pos.CENTER_RIGHT);
 		StackPane.setMargin(iq_button, new Insets(0, 150, -250, 0));
+
+		iq_button.setOnAction(event -> {
+			Difficulty d = new Difficulty();
+			d.switchToDifficulty(event, languageChange);
+		});
 
 		root.getChildren().addAll(iq_button);
 	}
@@ -424,7 +438,7 @@ public class Category {
 			m_IQ.setVisible(false);
 			m_Ach.setVisible(false);
 
-			Lan = new Text("Language");
+			Lan = new Text("Language:");
 			Font lan_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
 			Lan.setFont(lan_font);
 			Lan.setFill(Color.WHITE);

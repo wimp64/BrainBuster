@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,12 +38,21 @@ public class Profile extends Application {
 	private StackPane selectedPane = null;
 
 	Image eai = new Image("Profile/eaistein.png");
+	Image cc = new Image("Profile/cancel.png");
+	Image ok = new Image("Profile/Okay.png");
+	Image select = new Image("Profile/SelectYour.png");
+
 	ImageView ProfileImg = new ImageView(eai);
+	ImageView ccImg = new ImageView(cc);
+	ImageView okImg = new ImageView(ok);
+	ImageView selectImg = new ImageView(select);
 
 	String colorCode = "WHITE";
 	Stage stage;
+	boolean languageChange;
 
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage, boolean lan) throws Exception {
+		languageChange = lan;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("profile.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
@@ -59,17 +69,37 @@ public class Profile extends Application {
 		Profile controller = loader.getController();
 		Font bottom_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 15);
 		Font title_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 16);
-		controller.cancel.setText("CANCEL");
-		controller.cancel.setStyle("-fx-text-fill:WHITE");
-		controller.cancel.setFont(bottom_font);
 
-		controller.okBtn.setText("OK");
-		controller.okBtn.setStyle("-fx-text-fill:WHITE");
-		controller.okBtn.setFont(bottom_font);
+		if (languageChange) {
+			controller.cancel.setText("CANCEL");
+			controller.cancel.setStyle("-fx-text-fill:WHITE");
+			controller.cancel.setFont(bottom_font);
 
-		controller.titleLabel.setText("Select Your Profile Picture");
-		controller.titleLabel.setFont(title_font);
-		controller.titleLabel.setStyle("-fx-text-fill:WHITE");
+			controller.okBtn.setText("OK");
+			controller.okBtn.setStyle("-fx-text-fill:WHITE");
+			controller.okBtn.setFont(bottom_font);
+
+			controller.titleLabel.setText("Select Your Profile Picture");
+			controller.titleLabel.setFont(title_font);
+			controller.titleLabel.setStyle("-fx-text-fill:WHITE");
+		} else {
+			ImageView ccImg = new ImageView(cc);
+			ccImg.setFitWidth(65);
+			ccImg.setFitHeight(25);
+
+			ImageView okImg = new ImageView(ok);
+			okImg.setFitWidth(65);
+			okImg.setFitHeight(25);
+
+			ImageView selectImg = new ImageView(select);
+			selectImg.setFitWidth(100);
+			controller.titleLabel.setAlignment(Pos.CENTER);
+			selectImg.setFitHeight(25);
+
+			controller.cancel.setGraphic(ccImg);
+			controller.okBtn.setGraphic(okImg);
+			controller.titleLabel.setGraphic(selectImg);
+		}
 	}
 
 	@FXML
@@ -110,8 +140,14 @@ public class Profile extends Application {
 			colorCode = "#EFE400";
 			clickPane.getStyleClass().add("middle-ch-bg-eai-choose");
 		} else {
+			colorCode = "WHITE";
 			clickPane.getStyleClass().add("middle-ch-bg-choose");
 		}
 		selectedPane = clickPane;
+	}
+
+	@Override
+	public void start(Stage arg0) throws Exception {
+
 	}
 }
