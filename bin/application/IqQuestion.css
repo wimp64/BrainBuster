@@ -1,0 +1,13 @@
+.yesBut{
+	-fx-background-color:#A359A0;
+	-fx-background-radius:50px;
+}
+.noBut{
+	-fx-background-color:#7F95E4;
+	-fx-background-radius:50px;
+}
+.timer{
+	-fx-background-radius:25px;
+	-fx-background-color:WHITE;
+	-fx-padding:0 0 0 30;
+}
