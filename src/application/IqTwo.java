@@ -6,12 +6,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 public class IqTwo extends Application {
@@ -27,6 +29,12 @@ public class IqTwo extends Application {
 	Text English;
 	Text Lan;
 
+	Label two = new Label();
+	Label five = new Label();
+	Label ten = new Label();
+	Label seventeen = new Label();
+	Label quest = new Label();
+
 	Image Lang = new Image("lang.png");
 	Image Arrow = new Image("arrow.png");
 
@@ -34,14 +42,15 @@ public class IqTwo extends Application {
 	ImageView backArrow = new ImageView(Arrow);
 
 	StackPane root;
+	StackPane rectangle;
 
-	boolean languageChange;
+	boolean languageChange = true;// delete true
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
 		this.languageChange = languageChange;
 		root = new StackPane();
-		root.setStyle("-fx-background-color: BLACK");
+		root.setStyle("-fx-background-color: #23844C");
 
 		elements();
 		lan_change();
@@ -57,7 +66,7 @@ public class IqTwo extends Application {
 	/* This is only for developing part */
 	public void start(Stage primaryStage) throws Exception {
 		root = new StackPane();
-		root.setStyle("-fx-background-color: BLACK");
+		root.setStyle("-fx-background-color: #23844C");
 		elements();
 		lan_change();
 		scene1 = new Scene(root, 1366, 766);
@@ -92,7 +101,28 @@ public class IqTwo extends Application {
 		StackPane.setAlignment(lan_button, Pos.TOP_LEFT);
 		StackPane.setMargin(lan_button, new Insets(100, 0, 0, 210));
 		lan_button.setOnAction(e -> lan_click());
-		root.getChildren().addAll(lan_button, back);
+
+		rectangle = new StackPane();
+		rectangle.setStyle("-fx-background-color:black;" + "-fx-background-radius:25px;");
+		rectangle.setMaxWidth(586);
+		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
+		rectangle.setMaxHeight(87);
+
+		Rotate rt = new Rotate(180 + 90 + 45, 0, 0);
+		two.getTransforms().add(rt);
+		StackPane.setMargin(two, new Insets(200, 700, 0, 0));
+
+		Rotate rt1 = new Rotate(25, 0, 0);
+		five.getTransforms().add(rt1);
+		StackPane.setMargin(five, new Insets(200, 300, 0, 0));
+
+		StackPane.setMargin(ten, new Insets(100, 0, 0, 0));
+
+		Rotate rt2 = new Rotate(180 + 90 + 75, 0, 0);
+		seventeen.getTransforms().add(rt2);
+		StackPane.setMargin(seventeen, new Insets(200, -400, 0, 0));
+
+		root.getChildren().addAll(lan_button, back, rectangle);
 	}
 
 	void lan_click() {
@@ -117,8 +147,30 @@ public class IqTwo extends Application {
 			English.setFill(Color.WHITE);
 			lan_button.setGraphic(English);
 
-			root.getChildren().addAll(Lan);
+			two.setText("2");
+			Font num_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 80);
+			two.setFont(num_font);
+			two.setTextFill(Color.WHITE);
 
+			five.setText("5");
+			five.setFont(num_font);
+			five.setTextFill(Color.WHITE);
+
+			ten.setText("10");
+			ten.setFont(num_font);
+			ten.setTextFill(Color.WHITE);
+
+			seventeen.setText("17");
+			seventeen.setFont(num_font);
+			seventeen.setTextFill(Color.WHITE);
+
+			quest.setText("Complete the sequence");
+			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 40);
+			quest.setFont(quest_font);
+			quest.setTextFill(Color.WHITE);
+			rectangle.getChildren().add(quest);
+
+			root.getChildren().addAll(Lan, two, five, ten, seventeen);
 			nonesense = true;
 		} else {
 			if (nonesense == true) {

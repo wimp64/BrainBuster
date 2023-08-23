@@ -351,6 +351,7 @@ public class Category {
 		lg_button.setOnAction(event -> {
 			Difficulty d = new Difficulty();
 			d.switchToDifficulty(event, languageChange);
+			root.getChildren().clear();
 		});
 
 		root.getChildren().addAll(lg_button);

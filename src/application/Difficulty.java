@@ -117,6 +117,7 @@ public class Difficulty {
 		back.setOnAction(a -> {
 			Category cat = new Category();
 			cat.switchToScene1(a, 1, languageChange);
+			root.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);

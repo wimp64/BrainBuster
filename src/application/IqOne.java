@@ -2,7 +2,6 @@ package application;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,7 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class IqOne extends Application {
+public class IqOne {
 	int Counter = 15;
 	int remain_counter = Counter;
 
@@ -40,13 +39,22 @@ public class IqOne extends Application {
 	Image Lang = new Image("lang.png");
 	Image Arrow = new Image("arrow.png");
 	Image time = new Image("IqOne/timer.png");
+	Image IqOneEng = new Image("IqOne/IqOneTEng.png");
+	Image flowerOne = new Image("IqOne/flowerOne.png");
+	Image flowerTwo = new Image("IqOne/flowerTwo.png");
+	Image flowerG = new Image("IqOne/flowerG.png");
+	Image flowerB = new Image("IqOne/flowerB.png");
 
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView timeImg = new ImageView(time);
-
+	ImageView IqOneEngImg = new ImageView(IqOneEng);
+	ImageView flowerOneImg = new ImageView(flowerOne);
+	ImageView flowerTwoImg = new ImageView(flowerTwo);
+	ImageView flowerGImg = new ImageView(flowerG);
+	ImageView flowerBImg = new ImageView(flowerB);
 	StackPane root;
 
-	boolean languageChange = true;// delete true
+	boolean languageChange;// delete true
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
@@ -57,32 +65,34 @@ public class IqOne extends Application {
 		elements();
 		lan_change();
 		Counting();
+		System.out.println(remain_counter);
 		// Retrieve the stage from the event source
 		currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
 		scene1 = new Scene(root, currentStage.getWidth(), currentStage.getHeight());
+		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
 		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		currentStage.setScene(scene1);
 		currentStage.show();
 	}
 
 	/* This is only for developing part */
-	public void start(Stage primaryStage) throws Exception {
-		root = new StackPane();
-		root.setStyle("-fx-background-color: #F8ABEB");
-		elements();
-		lan_change();
-		Counting();
-		scene1 = new Scene(root, 1366, 766);
-		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
-		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		primaryStage.setScene(scene1);
-		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
+//	public void start(Stage primaryStage) throws Exception {
+//		root = new StackPane();
+//		root.setStyle("-fx-background-color: #F8ABEB");
+//		elements();
+//		lan_change();
+//		Counting();
+//		scene1 = new Scene(root, 1366, 766);
+//		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
+//		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//		primaryStage.setScene(scene1);
+//		primaryStage.show();
+//	}
+//
+//	public static void main(String[] args) {
+//		launch(args);
+//	}
 	/* This is only for developing part */
 
 	private void elements() {
@@ -92,6 +102,7 @@ public class IqOne extends Application {
 		Category cat = new Category();
 		back.setOnAction(a -> {
 			cat.switchToScene1(a, 1, languageChange);
+			timeLine.stop();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -106,6 +117,27 @@ public class IqOne extends Application {
 		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
 		rectangle.setMaxHeight(307);
 
+		IqOneEngImg = new ImageView(IqOneEng);
+		IqOneEngImg.setFitWidth(1150);
+		IqOneEngImg.setFitHeight(200);
+		rectangle.getChildren().add(IqOneEngImg);
+
+		flowerOneImg.setFitWidth(180);
+		flowerOneImg.setFitHeight(128);
+		StackPane.setMargin(flowerOneImg, new Insets(400, 1150, 0, 0));
+
+		flowerTwoImg.setFitWidth(145);
+		flowerTwoImg.setFitHeight(177);
+		StackPane.setMargin(flowerTwoImg, new Insets(400, -1100, 0, 0));
+
+		flowerGImg.setFitWidth(76);
+		flowerGImg.setFitHeight(100);
+		StackPane.setMargin(flowerGImg, new Insets(650, 700, 0, 0));
+
+		flowerBImg.setFitWidth(75);
+		flowerBImg.setFitHeight(100);
+		StackPane.setMargin(flowerBImg, new Insets(650, -700, 0, 0));
+
 		yes.getStyleClass().add("yesBut");
 		yes.setMaxSize(230, 115);
 		StackPane.setMargin(yes, new Insets(400, 700, 0, 0));
@@ -113,7 +145,10 @@ public class IqOne extends Application {
 		no.getStyleClass().add("noBut");
 		no.setMaxSize(230, 115);
 		StackPane.setMargin(no, new Insets(400, -700, 0, 0));
-
+		no.setOnAction(e -> {
+			IqQuestions.switchToIqQuestions(e, languageChange);
+			timeLine.stop();
+		});
 		timeImg.setFitWidth(85);
 		timeImg.setFitHeight(100);
 		StackPane.setMargin(timeImg, new Insets(400, 100, 0, 0));
@@ -122,7 +157,8 @@ public class IqOne extends Application {
 		timer.setMaxSize(140, 60);
 		StackPane.setMargin(timer, new Insets(400, 0, 0, 0));
 
-		root.getChildren().addAll(back, rectangle, yes, no, timer, timeImg);
+		root.getChildren().addAll(back, rectangle, yes, no, timer, timeImg, flowerOneImg, flowerTwoImg, flowerGImg,
+				flowerBImg);
 	}
 
 	void lan_click() {
@@ -139,12 +175,12 @@ public class IqOne extends Application {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
 			timer.setGraphic(timeT);
-			System.out.println(remain_counter);
 			if (remain_counter == 10) {
 				timeT.setFill(Color.RED);
 			}
 			if (remain_counter <= 0) {
 				timeLine.stop();
+				no.fire();
 			}
 		}));
 		timeLine.setCycleCount(Counter);
