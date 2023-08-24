@@ -8,7 +8,7 @@
 	-fx-border-radius:50px;
 	-fx-border-width:4px;
 }
-.yesBut:pressed,.noBut:pressed{
+.yesBut:pressed,.noBut:pressed,.b_hover:pressed,.strange_b:pressed{
 	-fx-scale-x:0.97;
 	-fx-scale-y:0.97;
 }
@@ -21,4 +21,33 @@
 	-fx-background-radius:25px;
 	-fx-background-color:WHITE;
 	-fx-padding:0 0 0 30;
+}
+.timerF{
+	-fx-background-radius:25px;
+	-fx-background-color:BLACK;
+	-fx-padding:0 0 0 30;
+}
+.ansText{
+	-fx-background-color:rgba(0,0,0,0.3);
+	-fx-text-fill:white;
+}
+.subBut{
+	-fx-background-color:WHITE;
+	-fx-background-radius:50px;
+	-fx-cursor:hand;
+}
+.subBut:hover{
+	-fx-background-color:BLACK;
+}
+.b_hover{
+	-fx-background-color:BLACK;
+	-fx-background-radius:50px;
+	-fx-cursor:hand;
+}
+.b_hover:hover,.strange_b:hover{
+	-fx-background-color:#F0F5FF;
+}
+.strange_b{
+	-fx-background-color:BLACK;
+	-fx-cursor:hand;
 }

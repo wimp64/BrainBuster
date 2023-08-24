@@ -1,46 +1,33 @@
 package application;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class test extends Application {
-	Timeline timeline;
-	private static final int COUNTDOWN_SECONDS = 15;
-	private int remainingSeconds = COUNTDOWN_SECONDS;
-	private Label timerLabel = new Label();
 
 	@Override
 	public void start(Stage primaryStage) {
-		StackPane root = new StackPane(timerLabel);
-		Scene scene = new Scene(root, 200, 100);
+		StackPane root = new StackPane();
 
-		timerLabel.setStyle("-fx-font-size: 24px;");
-		updateTimerLabel();
+		Rectangle blackRectangle = new Rectangle(0, 0, 0, primaryStage.getHeight());
+		blackRectangle.setFill(Color.BLACK);
+		blackRectangle.widthProperty().bind(primaryStage.widthProperty().divide(2));
 
-		timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-			remainingSeconds--;
-			updateTimerLabel();
-			System.out.println(remainingSeconds);
-			if (remainingSeconds <= 0) {
-				timeline.stop();
-			}
-		}));
-		timeline.setCycleCount(COUNTDOWN_SECONDS);
-		timeline.play();
+		Rectangle whiteRectangle = new Rectangle(0, 0, 0, primaryStage.getHeight());
+		whiteRectangle.setFill(Color.WHITE);
+		whiteRectangle.widthProperty().bind(primaryStage.widthProperty().divide(2));
+		whiteRectangle.translateXProperty().bind(primaryStage.widthProperty().divide(2));
 
-		primaryStage.setTitle("Countdown Timer");
+		root.getChildren().addAll(blackRectangle, whiteRectangle);
+
+		Scene scene = new Scene(root, 800, 600);
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("Half Black Half White Background");
 		primaryStage.show();
-	}
-
-	private void updateTimerLabel() {
-		timerLabel.setText("Time left: " + remainingSeconds + " seconds");
 	}
 
 	public static void main(String[] args) {

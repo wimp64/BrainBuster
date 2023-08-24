@@ -2,6 +2,7 @@ package application;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -23,7 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 
-public class IqTwo {
+public class IqFive extends Application {
 	Timeline timeLine;
 
 	int Counter = 15;
@@ -72,7 +73,7 @@ public class IqTwo {
 	StackPane root;
 	StackPane rectangle;
 
-	boolean languageChange;// delete true
+	boolean languageChange = true;// delete true
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
@@ -94,22 +95,22 @@ public class IqTwo {
 	}
 
 	/* This is only for developing part */
-//	public void start(Stage primaryStage) throws Exception {
-//		root = new StackPane();
-//		root.setStyle("-fx-background-color: #23844C");
-//		Counting();
-//		elements();
-//		lan_change();
-//		scene1 = new Scene(root, 1366, 766);
-//		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
-//		primaryStage.setScene(scene1);
-//		primaryStage.show();
-//	}
-//
-//	public static void main(String[] args) {
-//		launch(args);
-//	}
+	public void start(Stage primaryStage) throws Exception {
+		root = new StackPane();
+		root.setStyle("-fx-background-color: #23844C");
+		Counting();
+		elements();
+		lan_change();
+		scene1 = new Scene(root, 1366, 766);
+		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
+		primaryStage.setScene(scene1);
+		primaryStage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 	/* This is only for developing part */
 
 	private void elements() {
