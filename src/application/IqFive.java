@@ -1,8 +1,14 @@
 package application;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
-import javafx.application.Application;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -19,15 +25,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 
-public class IqFive extends Application {
+public class IqFive {
 	Timeline timeLine;
 
-	int Counter = 15;
+	int Counter = 25;
 	int remain_counter = Counter;
 
 	Scene scene1;
@@ -36,51 +41,51 @@ public class IqFive extends Application {
 	Scene sc;
 
 	Button back;
-	Button lan_button;
 	Button timer = new Button();
 	Button submit = new Button();
 
-	Text Myanmar;
-	Text English;
-	Text Lan;
 	Text timeT = new Text();
 	Text submitT = new Text();
 
-	Label two = new Label();
-	Label five = new Label();
-	Label ten = new Label();
-	Label seventeen = new Label();
 	Label quest = new Label();
+	Label miles = new Label();
+	Label awardT = new Label();
 
-	Image Lang = new Image("lang.png");
 	Image Arrow = new Image("arrow.png");
-	Image balloon1 = new Image("IqTwo/balloon1.png");
-	Image balloon2 = new Image("IqTwo/balloon2.png");
-	Image clock = new Image("IqTwo/clock.png");
-	Image girl = new Image("IqTwo/girl.png");
-	Image pencil = new Image("IqTwo/pencil.png");
+	Image clock = new Image("IqFive/clock.png");
+	Image road = new Image("IqFive/road.png");
+	Image car = new Image("IqFive/car2.png");
+	Image w1 = new Image("IqFive/wheel.png");
+	Image w2 = new Image("IqFive/wheel.png");
+	Image clouds = new Image("IqFive/clouds.png");
+	Image eaistein = new Image("Profile/eaistein.png");
+	Image cele1 = new Image("IqFive/cele1.png");
+	Image cele2 = new Image("IqFive/cele2.png");
 
-	ImageView langText = new ImageView(Lang);
 	ImageView backArrow = new ImageView(Arrow);
-	ImageView balloon1Img = new ImageView(balloon1);
-	ImageView balloon2Img = new ImageView(balloon2);
 	ImageView clockImg = new ImageView(clock);
-	ImageView girlImg = new ImageView(girl);
-	ImageView pencilImg = new ImageView(pencil);
+	ImageView roadImg = new ImageView(road);
+	ImageView carImg = new ImageView(car);
+	ImageView w1Img = new ImageView(w1);
+	ImageView w2Img = new ImageView(w2);
+	ImageView cloudsImg = new ImageView(clouds);
+	ImageView eaisteinImg = new ImageView(eaistein);
+	ImageView cele1Img = new ImageView(cele1);
+	ImageView cele2Img = new ImageView(cele2);
 
 	TextField ans = new TextField();
 
 	StackPane root;
-	StackPane rectangle;
+	StackPane noti;
 
-	boolean languageChange = true;// delete true
+	boolean languageChange;// delete true
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
 		this.languageChange = languageChange;
 		root = new StackPane();
-		root.setStyle("-fx-background-color: #23844C");
-
+		root.setStyle("-fx-background-color: #04345C");
+		notification();
 		Counting();
 		elements();
 		lan_change();
@@ -95,25 +100,33 @@ public class IqFive extends Application {
 	}
 
 	/* This is only for developing part */
-	public void start(Stage primaryStage) throws Exception {
-		root = new StackPane();
-		root.setStyle("-fx-background-color: #23844C");
-		Counting();
-		elements();
-		lan_change();
-		scene1 = new Scene(root, 1366, 766);
-		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
-		primaryStage.setScene(scene1);
-		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
+//	public void start(Stage primaryStage) throws Exception {
+//		root = new StackPane();
+//		root.setStyle("-fx-background-color: #04345C");
+//		notification();
+//		Counting();
+//		elements();
+//		lan_change();
+//		scene1 = new Scene(root, 1366, 766);
+//		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
+//		primaryStage.setScene(scene1);
+//		primaryStage.show();
+//	}
+//
+//	public static void main(String[] args) {
+//		launch(args);
+//	}
 	/* This is only for developing part */
 
 	private void elements() {
+
+		root.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				submit.fire();
+			}
+		});
+
 		back = new Button();
 		back.getStyleClass().add("lets_start");
 		back.setPrefSize(60, 60);
@@ -128,34 +141,10 @@ public class IqFive extends Application {
 		StackPane.setAlignment(back, Pos.TOP_LEFT);
 		StackPane.setMargin(back, new Insets(30, 0, 0, 30));// top right bottom left
 
-		lan_button = new Button();
-		lan_button.setPrefSize(78, 39);
-		lan_button.getStyleClass().add("lets_start");
-		StackPane.setAlignment(lan_button, Pos.TOP_LEFT);
-		StackPane.setMargin(lan_button, new Insets(100, 0, 0, 210));
-		lan_button.setOnAction(e -> lan_click());
-
-		rectangle = new StackPane();
-		rectangle.setStyle("-fx-background-color:black;" + "-fx-background-radius:25px;");
-		rectangle.setMaxWidth(586);
-		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
-		rectangle.setMaxHeight(87);
-
-		Rotate rt = new Rotate(180 + 90 + 45, 0, 0);
-		two.getTransforms().add(rt);
-		StackPane.setMargin(two, new Insets(200, 700, 0, 0));
-
-		Rotate rt1 = new Rotate(25, 0, 0);
-		five.getTransforms().add(rt1);
-		StackPane.setMargin(five, new Insets(200, 300, 0, 0));
-
-		StackPane.setMargin(ten, new Insets(100, 0, 0, 0));
-
-		Rotate rt2 = new Rotate(180 + 90 + 75, 0, 0);
-		seventeen.getTransforms().add(rt2);
-		StackPane.setMargin(seventeen, new Insets(200, -400, 0, 0));
-
-		ans.setMaxWidth(90);
+		StackPane.setMargin(cloudsImg, new Insets(0, 0, 300, 0));
+		cloudsImg.setOpacity(0.85);
+		StackPane.setMargin(quest, new Insets(0, 0, 300, 0));
+		ans.setMaxWidth(125);
 		ans.setMaxHeight(90);
 		Platform.runLater(() -> {
 			ans.requestFocus();
@@ -164,54 +153,118 @@ public class IqFive extends Application {
 		ans.getStyleClass().add("ansText");
 		TextFormatter<Integer> tf = new TextFormatter<>(new IntegerStringConverter(), null, change -> {
 			String newText = change.getControlNewText();
-			if (newText.matches("\\d{0,2}")) {
+			if (newText.matches("\\d{0,3}")) {
 				return change;
 			}
 			return null;
 		});
 		ans.setAlignment(Pos.CENTER_RIGHT);
 		ans.setTextFormatter(tf);
-		StackPane.setMargin(ans, new Insets(180, -800, 0, 0));
-
-		submit.getStyleClass().add("subBut");
-		submitT.setFill(Color.BLACK);
+		StackPane.setMargin(ans, new Insets(200, 0, 0, 0));
+		StackPane.setMargin(miles, new Insets(200, 0, 0, 230));
+		submit.getStyleClass().add("subButFive");
+		submitT.setFill(Color.WHITE);
 		submit.setOnMouseEntered(e -> {
-			submitT.setFill(Color.WHITE);
-		});
-		submit.setOnMouseExited(e -> {
 			submitT.setFill(Color.BLACK);
 		});
+		submit.setOnMouseExited(e -> {
+			submitT.setFill(Color.WHITE);
+		});
 		submit.setMaxSize(125, 50);
-		StackPane.setMargin(submit, new Insets(350, -800, 0, 0));
+		StackPane.setMargin(submit, new Insets(200, 0, 0, 500));
 		submit.setOnAction(e -> {
+			String input = ans.getText();
+			if (!input.isEmpty()) {
+				if (Integer.parseInt(input) == 120) {
+					showNoti(e);
+				}
+			}
 			IqQuestions.switchToIqQuestions(e, languageChange);
 			timeLine.stop();
 		});
-		balloon1Img = new ImageView(balloon1);
-		StackPane.setAlignment(balloon1Img, Pos.TOP_RIGHT);
-
-		balloon2Img = new ImageView(balloon2);
-		StackPane.setAlignment(balloon2Img, Pos.TOP_LEFT);
-		StackPane.setMargin(balloon2Img, new Insets(200, 0, 0, 0));
 
 		clockImg = new ImageView(clock);
-		clockImg.setFitWidth(90);
-		clockImg.setFitHeight(100);
-		StackPane.setMargin(clockImg, new Insets(0, 100, 450, 0));
+		clockImg.setFitWidth(80);
+		clockImg.setFitHeight(80);
+		StackPane.setMargin(clockImg, new Insets(50, 100, 0, 1000));
 
 		timer.getStyleClass().add("timer");
 		timer.setMaxSize(140, 60);
-		StackPane.setMargin(timer, new Insets(0, 0, 450, 0));
+		StackPane.setMargin(timer, new Insets(50, 0, 0, 1000));
 
-		girlImg = new ImageView(girl);
-		StackPane.setAlignment(girlImg, Pos.BOTTOM_RIGHT);
+		StackPane.setMargin(roadImg, new Insets(450, 0, 0, 0));
 
-		pencilImg = new ImageView(pencil);
-		StackPane.setAlignment(pencilImg, Pos.BOTTOM_LEFT);
-		StackPane.setMargin(pencilImg, new Insets(0, 0, 100, 100));
+		StackPane.setMargin(carImg, new Insets(535, 700, 0, 0));
 
-		root.getChildren().addAll(lan_button, back, rectangle, ans, balloon1Img, balloon2Img, girlImg, pencilImg,
-				submit, timer, clockImg);
+		StackPane.setMargin(w1Img, new Insets(620, 1081, 0, 0));
+		StackPane.setMargin(w2Img, new Insets(620, 735, 0, 0));
+
+		RotateTransition rt = new RotateTransition();
+		rt.setNode(w1Img);
+		rt.setByAngle(360);
+		rt.setDuration(Duration.seconds(0.5));
+		rt.setAutoReverse(false);
+		rt.setCycleCount(RotateTransition.INDEFINITE);
+		rt.play();
+
+		RotateTransition rt1 = new RotateTransition();
+		rt1.setNode(w2Img);
+		rt1.setByAngle(360);
+		rt1.setDuration(Duration.seconds(0.6));
+		rt1.setAutoReverse(false);
+		rt1.setCycleCount(RotateTransition.INDEFINITE);
+		rt1.play();
+
+		TranslateTransition tt2 = new TranslateTransition(Duration.seconds(5), carImg);
+		tt2.setByX(900);
+		TranslateTransition ttw1 = new TranslateTransition(Duration.seconds(5), w1Img);
+		ttw1.setByX(900);
+		TranslateTransition ttw2 = new TranslateTransition(Duration.seconds(5), w2Img);
+		ttw2.setByX(900);
+
+		TranslateTransition tt3 = new TranslateTransition(Duration.seconds(5), carImg);
+		tt3.setByX(-900);
+		TranslateTransition ttw1R = new TranslateTransition(Duration.seconds(5), w1Img);
+		ttw1R.setByX(-900);
+		TranslateTransition ttw2R = new TranslateTransition(Duration.seconds(5), w2Img);
+		ttw2R.setByX(-900);
+
+		ScaleTransition st1 = new ScaleTransition(Duration.millis(1), carImg);
+		st1.setToX(-1);
+		TranslateTransition move = new TranslateTransition(Duration.ZERO, carImg);
+		move.setByX(-210);
+		move.setDelay(Duration.seconds(0.5));
+		ParallelTransition stM = new ParallelTransition();
+		stM.getChildren().addAll(st1, move);
+
+		FadeTransition stw1 = new FadeTransition(Duration.seconds(0.5), w1Img);
+		FadeTransition stw2 = new FadeTransition(Duration.seconds(0.5), w2Img);
+
+		SequentialTransition sq = new SequentialTransition();
+		sq.getChildren().addAll(tt2, stM, tt3);
+		sq.setCycleCount(SequentialTransition.INDEFINITE);
+		sq.setNode(carImg);
+
+		SequentialTransition sqw1 = new SequentialTransition();
+		sqw1.getChildren().addAll(ttw1, stw1, ttw1R);
+		sqw1.setCycleCount(SequentialTransition.INDEFINITE);
+		sqw1.setNode(w1Img);
+
+		SequentialTransition sqw2 = new SequentialTransition();
+		sqw2.getChildren().addAll(ttw2, stw2, ttw2R);
+		sqw2.setCycleCount(SequentialTransition.INDEFINITE);
+		sqw2.setNode(w1Img);
+
+		ParallelTransition parallelTransition = new ParallelTransition();
+		parallelTransition.getChildren().addAll(sq, sqw1, sqw2);
+		parallelTransition.play();
+
+		root.getChildren().addAll(noti, back, ans, submit, timer, clockImg, roadImg, carImg, w1Img, w2Img, cloudsImg);
+		cloudsImg.toBack();
+	}
+
+	void flip_image() {
+
 	}
 
 	void lan_click() {
@@ -220,7 +273,7 @@ public class IqFive extends Application {
 	}
 
 	void Counting() {
-		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
+		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 30);
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
 		timer.setGraphic(timeT);
@@ -240,46 +293,70 @@ public class IqFive extends Application {
 		timeLine.play();
 	}
 
+	private void notification() {
+		noti = new StackPane();
+		noti.setMaxWidth(613);
+		noti.setMaxHeight(141);
+		StackPane.setAlignment(noti, Pos.TOP_CENTER);
+		StackPane.setMargin(noti, new Insets(-200, 0, 0, 0));
+		noti.getStyleClass().add("noti");
+		noti.setVisible(false);
+
+		Button award = new Button();
+		award.setMaxSize(100, 100);
+		award.setStyle("-fx-background-color: #FFCC00; -fx-background-radius: 50%;");
+		StackPane.setAlignment(award, Pos.CENTER_LEFT);
+		StackPane.setMargin(award, new Insets(0, 0, 0, 25));
+
+		eaisteinImg.setFitWidth(55);
+		eaisteinImg.setFitHeight(70);
+		award.setGraphic(eaisteinImg);
+
+		StackPane.setAlignment(cele1Img, Pos.BOTTOM_LEFT);
+		StackPane.setMargin(cele1Img, new Insets(0, 0, 15, 140));
+
+		StackPane.setAlignment(cele2Img, Pos.TOP_RIGHT);
+		StackPane.setMargin(cele2Img, new Insets(15, 50, 0, 0));
+
+		noti.getChildren().addAll(award, cele1Img, cele2Img);
+	}
+
+	private void showNoti(ActionEvent ea) {
+		noti.setVisible(true);
+		TranslateTransition down = new TranslateTransition();
+		down.setByY(200);
+		down.setDuration(Duration.seconds(1));
+		down.setNode(noti);
+
+		PauseTransition pause = new PauseTransition();
+		pause.setDuration(Duration.seconds(4));
+
+		ScaleTransition shake = new ScaleTransition();
+		shake.setNode(noti);
+		shake.setToX(0.9);
+		shake.setToY(0.9);
+		shake.setAutoReverse(true);
+		shake.setCycleCount(4);
+		shake.setDuration(Duration.seconds(1));
+
+		ParallelTransition pt = new ParallelTransition();
+		pt.getChildren().addAll(pause, shake);
+
+		TranslateTransition up = new TranslateTransition();
+		up.setByY(-200);
+		up.setDuration(Duration.seconds(1));
+		up.setNode(noti);
+
+		down.setOnFinished(e -> pt.play());
+		pause.setOnFinished(e -> up.play());
+		down.play();
+		up.setOnFinished(e -> {
+			IqQuestions.switchToIqQuestions(ea, languageChange);
+		});
+	}
+
 	private void lan_change() {
 		if (languageChange) {
-			langText.setVisible(false);
-
-			Lan = new Text("Language:");
-			Font lan_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Lan.setFont(lan_font);
-			Lan.setFill(Color.WHITE);
-			StackPane.setAlignment(Lan, Pos.TOP_LEFT);
-			StackPane.setMargin(Lan, new Insets(105, 0, 0, 90));
-
-			English = new Text("ENG");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			English.setFont(English_font);
-			English.setFill(Color.WHITE);
-			lan_button.setGraphic(English);
-
-			two.setText("2");
-			Font num_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 80);
-			two.setFont(num_font);
-			two.setTextFill(Color.WHITE);
-
-			five.setText("5");
-			five.setFont(num_font);
-			five.setTextFill(Color.WHITE);
-
-			ten.setText("10");
-			ten.setFont(num_font);
-			ten.setTextFill(Color.WHITE);
-
-			seventeen.setText("17");
-			seventeen.setFont(num_font);
-			seventeen.setTextFill(Color.WHITE);
-
-			quest.setText("Complete the sequence");
-			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 40);
-			quest.setFont(quest_font);
-			quest.setTextFill(Color.WHITE);
-			rectangle.getChildren().add(quest);
-
 			Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
 			ans.setFont(ans_font);
 
@@ -287,30 +364,28 @@ public class IqFive extends Application {
 			submit.setGraphic(submitT);
 			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
 			submitT.setFont(sub_font);
-			root.setOnKeyPressed(event -> {
-				if (event.getCode() == KeyCode.ENTER) {
-					submit.fire();
-				}
-			});
-			root.getChildren().addAll(Lan, two, five, ten, seventeen);
+
+			quest.setText("If a car travels at a speed of 60 mph for 2 hours,\n\t\t\thow far does it travel?");
+			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 36);
+			quest.setFont(quest_font);
+
+			miles.setText("miles");
+			miles.setFont(sub_font);
+			miles.setTextFill(Color.WHITE);
+
+			awardT.setText("Congratulation!\r\n" + " Little Eaistein...");
+			Font award_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 26);
+			awardT.setFont(award_font);
+
+			noti.getChildren().add(awardT);
+			root.getChildren().addAll(quest, miles);
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				Lan.setVisible(false);
+
 			}
-			langText = new ImageView(Lang);
-			langText.setFitWidth(130);
-			langText.setFitHeight(20);
-			StackPane.setAlignment(langText, Pos.TOP_LEFT);
-			StackPane.setMargin(langText, new Insets(110, 0, 0, 70));
 
-			Myanmar = new Text("Myan");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Myanmar.setFont(English_font);
-			Myanmar.setFill(Color.WHITE);
-			lan_button.setGraphic(Myanmar);
-
-			root.getChildren().addAll(langText);
+			root.getChildren().addAll();
 		}
 	}
 }

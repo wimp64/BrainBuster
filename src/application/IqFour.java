@@ -2,7 +2,6 @@ package application;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class IqFour extends Application {
+public class IqFour {
 	Timeline timeLine;
 
 	int Counter = 30;
@@ -46,7 +45,7 @@ public class IqFour extends Application {
 	Label choose = new Label();
 
 	Image Arrow = new Image("arrow.png");
-	Image ruler = new Image("IqFour/ruler.png");
+	Image ruler = new Image("iqFour/ruler.png");
 	Image clock = new Image("IqFour/clock.png");
 	Image ease = new Image("IqFour/ease.png");
 	Image markers = new Image("IqFour/markers.png");
@@ -61,7 +60,7 @@ public class IqFour extends Application {
 	StackPane rectangle;
 	StackPane recS;
 
-	boolean languageChange = true;// delete true
+	boolean languageChange;// delete true
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
@@ -83,22 +82,22 @@ public class IqFour extends Application {
 	}
 
 	/* This is only for developing part */
-	public void start(Stage primaryStage) throws Exception {
-		root = new StackPane();
-		root.setStyle("-fx-background-color: #F0F5FF");
-		Counting();
-		elements();
-		lan_change();
-		scene1 = new Scene(root, 1366, 766);
-		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
-		primaryStage.setScene(scene1);
-		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
+//	public void start(Stage primaryStage) throws Exception {
+//		root = new StackPane();
+//		root.setStyle("-fx-background-color: #F0F5FF");
+//		Counting();
+//		elements();
+//		lan_change();
+//		scene1 = new Scene(root, 1366, 766);
+//		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
+//		primaryStage.setScene(scene1);
+//		primaryStage.show();
+//	}
+//
+//	public static void main(String[] args) {
+//		launch(args);
+//	}
 	/* This is only for developing part */
 
 	private void elements() {

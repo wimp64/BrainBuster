@@ -118,6 +118,8 @@
 	-fx-border-radius:25px;
 	-fx-cursor:hand;
 }
+
+/*Difficulty */
 .Ez_Btn,.Nm_Btn,.Df_Btn{
 	-fx-background-radius:20px;
 	-fx-cursor:hand;
