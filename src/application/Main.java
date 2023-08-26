@@ -87,10 +87,11 @@ public class Main extends Application {
 		lanSwap = pre.getBoolean(memory, false);
 		this.primaryStage = primaryStage;
 		root = new StackPane();
-		scene = new Scene(root, 1366, 766);
+		scene = new Scene(root,1366,766);
 		primaryStage.setScene(scene);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		root.setStyle("-fx-background-color: #2385C4;");
+		primaryStage.setMaximized(true);
 		primaryStage.show();
 		letStart();
 		LanSwitch();
