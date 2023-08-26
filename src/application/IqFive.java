@@ -82,6 +82,7 @@ public class IqFive {
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #04345C");
@@ -178,8 +179,9 @@ public class IqFive {
 				if (Integer.parseInt(input) == 120) {
 					showNoti(e);
 				}
+			} else {
+				IqQuestions.switchToIqQuestions(e, languageChange);
 			}
-			IqQuestions.switchToIqQuestions(e, languageChange);
 			timeLine.stop();
 		});
 

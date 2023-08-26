@@ -64,6 +64,7 @@ public class IqFour {
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #F0F5FF");
@@ -134,7 +135,9 @@ public class IqFour {
 		b1.getStyleClass().add("b_hover");
 		StackPane.setAlignment(b1, Pos.TOP_LEFT);
 		StackPane.setMargin(b1, new Insets(25, 0, 0, 25));
-
+		b1.setOnAction(e -> {
+			IqQuestions.switchToIqQuestions(e, languageChange);
+		});
 		b2.setMaxSize(155, 77);
 		b2.getStyleClass().add("strange_b");
 		StackPane.setAlignment(b2, Pos.CENTER_LEFT);

@@ -1,5 +1,10 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -25,7 +30,7 @@ public class test extends Application {
 		Scene scene = new Scene(root, 400, 300);
 
 		Button showNotificationButton = new Button("Show Notification");
-		showNotificationButton.setOnAction(event -> showNotification());
+		showNotificationButton.setOnAction(event -> ran());
 
 		notificationPane = createNotificationPane();
 		root.getChildren().addAll(showNotificationButton, notificationPane);
@@ -33,6 +38,34 @@ public class test extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Custom Notification App");
 		primaryStage.show();
+	}
+
+	boolean checker = true;
+	List<Integer> check = new ArrayList<>();
+	int point = -1;
+
+	void ran() {
+		point++;
+		if (checker == true) {
+			int maxNumber = 4; // Maximum number to generate (exclusive)
+			int numberOfNumbers = 4; // Number of unique random numbers to generate
+
+			Random random = new Random();
+
+			while (check.size() < numberOfNumbers) {
+				int randomNumber = random.nextInt(maxNumber) + 1;
+				if (!check.contains(randomNumber)) {
+					check.add(randomNumber);
+				}
+			}
+
+			// Shuffle the list to get random order
+			Collections.shuffle(check);
+			System.out.println(check.get(point));
+			checker = false;
+		} else {
+			System.out.println(check.get(point));
+		}
 	}
 
 	private Pane createNotificationPane() {

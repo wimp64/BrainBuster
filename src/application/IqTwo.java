@@ -76,6 +76,7 @@ public class IqTwo {
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #23844C");

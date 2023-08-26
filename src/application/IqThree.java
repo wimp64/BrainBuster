@@ -66,6 +66,7 @@ public class IqThree {
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #F79630");

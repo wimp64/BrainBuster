@@ -1,5 +1,8 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import javafx.event.ActionEvent;
@@ -9,39 +12,44 @@ public class IqQuestions {
 	static IqOne iqOne = new IqOne();
 	static IqTwo iqTwo = new IqTwo();
 	static IqThree iqThree = new IqThree();
+	static IqFour iqFour = new IqFour();
+	static IqFive iqFive = new IqFive();
 	static Difficulty df = new Difficulty();
-	static int generatedNumber = -1;
 	static Random random = new Random();
 	static int point = -1;
+	static List<Integer> check = new ArrayList<>();
+	static boolean checker = true;
 
 	static void switchToIqQuestions(ActionEvent e, boolean languageChange) {
 		point++;
-		int RandomNum;
-		do {
-			RandomNum = random.nextInt(3) + 1;
-		} while (RandomNum == generatedNumber);
+		if (checker == true) {
+			int maxNumber = 5; // Maximum number to generate (exclusive)
+			int numberOfNumbers = 5; // Number of unique random numbers to generate
 
-		generatedNumber = RandomNum;
-		int[] check = new int[4];
-		System.out.println(point);
-		check[point] = generatedNumber;
+			Random random = new Random();
 
-		if (point == 3) {
-			for (int i = 0; i < 3; i++) {
-				if (generatedNumber == check[i]) {
-					System.out.println(point);
-					System.out.println("succeed");
-					break;
-				}
-				if (conditionToStopLoop()) {
-					df.switchToDifficulty(e, languageChange);
-					return; // Stop the entire program
+			while (check.size() < numberOfNumbers) {
+				int randomNumber = random.nextInt(maxNumber) + 1;
+				if (!check.contains(randomNumber)) {
+					check.add(randomNumber);
 				}
 			}
+
+			// Shuffle the list to get random order
+			Collections.shuffle(check);
+			checker = false;
 		}
-		System.out.println("generated Number" + generatedNumber);
+		System.out.println(point);
+		if (point == 5) {
+			checker = true;
+			point = -1;
+			if (conditionToStopLoop()) {
+				df.switchToDifficulty(e, languageChange);
+				return;
+			}
+		}
 		try {
-			switch (generatedNumber) {
+			switch (check.get(point)) {
 			case 1:
 				iqOne.switchToIqQuestions(e, languageChange);
 				break;
@@ -50,6 +58,12 @@ public class IqQuestions {
 				break;
 			case 3:
 				iqThree.switchToIqQuestions(e, languageChange);
+				break;
+			case 4:
+				iqFour.switchToIqQuestions(e, languageChange);
+				break;
+			case 5:
+				iqFive.switchToIqQuestions(e, languageChange);
 				break;
 			default:
 				System.out.println("error generated");

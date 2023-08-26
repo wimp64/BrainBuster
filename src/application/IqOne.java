@@ -58,6 +58,7 @@ public class IqOne {
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #F8ABEB");
@@ -65,7 +66,6 @@ public class IqOne {
 		elements();
 		lan_change();
 		Counting();
-		System.out.println(remain_counter);
 		// Retrieve the stage from the event source
 		currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 
