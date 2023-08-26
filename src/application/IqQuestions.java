@@ -8,13 +8,14 @@ import java.util.Random;
 import javafx.event.ActionEvent;
 
 public class IqQuestions {
-	static int NOQ = 6;
+	static int NOQ = 7;
 	static IqOne iqOne = new IqOne();
 	static IqTwo iqTwo = new IqTwo();
 	static IqThree iqThree = new IqThree();
 	static IqFour iqFour = new IqFour();
 	static IqFive iqFive = new IqFive();
 	static IqSix iqSix = new IqSix();
+	static IqSeven iqSeven = new IqSeven();
 	static Difficulty df = new Difficulty();
 	static Random random = new Random();
 	static int point = -1;
@@ -68,6 +69,9 @@ public class IqQuestions {
 				break;
 			case 6:
 				iqSix.switchToDifficulty(e, languageChange);
+				break;
+			case 7:
+				iqSeven.switchToDifficulty(e, languageChange);
 				break;
 			default:
 				System.out.println("error generated");

@@ -178,6 +178,8 @@ public class IqFive {
 			if (!input.isEmpty()) {
 				if (Integer.parseInt(input) == 120) {
 					showNoti(e);
+				}else {
+					IqQuestions.switchToIqQuestions(e, languageChange);
 				}
 			} else {
 				IqQuestions.switchToIqQuestions(e, languageChange);

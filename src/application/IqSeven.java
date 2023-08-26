@@ -2,9 +2,7 @@ package application;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,12 +15,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.scene.layout.*;
-import javafx.scene.control.*;
-public class IqSeven extends Application {
+
+public class IqSeven{
 	Timeline timeLine;
 
-	int Counter = 15;
+	int Counter = 45;
 	int remain_counter = Counter;
 	
 	Scene scene1;
@@ -81,22 +78,29 @@ public class IqSeven extends Application {
 	ImageView Q1Img = new ImageView(Q1);
 	ImageView Q2Img = new ImageView(Q2);
 	ImageView Q2AImg = new ImageView(Q2);
+	ImageView Q2ACloneImg = new ImageView(Q2);
 	ImageView Q3Img = new ImageView(Q3);
 	ImageView Q3AImg = new ImageView(Q3);
+	ImageView Q3ACloneImg = new ImageView(Q3);
 	ImageView Q4Img = new ImageView(Q4);
 	ImageView Q4AImg = new ImageView(Q4);
+	ImageView Q4ACloneImg = new ImageView(Q4);
 	ImageView Q5Img = new ImageView(Q5);
 	ImageView Q5AImg = new ImageView(Q5);
+	ImageView Q5ACloneImg = new ImageView(Q5);
 	ImageView Q6Img = new ImageView(Q6);
 	ImageView Q7Img = new ImageView(Q7);
 	ImageView Q7AImg = new ImageView(Q7);
+	ImageView Q7ACloneImg = new ImageView(Q7);
 	ImageView A7Img = new ImageView(A7);
+	ImageView A7CloneImg = new ImageView(A7);
 	ImageView A5Img = new ImageView(A5);
+	ImageView A5CloneImg = new ImageView(A5);
 	ImageView QuestionImg = new ImageView(Question);
 	
 	StackPane root;
 
-	boolean languageChange=true;
+	boolean languageChange;
 	boolean nonesense = false;
 
 	public void switchToDifficulty(ActionEvent event, boolean languageChange) {
@@ -119,22 +123,22 @@ public class IqSeven extends Application {
 	}
 	
 	/*This is only for developing part*/
-	public void start(Stage primaryStage) throws Exception {
-		root = new StackPane();
-		root.setStyle("-fx-background-color: #B7B7B7");
-		Counting();
-		elements();
-		lan_change();
-		scene1 = new Scene(root, 1366, 766);
-		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
-		primaryStage.setScene(scene1);
-		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
+//	public void start(Stage primaryStage) throws Exception {
+//		root = new StackPane();
+//		root.setStyle("-fx-background-color: #B7B7B7");
+//		Counting();
+//		elements();
+//		lan_change();
+//		scene1 = new Scene(root, 1366, 766);
+//		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
+//		primaryStage.setScene(scene1);
+//		primaryStage.show();
+//	}
+//
+//	public static void main(String[] args) {
+//		launch(args);
+//	}
 	/*This is only for developing part*/
 
 	private void elements() {
@@ -220,24 +224,70 @@ public class IqSeven extends Application {
 		
 		dBut0A.setMaxSize(124, 114);
 		StackPane.setAlignment(dBut0A, Pos.TOP_LEFT);
+		dBut0A.setOnMouseEntered(e->{
+			dBut8.setGraphic(Q5ACloneImg);
+		});
+		dBut0A.setOnMouseExited(e->{
+			dBut8.setGraphic(QuestionImg);
+		});
 		
 		dBut1A.setMaxSize(124, 114);
 		StackPane.setAlignment(dBut1A, Pos.TOP_CENTER);
+		dBut1A.setOnMouseEntered(e->{
+			dBut8.setGraphic(Q2ACloneImg);
+		});
+		dBut1A.setOnMouseExited(e->{
+			dBut8.setGraphic(QuestionImg);
+		});
 		
 		dBut2A.setMaxSize(124, 114);
 		StackPane.setAlignment(dBut2A, Pos.TOP_RIGHT);
+		dBut2A.setOnMouseEntered(e->{
+			dBut8.setGraphic(Q3ACloneImg);
+		});
+		dBut2A.setOnMouseExited(e->{
+			dBut8.setGraphic(QuestionImg);
+		});
 		
 		dBut3A.setMaxSize(124, 114);
 		StackPane.setAlignment(dBut3A, Pos.CENTER_LEFT);
+		dBut3A.setOnMouseEntered(e->{
+			dBut8.setGraphic(Q7ACloneImg);
+		});
+		dBut3A.setOnMouseExited(e->{
+			dBut8.setGraphic(QuestionImg);
+		});
 		
 		dBut4A.setMaxSize(124, 114);
 		StackPane.setAlignment(dBut4A, Pos.CENTER);
+		dBut4A.setOnMouseEntered(e->{
+			dBut8.setGraphic(Q4ACloneImg);
+		});
+		dBut4A.setOnMouseExited(e->{
+			dBut8.setGraphic(QuestionImg);
+		});
 		
 		dBut5A.setMaxSize(124, 114);
 		StackPane.setAlignment(dBut5A, Pos.CENTER_RIGHT);
+		dBut5A.setOnMouseEntered(e->{
+			dBut8.setGraphic(A5CloneImg);
+		});
+		dBut5A.setOnMouseExited(e->{
+			dBut8.setGraphic(QuestionImg);
+		});
 		
 		dBut7A.setMaxSize(124, 114);
 		StackPane.setAlignment(dBut7A, Pos.BOTTOM_CENTER);
+		dBut7A.setOnMouseEntered(e->{
+			dBut8.setGraphic(A7CloneImg);
+		});
+		dBut7A.setOnMouseExited(e->{
+			dBut8.setGraphic(QuestionImg);
+		});
+		dBut7A.setOnAction(e->{
+			IqQuestions.switchToIqQuestions(e, languageChange);
+			timeLine.stop();
+		});
 		
 		dBut0A.setGraphic(Q5AImg);
 		dBut1A.setGraphic(Q2AImg);
@@ -282,6 +332,7 @@ public class IqSeven extends Application {
 			}
 			if (remain_counter <= 0) {
 				timeLine.stop();
+				dBut7A.fire();
 			}
 		}));
 		timeLine.setCycleCount(Counter);
