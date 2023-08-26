@@ -8,12 +8,13 @@ import java.util.Random;
 import javafx.event.ActionEvent;
 
 public class IqQuestions {
-	static int NOQ = 20;
+	static int NOQ = 6;
 	static IqOne iqOne = new IqOne();
 	static IqTwo iqTwo = new IqTwo();
 	static IqThree iqThree = new IqThree();
 	static IqFour iqFour = new IqFour();
 	static IqFive iqFive = new IqFive();
+	static IqSix iqSix = new IqSix();
 	static Difficulty df = new Difficulty();
 	static Random random = new Random();
 	static int point = -1;
@@ -23,8 +24,8 @@ public class IqQuestions {
 	static void switchToIqQuestions(ActionEvent e, boolean languageChange) {
 		point++;
 		if (checker == true) {
-			int maxNumber = 5; // Maximum number to generate (exclusive)
-			int numberOfNumbers = 5; // Number of unique random numbers to generate
+			int maxNumber = NOQ; // Maximum number to generate (exclusive)
+			int numberOfNumbers = NOQ; // Number of unique random numbers to generate
 
 			Random random = new Random();
 
@@ -40,7 +41,7 @@ public class IqQuestions {
 			checker = false;
 		}
 		System.out.println(point);
-		if (point == 5) {
+		if (point == NOQ) {
 			checker = true;
 			point = -1;
 			if (conditionToStopLoop()) {
@@ -64,6 +65,9 @@ public class IqQuestions {
 				break;
 			case 5:
 				iqFive.switchToIqQuestions(e, languageChange);
+				break;
+			case 6:
+				iqSix.switchToDifficulty(e, languageChange);
 				break;
 			default:
 				System.out.println("error generated");
