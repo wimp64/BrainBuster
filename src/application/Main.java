@@ -111,10 +111,16 @@ public class Main extends Application {
 		lineRec.setFill(Color.web("#F6D448"));
 		root.setAlignment(Pos.CENTER_LEFT);
 		StackPane.setMargin(lineRec, new Insets(350, 0, 0, 150));
-
+		
 		ImageView brain = new ImageView(Brain);
-		brain.setFitHeight(325);
-		brain.setFitWidth(320);
+//		brain.setFitHeight(325);
+//		brain.setFitWidth(320);
+		double scalingFactor = 0.2; // Adjust this value as needed
+		double scalingFactor1 = 0.3;
+        // Bind ImageView size to the scaling factor and window size
+        brain.fitWidthProperty().bind(primaryStage.widthProperty().multiply(scalingFactor));
+        brain.fitHeightProperty().bind(primaryStage.heightProperty().multiply(scalingFactor1));
+
 		StackPane.setAlignment(brain, Pos.CENTER_RIGHT);
 
 		Rectangle centerRec = new Rectangle(475, 380);
@@ -177,8 +183,11 @@ public class Main extends Application {
 		tt.setNode(squareImg);
 		tt.setDuration(Duration.seconds(10));
 
-		questionImg.setFitWidth(110);
-		questionImg.setFitHeight(155);
+//		questionImg.setFitWidth(110);
+//		questionImg.setFitHeight(155);
+		
+		questionImg.fitWidthProperty().bind(primaryStage.widthProperty().multiply(0.1));
+        questionImg.fitHeightProperty().bind(primaryStage.heightProperty().multiply(0.2));
 		StackPane.setAlignment(questionImg, Pos.BOTTOM_CENTER);
 		StackPane.setMargin(questionImg, new Insets(0, 0, 55, 250));
 		RotateTransition rotateQuestion = new RotateTransition();
