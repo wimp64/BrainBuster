@@ -80,8 +80,13 @@ public class IqFive {
 
 	boolean languageChange;// delete true
 	boolean nonesense = false;
-
-	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+	
+	ParallelTransition parallelTransition = new ParallelTransition();
+	TranslateTransition tt2 = new TranslateTransition(Duration.seconds(5), carImg);
+	TranslateTransition ttw1 = new TranslateTransition(Duration.seconds(5), w1Img);
+	TranslateTransition ttw2 = new TranslateTransition(Duration.seconds(5), w2Img);
+	
+	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
@@ -98,6 +103,7 @@ public class IqFive {
 		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
 		currentStage.setScene(scene1);
 		currentStage.show();
+		proot.getChildren().clear();
 	}
 
 	/* This is only for developing part */
@@ -174,17 +180,24 @@ public class IqFive {
 		submit.setMaxSize(125, 50);
 		StackPane.setMargin(submit, new Insets(200, 0, 0, 500));
 		submit.setOnAction(e -> {
+			timeLine.stop();
 			String input = ans.getText();
 			if (!input.isEmpty()) {
 				if (Integer.parseInt(input) == 120) {
 					showNoti(e);
 				}else {
-					IqQuestions.switchToIqQuestions(e, languageChange);
+					IqQuestions.switchToIqQuestions(e, languageChange,root);
+					timeLine.stop();
+					parallelTransition.stop();
+					carImg.setTranslateX(0);
 				}
 			} else {
-				IqQuestions.switchToIqQuestions(e, languageChange);
+				IqQuestions.switchToIqQuestions(e, languageChange,root);
+				timeLine.stop();
+				parallelTransition.stop();
+				carImg.setTranslateX(0);
+				return;
 			}
-			timeLine.stop();
 		});
 
 		clockImg = new ImageView(clock);
@@ -199,7 +212,7 @@ public class IqFive {
 		StackPane.setMargin(roadImg, new Insets(450, 0, 0, 0));
 
 		StackPane.setMargin(carImg, new Insets(535, 700, 0, 0));
-
+		
 		StackPane.setMargin(w1Img, new Insets(620, 1081, 0, 0));
 		StackPane.setMargin(w2Img, new Insets(620, 735, 0, 0));
 
@@ -219,11 +232,16 @@ public class IqFive {
 		rt1.setCycleCount(RotateTransition.INDEFINITE);
 		rt1.play();
 
-		TranslateTransition tt2 = new TranslateTransition(Duration.seconds(5), carImg);
+		
+		tt2.setFromX(0);
+		ScaleTransition st0 = new ScaleTransition(Duration.millis(1), carImg);
+		st0.setToX(1);
 		tt2.setByX(900);
-		TranslateTransition ttw1 = new TranslateTransition(Duration.seconds(5), w1Img);
+		
+		ttw1.setFromX(0);
 		ttw1.setByX(900);
-		TranslateTransition ttw2 = new TranslateTransition(Duration.seconds(5), w2Img);
+		
+		ttw2.setFromX(0);
 		ttw2.setByX(900);
 
 		TranslateTransition tt3 = new TranslateTransition(Duration.seconds(5), carImg);
@@ -245,7 +263,7 @@ public class IqFive {
 		FadeTransition stw2 = new FadeTransition(Duration.seconds(0.5), w2Img);
 
 		SequentialTransition sq = new SequentialTransition();
-		sq.getChildren().addAll(tt2, stM, tt3);
+		sq.getChildren().addAll(st0,tt2, stM, tt3);
 		sq.setCycleCount(SequentialTransition.INDEFINITE);
 		sq.setNode(carImg);
 
@@ -259,8 +277,8 @@ public class IqFive {
 		sqw2.setCycleCount(SequentialTransition.INDEFINITE);
 		sqw2.setNode(w1Img);
 
-		ParallelTransition parallelTransition = new ParallelTransition();
 		parallelTransition.getChildren().addAll(sq, sqw1, sqw2);
+		parallelTransition.setCycleCount(ParallelTransition.INDEFINITE);
 		parallelTransition.play();
 
 		root.getChildren().addAll(noti, back, ans, submit, timer, clockImg, roadImg, carImg, w1Img, w2Img, cloudsImg);
@@ -281,6 +299,7 @@ public class IqFive {
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
 		timer.setGraphic(timeT);
+		timeT.setFill(Color.BLACK);
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
@@ -355,7 +374,11 @@ public class IqFive {
 		pause.setOnFinished(e -> up.play());
 		down.play();
 		up.setOnFinished(e -> {
-			IqQuestions.switchToIqQuestions(ea, languageChange);
+			
+			IqQuestions.switchToIqQuestions(ea, languageChange,root);
+			timeLine.stop();
+			parallelTransition.stop();
+			carImg.setTranslateX(0);
 		});
 	}
 

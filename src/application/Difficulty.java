@@ -71,7 +71,7 @@ public class Difficulty {
 	boolean languageChange;///////////////////////// to delete true
 	boolean nonesense = false;
 
-	public void switchToDifficulty(ActionEvent event, boolean languageChange) {
+	public void switchToDifficulty(ActionEvent event, boolean languageChange,StackPane proot) {
 		this.languageChange = languageChange;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #2385C4");
@@ -87,6 +87,7 @@ public class Difficulty {
 		scene1 = new Scene(root, currentStage.getWidth(), currentStage.getHeight());
 		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		currentStage.setScene(scene1);
+		proot.getChildren().clear();
 		currentStage.show();
 	}
 

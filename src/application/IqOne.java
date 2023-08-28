@@ -57,7 +57,7 @@ public class IqOne {
 	boolean languageChange;// delete true
 	boolean nonesense = false;
 
-	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
@@ -74,6 +74,7 @@ public class IqOne {
 		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		currentStage.setScene(scene1);
 		currentStage.show();
+		proot.getChildren().clear();
 	}
 
 	/* This is only for developing part */
@@ -146,8 +147,8 @@ public class IqOne {
 		no.setMaxSize(230, 115);
 		StackPane.setMargin(no, new Insets(400, -700, 0, 0));
 		no.setOnAction(e -> {
-			IqQuestions.switchToIqQuestions(e, languageChange);
 			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		timeImg.setFitWidth(85);
 		timeImg.setFitHeight(100);
@@ -174,6 +175,7 @@ public class IqOne {
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
+			timeT.setFill(Color.BLACK);
 			timer.setGraphic(timeT);
 			if (remain_counter == 10) {
 				timeT.setFill(Color.RED);

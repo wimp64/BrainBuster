@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Random;
 
 import javafx.event.ActionEvent;
+import javafx.scene.layout.StackPane;
 
 public class IqQuestions {
-	static int NOQ = 7;
+	static int NOQ = 8;
 	static IqOne iqOne = new IqOne();
 	static IqTwo iqTwo = new IqTwo();
 	static IqThree iqThree = new IqThree();
@@ -16,13 +17,15 @@ public class IqQuestions {
 	static IqFive iqFive = new IqFive();
 	static IqSix iqSix = new IqSix();
 	static IqSeven iqSeven = new IqSeven();
+	static IqEight iqEight = new IqEight();
+	
 	static Difficulty df = new Difficulty();
 	static Random random = new Random();
 	static int point = -1;
 	static List<Integer> check = new ArrayList<>();
 	static boolean checker = true;
 
-	static void switchToIqQuestions(ActionEvent e, boolean languageChange) {
+	static void switchToIqQuestions(ActionEvent e, boolean languageChange,StackPane proot) {
 		point++;
 		if (checker == true) {
 			int maxNumber = NOQ; // Maximum number to generate (exclusive)
@@ -46,32 +49,35 @@ public class IqQuestions {
 			checker = true;
 			point = -1;
 			if (conditionToStopLoop()) {
-				df.switchToDifficulty(e, languageChange);
+				df.switchToDifficulty(e, languageChange,proot);
 				return;
 			}
 		}
 		try {
 			switch (check.get(point)) {
 			case 1:
-				iqOne.switchToIqQuestions(e, languageChange);
+				iqOne.switchToIqQuestions(e, languageChange,proot);
 				break;
 			case 2:
-				iqTwo.switchToIqQuestions(e, languageChange);
+				iqTwo.switchToIqQuestions(e, languageChange,proot);
 				break;
 			case 3:
-				iqThree.switchToIqQuestions(e, languageChange);
+				iqThree.switchToIqQuestions(e, languageChange,proot);
 				break;
 			case 4:
-				iqFour.switchToIqQuestions(e, languageChange);
+				iqFour.switchToIqQuestions(e, languageChange,proot);
 				break;
 			case 5:
-				iqFive.switchToIqQuestions(e, languageChange);
+				iqFive.switchToIqQuestions(e, languageChange,proot);
 				break;
 			case 6:
-				iqSix.switchToDifficulty(e, languageChange);
+				iqSix.switchToIqQuestions(e, languageChange,proot);
 				break;
 			case 7:
-				iqSeven.switchToDifficulty(e, languageChange);
+				iqSeven.switchToIqQuestions(e, languageChange,proot);
+				break;
+			case 8:
+				iqEight.switchToIqQuestions(e, languageChange,proot);
 				break;
 			default:
 				System.out.println("error generated");

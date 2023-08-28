@@ -75,7 +75,7 @@ public class IqTwo {
 	boolean languageChange;// delete true
 	boolean nonesense = false;
 
-	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
@@ -92,6 +92,7 @@ public class IqTwo {
 		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
 		currentStage.setScene(scene1);
 		currentStage.show();
+		proot.getChildren().clear();
 	}
 
 	/* This is only for developing part */
@@ -184,8 +185,8 @@ public class IqTwo {
 		submit.setMaxSize(125, 50);
 		StackPane.setMargin(submit, new Insets(350, -800, 0, 0));
 		submit.setOnAction(e -> {
-			IqQuestions.switchToIqQuestions(e, languageChange);
 			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		balloon1Img = new ImageView(balloon1);
 		StackPane.setAlignment(balloon1Img, Pos.TOP_RIGHT);
@@ -224,6 +225,7 @@ public class IqTwo {
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
 		timer.setGraphic(timeT);
+		timeT.setFill(Color.BLACK);
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
@@ -241,6 +243,7 @@ public class IqTwo {
 	}
 
 	private void lan_change() {
+		quest = new Label();
 		if (languageChange) {
 			langText.setVisible(false);
 

@@ -38,7 +38,7 @@ public class IqSix {
 	
 	Text timeT = new Text();
 	
-	Label quest = new Label();
+	Label quest;
 	
 	Image Arrow = new Image("arrow.png");
 	Image cloud = new Image("IqSix/cloud.png");
@@ -66,7 +66,7 @@ public class IqSix {
 	boolean languageChange;
 	boolean nonesense = false;
 
-	public void switchToDifficulty(ActionEvent event, boolean languageChange) {
+	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
@@ -83,6 +83,7 @@ public class IqSix {
 		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
 		currentStage.setScene(scene1);
 		currentStage.show();
+		proot.getChildren().clear();
 	}
 	
 	/*This is only for developing part*/
@@ -132,7 +133,7 @@ public class IqSix {
 		b1.getStyleClass().add("choiceBut");
 		b1.setGraphic(b1Img);
 		b1.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange);
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
 		});
 		StackPane.setMargin(b1, new Insets(75,1000,0,0));
@@ -171,6 +172,7 @@ public class IqSix {
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
 		timer.setGraphic(timeT);
+		timeT.setFill(Color.BLACK);
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
@@ -190,6 +192,7 @@ public class IqSix {
 	}
 	
 	private void lan_change() {
+		quest = new Label();
 		if (languageChange) {
 			
 			quest.setText("Which of the following shapes can be folded into a cube?");

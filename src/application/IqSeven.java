@@ -15,8 +15,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.application.*;
+import javafx.scene.control.*;
 
-public class IqSeven{
+public class IqSeven extends Application{
 	Timeline timeLine;
 
 	int Counter = 45;
@@ -51,6 +53,7 @@ public class IqSeven{
 	Button dBut7A = new Button();
 	
 	Text timeT = new Text();
+	Label quest = new Label();
 	
 	Image Arrow = new Image("arrow.png");
 	Image boy = new Image("IqSeven/boy.png");
@@ -99,11 +102,12 @@ public class IqSeven{
 	ImageView QuestionImg = new ImageView(Question);
 	
 	StackPane root;
-
-	boolean languageChange;
+	StackPane rectangle = new StackPane();
+	
+	boolean languageChange=true;
 	boolean nonesense = false;
 
-	public void switchToDifficulty(ActionEvent event, boolean languageChange) {
+	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
@@ -120,25 +124,26 @@ public class IqSeven{
 		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
 		currentStage.setScene(scene1);
 		currentStage.show();
+		proot.getChildren().clear();
 	}
 	
 	/*This is only for developing part*/
-//	public void start(Stage primaryStage) throws Exception {
-//		root = new StackPane();
-//		root.setStyle("-fx-background-color: #B7B7B7");
-//		Counting();
-//		elements();
-//		lan_change();
-//		scene1 = new Scene(root, 1366, 766);
-//		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
-//		primaryStage.setScene(scene1);
-//		primaryStage.show();
-//	}
-//
-//	public static void main(String[] args) {
-//		launch(args);
-//	}
+	public void start(Stage primaryStage) throws Exception {
+		root = new StackPane();
+		root.setStyle("-fx-background-color: #B7B7B7");
+		Counting();
+		elements();
+		lan_change();
+		scene1 = new Scene(root, 1366, 766);
+		scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
+		primaryStage.setScene(scene1);
+		primaryStage.show();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 	/*This is only for developing part*/
 
 	private void elements() {
@@ -155,13 +160,17 @@ public class IqSeven{
 		back.setGraphic(backArrow);
 		StackPane.setAlignment(back, Pos.TOP_LEFT);
 		StackPane.setMargin(back, new Insets(30, 0, 0, 30));// top right bottom left
+		
+		rectangle.setStyle("-fx-background-color:WHITE; -fx-background-radius:25px;");
+		rectangle.setMaxSize(460, 90);
+		StackPane.setMargin(rectangle, new Insets(0,0,550,550));
 		backButtons();
 		backButtonsA();
 		StackPane.setAlignment(boyImg, Pos.BOTTOM_RIGHT);
 		StackPane.setAlignment(girlImg, Pos.BOTTOM_LEFT);
 		StackPane.setAlignment(fruitImg, Pos.TOP_RIGHT);
 		
-		root.getChildren().addAll( back,boyImg,girlImg,fruitImg,backButtons,backButtonsA);
+		root.getChildren().addAll( back,boyImg,girlImg,fruitImg,backButtons,backButtonsA,rectangle);
 	}
 	void backButtons() {
 		backButtons = new StackPane();
@@ -285,7 +294,7 @@ public class IqSeven{
 			dBut8.setGraphic(QuestionImg);
 		});
 		dBut7A.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange);
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
 		});
 		
@@ -322,6 +331,7 @@ public class IqSeven{
 		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
+		timeT.setFill(Color.BLACK);
 		timer.setGraphic(timeT);
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
@@ -342,8 +352,14 @@ public class IqSeven{
 	}
 	
 	private void lan_change() {
+		quest = new Label();
 		if (languageChange) {
-
+			quest.setText("\tWhich of the following figures \r\n"
+					+ "should be replaced at question mark?");
+			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 20);
+			quest.setFont(quest_font);
+			rectangle.getChildren().add(quest);
+			
 			root.getChildren().addAll();
 
 			nonesense = true;

@@ -312,7 +312,7 @@ public class Category {
 
 		math_button.setOnAction(event -> {
 			Difficulty d = new Difficulty();
-			d.switchToDifficulty(event, languageChange);
+			d.switchToDifficulty(event, languageChange,root);
 		});
 		root.getChildren().addAll(math_button);
 	}
@@ -350,7 +350,7 @@ public class Category {
 
 		lg_button.setOnAction(event -> {
 			Difficulty d = new Difficulty();
-			d.switchToDifficulty(event, languageChange);
+			d.switchToDifficulty(event, languageChange,root);
 			root.getChildren().clear();
 		});
 
@@ -388,7 +388,7 @@ public class Category {
 		StackPane.setAlignment(iq_button, Pos.CENTER_RIGHT);
 		StackPane.setMargin(iq_button, new Insets(0, 150, -250, 0));
 		iq_button.setOnAction(event -> {
-			IqQuestions.switchToIqQuestions(event, languageChange);
+			IqQuestions.switchToIqQuestions(event, languageChange,root);
 		});
 
 		root.getChildren().addAll(iq_button);

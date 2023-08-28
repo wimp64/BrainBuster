@@ -65,7 +65,7 @@ public class IqThree {
 	boolean languageChange;// delete true
 	boolean nonesense = false;
 
-	public void switchToIqQuestions(ActionEvent event, boolean languageChange) {
+	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
@@ -82,6 +82,7 @@ public class IqThree {
 		scene1.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
 		currentStage.setScene(scene1);
 		currentStage.show();
+		proot.getChildren().clear();
 	}
 
 	/* This is only for developing part */
@@ -135,7 +136,7 @@ public class IqThree {
 		StackPane.setMargin(John, new Insets(150, 750, 0, 0));
 		John.getStyleClass().add("Ez_Btn");
 		John.setOnAction(e -> {
-			IqQuestions.switchToIqQuestions(e, languageChange);
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
 		});
 
@@ -143,7 +144,7 @@ public class IqThree {
 		StackPane.setMargin(Mark, new Insets(150, 0, 0, 0));
 		Mark.getStyleClass().add("Nm_Btn");
 		Mark.setOnAction(e -> {
-			IqQuestions.switchToIqQuestions(e, languageChange);
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
 		});
 
@@ -151,7 +152,7 @@ public class IqThree {
 		StackPane.setMargin(Alex, new Insets(150, 0, 0, 750));
 		Alex.getStyleClass().add("Df_Btn");
 		Alex.setOnAction(e -> {
-			IqQuestions.switchToIqQuestions(e, languageChange);
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
 		});
 
@@ -184,6 +185,7 @@ public class IqThree {
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
 		timer.setGraphic(timeT);
+		timeT.setFill(Color.BLACK);
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
@@ -201,6 +203,7 @@ public class IqThree {
 	}
 
 	private void lan_change() {
+		quest = new Label();
 		if (languageChange) {
 			langText.setVisible(false);
 
