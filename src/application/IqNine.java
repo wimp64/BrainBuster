@@ -43,7 +43,7 @@ public class IqNine extends Application {
 	Image paws = new Image("IqNine/paws.png");
 	Image dog = new Image("IqNine/dog.png");
 	
-	
+	//a
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView dogsImg = new ImageView(dogs);
 	ImageView clockImg = new ImageView(clock);
