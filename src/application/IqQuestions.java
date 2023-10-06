@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.StackPane;
 
 public class IqQuestions {
-	static int NOQ = 8;
+	static int NOQ = 11;
 	static IqOne iqOne = new IqOne();
 	static IqTwo iqTwo = new IqTwo();
 	static IqThree iqThree = new IqThree();
@@ -18,6 +18,9 @@ public class IqQuestions {
 	static IqSix iqSix = new IqSix();
 	static IqSeven iqSeven = new IqSeven();
 	static IqEight iqEight = new IqEight();
+	static IqNine iqNine = new IqNine();
+	static IqTen iqTen = new IqTen();
+	static IqEleven iqEleven = new IqEleven();
 	
 	static Difficulty df = new Difficulty();
 	static Random random = new Random();
@@ -28,12 +31,12 @@ public class IqQuestions {
 	static void switchToIqQuestions(ActionEvent e, boolean languageChange,StackPane proot) {
 		point++;
 		if (checker == true) {
-			int maxNumber = NOQ; // Maximum number to generate (exclusive)
-			int numberOfNumbers = NOQ; // Number of unique random numbers to generate
+			int maxNumber = NOQ; // Maximum number to generate
+			int numberOfQ = NOQ; // Number of unique random numbers to generate
 
 			Random random = new Random();
 
-			while (check.size() < numberOfNumbers) {
+			while (check.size() < numberOfQ) {
 				int randomNumber = random.nextInt(maxNumber) + 1;
 				if (!check.contains(randomNumber)) {
 					check.add(randomNumber);
@@ -44,7 +47,7 @@ public class IqQuestions {
 			Collections.shuffle(check);
 			checker = false;
 		}
-		System.out.println(point);
+		System.out.println("Point:"+point);
 		if (point == NOQ) {
 			checker = true;
 			point = -1;
@@ -79,6 +82,15 @@ public class IqQuestions {
 			case 8:
 				iqEight.switchToIqQuestions(e, languageChange,proot);
 				break;
+			case 9:
+				iqNine.switchToDifficulty(e, languageChange,proot);
+				break;
+			case 10:
+				iqTen.switchToDifficulty(e, languageChange, proot);
+				break;
+			case 11:
+				iqEleven.switchToIqQuestions(e, languageChange, proot);
+				break;
 			default:
 				System.out.println("error generated");
 			}
@@ -88,7 +100,7 @@ public class IqQuestions {
 	}
 
 	public static boolean conditionToStopLoop() {
-		// Implement your own condition here
-		return true; // Change this condition to meet your requirements
+
+		return true;
 	}
 }

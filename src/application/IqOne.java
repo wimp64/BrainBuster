@@ -173,10 +173,10 @@ public class IqOne {
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
 		timer.setGraphic(timeT);
+		timeT.setFill(Color.BLACK);
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
-			timeT.setFill(Color.BLACK);
 			timer.setGraphic(timeT);
 			if (remain_counter == 10) {
 				timeT.setFill(Color.RED);

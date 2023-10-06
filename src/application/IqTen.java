@@ -17,10 +17,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class IqNine{
+public class IqTen{
 	Timeline timeLine;
 
-	int Counter = 15;
+	int Counter = 25;
 	int remain_counter = Counter;
 	
 	Scene scene1;
@@ -29,27 +29,30 @@ public class IqNine{
 	Scene sc;
 
 	Button back;
-	Button yes = new Button();
-	Button no = new Button();
 	Button timer = new Button();
+	Button b1 = new Button();
+	Button b2 = new Button();
+	Button b3 = new Button();
 	
 	Text timeT = new Text();
-	Text yesT;
-	Text noT;
-
+	Text b1T = new Text();
+	Text b2T = new Text();
+	Text b3T = new Text();
+	Text b4T = new Text();
+	
 	Image Arrow = new Image("arrow.png");
-	Image dogs = new Image("IqNine/dogs.png");
-	Image clock = new Image("IqNine/clock.png");
-	Image paws = new Image("IqNine/paws.png");
-	Image dog = new Image("IqNine/dog.png");
-	Image IqNine = new Image("IqNine/IqNineEng.png");
+	Image goalPost = new Image("IqTen/goalPost.png");
+	Image clock = new Image("IqTen/clock.png");
+	Image goal = new Image("IqTen/goal.png");
+	Image boots = new Image("IqTen/boots.png");
+	Image QEng = new Image("IqTen/IqTenEng.png");
 	
 	ImageView backArrow = new ImageView(Arrow);
-	ImageView dogsImg = new ImageView(dogs);
+	ImageView goalPostImg = new ImageView(goalPost);
 	ImageView clockImg = new ImageView(clock);
-	ImageView pawsImg = new ImageView(paws);
-	ImageView dogImg = new ImageView(dog);
-	ImageView IqNineEng = new ImageView(IqNine);
+	ImageView goalImg = new ImageView(goal);
+	ImageView bootsImg = new ImageView(boots);
+	ImageView QEngImg = new ImageView(QEng);
 	
 	StackPane root;
 	StackPane rectangle;
@@ -61,7 +64,7 @@ public class IqNine{
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
-		root.setStyle("-fx-background-color: #6F615A");
+		root.setStyle("-fx-background-color: #00892C");
 		
 		Counting();
 		elements();
@@ -80,7 +83,7 @@ public class IqNine{
 	/*This is only for developing part*/
 //	public void start(Stage primaryStage) throws Exception {
 //		root = new StackPane();
-//		root.setStyle("-fx-background-color: #6F615A");
+//		root.setStyle("-fx-background-color: #00892C");
 //		
 //		Counting();
 //		elements();
@@ -114,27 +117,37 @@ public class IqNine{
 		
 		rectangle = new StackPane();
 		rectangle.setStyle("-fx-background-color:white;" + "-fx-background-radius:25px;");
-		rectangle.setMaxWidth(1212);
-		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
-		rectangle.setMaxHeight(307);
+		rectangle.setMaxWidth(440);
+		StackPane.setMargin(rectangle, new Insets(0, 600, 0, 0));
+		StackPane.setAlignment(rectangle, Pos.CENTER);
+		rectangle.setMaxHeight(420);
 		
-		yes.getStyleClass().add("yesButN");
-		yes.setMaxSize(230, 115);
-		StackPane.setMargin(yes, new Insets(300, 700, 0, 0));
-
-		no.getStyleClass().add("noButN");
-		no.setMaxSize(230, 115);
-		StackPane.setMargin(no, new Insets(300, -700, 0, 0));
-		no.setOnAction(e -> {
-			timeLine.stop();
+		StackPane.setMargin(b1, new Insets(80,-600,300,0));
+		StackPane.setMargin(b2, new Insets(80,-600,100,0));
+		StackPane.setMargin(b3, new Insets(80,-600,-100,0));
+		
+		StackPane.setAlignment(b1,Pos.CENTER);
+		StackPane.setAlignment(b2,Pos.CENTER);
+		StackPane.setAlignment(b3,Pos.CENTER);
+		
+		b1.setMaxSize(514, 80);
+		b2.setMaxSize(514, 80);
+		b3.setMaxSize(514, 80);
+		
+		b1.getStyleClass().add("bButT");
+		b2.getStyleClass().add("bButT");
+		b3.getStyleClass().add("bButT");
+		
+		b2.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			timeLine.stop();
 		});
 		
-		StackPane.setAlignment(dogsImg, Pos.BOTTOM_RIGHT);
-		StackPane.setAlignment(dogImg, Pos.BOTTOM_LEFT);
-		StackPane.setAlignment(pawsImg, Pos.TOP_RIGHT);
+		StackPane.setAlignment(goalPostImg, Pos.BOTTOM_RIGHT);
+		StackPane.setAlignment(bootsImg, Pos.BOTTOM_LEFT);
+		StackPane.setAlignment(goalImg, Pos.TOP_RIGHT);
 		
-		root.getChildren().addAll( back,dogsImg,dogImg,pawsImg,yes,no,rectangle);
+		root.getChildren().addAll( back,goalPostImg,bootsImg,goalImg,rectangle,b1,b2,b3);
 	}
 
 	void lan_click() {
@@ -148,15 +161,12 @@ public class IqNine{
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
-		
 		clockImg = new ImageView(clock);
-		clockImg.setFitWidth(85);
-		clockImg.setFitHeight(81);
-		StackPane.setMargin(clockImg, new Insets(300, 125, 0, 0));
+		StackPane.setMargin(clockImg, new Insets(0, 100, 470, 550));
 
 		timer.getStyleClass().add("timer");
 		timer.setMaxSize(140, 60);
-		StackPane.setMargin(timer, new Insets(300, 0, 0, 0));
+		StackPane.setMargin(timer, new Insets(0, 0, 450, 550));
 		
 		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 		timeT.setFont(Mathematics_font);
@@ -182,18 +192,25 @@ public class IqNine{
 	
 	private void lan_change() {
 		if (languageChange) {
-			Font Yes_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 40);
-			yesT = new Text("YES");
-			yesT.setFont(Yes_font);
-			yesT.setFill(Color.WHITE);
-			yes.setGraphic(yesT);
-
-			noT = new Text("NO");
-			noT.setFont(Yes_font);
-			noT.setFill(Color.WHITE);
-			no.setGraphic(noT);
 			
-			rectangle.getChildren().add(IqNineEng);
+			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
+			
+			b1T.setText("100");
+			b1T.setFont(quest_font);
+			b1T.setFill(Color.BLACK);
+			b1.setGraphic(b1T);
+			
+			b2T.setText("50");
+			b2T.setFont(quest_font);
+			b2T.setFill(Color.BLACK);
+			b2.setGraphic(b2T);
+			
+			b3T.setText("150");
+			b3T.setFont(quest_font);
+			b3T.setFill(Color.BLACK);
+			b3.setGraphic(b3T);
+			
+			rectangle.getChildren().add(QEngImg);
 			root.getChildren().addAll();
 
 			nonesense = true;
