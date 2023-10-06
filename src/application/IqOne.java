@@ -141,7 +141,7 @@ public class IqOne {
 
 		yes.getStyleClass().add("yesBut");
 		yes.setMaxSize(230, 115);
-		StackPane.setMargin(yes, new Insets(400, 700, 0, 0));
+		StackPane.setMargin(yes, new Insets(400, 700, 0, 0)); 
 
 		no.getStyleClass().add("noBut");
 		no.setMaxSize(230, 115);
@@ -150,6 +150,7 @@ public class IqOne {
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
+		
 		timeImg.setFitWidth(85);
 		timeImg.setFitHeight(100);
 		StackPane.setMargin(timeImg, new Insets(400, 100, 0, 0));
@@ -209,7 +210,7 @@ public class IqOne {
 			if (nonesense == true) {
 
 			}
-
+			
 			root.getChildren().addAll();
 		}
 	}
