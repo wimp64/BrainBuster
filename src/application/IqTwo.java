@@ -28,7 +28,7 @@ import javafx.util.StringConverter;
 public class IqTwo{
 	Timeline timeLine;
 
-	int Counter = 15;
+	int Counter = 20;
 	int remain_counter = Counter;
 
 	Scene scene1;
@@ -76,7 +76,10 @@ public class IqTwo{
 
 	boolean languageChange;// delete true
 	boolean nonesense = false;
-
+	
+	Rotate rt;
+	Rotate rt1;
+	Rotate rt2;
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
@@ -144,17 +147,17 @@ public class IqTwo{
 		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
 		rectangle.setMaxHeight(87);
 
-		Rotate rt = new Rotate(180 + 90 + 45, 0, 0);
+		rt = new Rotate(315, 0, 0);
 		two.getTransforms().add(rt);
 		StackPane.setMargin(two, new Insets(200, 700, 0, 0));
 
-		Rotate rt1 = new Rotate(25, 0, 0);
+		rt1 = new Rotate(25, 0, 0);
 		five.getTransforms().add(rt1);
 		StackPane.setMargin(five, new Insets(200, 300, 0, 0));
 
 		StackPane.setMargin(ten, new Insets(100, 0, 0, 0));
 
-		Rotate rt2 = new Rotate(180 + 90 + 75, 0, 0);
+		rt2 = new Rotate(180 + 90 + 75, 0, 0);
 		seventeen.getTransforms().add(rt2);
 		StackPane.setMargin(seventeen, new Insets(200, -400, 0, 0));
 
@@ -188,6 +191,13 @@ public class IqTwo{
 		StackPane.setMargin(submit, new Insets(350, -800, 0, 0));
 		submit.setOnAction(e -> {
 			timeLine.stop();
+			rt.setAngle(0);
+			rt1.setAngle(0);
+			rt2.setAngle(0);
+			String a = ans.getText();
+			if(a.equals("26")) {
+				IqResultCheck.check();
+			}
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		balloon1Img = new ImageView(balloon1);
@@ -226,6 +236,9 @@ public class IqTwo{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rt.setAngle(0);
+			rt1.setAngle(0);
+			rt2.setAngle(0);
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);

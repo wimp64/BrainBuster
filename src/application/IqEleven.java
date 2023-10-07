@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 
-public class IqEleven {
+public class IqEleven{
 	Timeline timeLine;
 
 	int Counter = 15;
@@ -73,7 +73,7 @@ public class IqEleven {
 	StackPane root;
 	StackPane rectangle;
 
-	boolean languageChange;// delete true
+	boolean languageChange=true;// delete true
 	boolean nonesense = false;
 
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
@@ -186,6 +186,10 @@ public class IqEleven {
 		submit.setMaxSize(125, 50);
 		StackPane.setMargin(submit, new Insets(350, -800, 0, 0));
 		submit.setOnAction(e -> {
+			String eq = ans.getText();
+			if(eq.equals("25")) {
+				IqResultCheck.check();
+			}
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
@@ -223,6 +227,12 @@ public class IqEleven {
 	}
 
 	void Counting() {
+		Button over = new Button();
+		over.setOnAction(e->{
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
+		over.setVisible(false);
+		root.getChildren().add(over);
 		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
@@ -237,7 +247,7 @@ public class IqEleven {
 			}
 			if (remain_counter <= 0) {
 				timeLine.stop();
-				submit.fire();
+				over.fire();
 			}
 		}));
 		timeLine.setCycleCount(Counter);

@@ -21,7 +21,7 @@ import javafx.util.Duration;
 public class IqSix {
 	Timeline timeLine;
 
-	int Counter = 30;
+	int Counter = 25;
 	int remain_counter = Counter;
 	
 	Scene scene1;
@@ -133,8 +133,9 @@ public class IqSix {
 		b1.getStyleClass().add("choiceBut");
 		b1.setGraphic(b1Img);
 		b1.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			IqResultCheck.check();
 			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		StackPane.setMargin(b1, new Insets(75,1000,0,0));
 		

@@ -127,10 +127,7 @@ public class IqEight{
 		StackPane.setMargin(b4, new Insets(80,0,-300,0));
 		
 		b1.setMaxSize(514, 80);
-		b1.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange,root);
-			timeLine.stop();
-		});
+		
 		b2.setMaxSize(514, 80);
 		b3.setMaxSize(514, 80);
 		b4.setMaxSize(514, 80);
@@ -138,6 +135,11 @@ public class IqEight{
 		b1.getStyleClass().add("bBut");
 		b2.getStyleClass().add("bBut");
 		b3.getStyleClass().add("bBut");
+		b3.setOnAction(e->{
+			IqResultCheck.check();
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		b4.getStyleClass().add("bBut");
 		
 		StackPane.setAlignment(boyImg, Pos.BOTTOM_RIGHT);
@@ -155,6 +157,7 @@ public class IqEight{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			IqResultCheck.check();
 			timeLine.stop();
 		});
 		over.setVisible(false);

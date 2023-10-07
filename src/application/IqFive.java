@@ -32,7 +32,7 @@ import javafx.util.converter.IntegerStringConverter;
 public class IqFive {
 	Timeline timeLine;
 
-	int Counter = 25;
+	int Counter = 15;
 	int remain_counter = Counter;
 
 	Scene scene1;
@@ -185,6 +185,7 @@ public class IqFive {
 			if (!input.isEmpty()) {
 				if (Integer.parseInt(input) == 120) {
 					showNoti(e);
+					IqResultCheck.check();
 				}else {
 					IqQuestions.switchToIqQuestions(e, languageChange,root);
 					timeLine.stop();

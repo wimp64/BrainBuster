@@ -127,6 +127,7 @@ public class IqNine{
 		StackPane.setMargin(no, new Insets(300, -700, 0, 0));
 		no.setOnAction(e -> {
 			timeLine.stop();
+			IqResultCheck.check();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		

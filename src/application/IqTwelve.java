@@ -21,7 +21,7 @@ import javafx.util.Duration;
 public class IqTwelve{
 	Timeline timeLine;
 
-	int Counter = 30;
+	int Counter = 20;
 	int remain_counter = Counter;
 	
 	Scene scene1;
@@ -137,8 +137,9 @@ public class IqTwelve{
 		b1.setMaxSize(360, 65);
 		b2.setMaxSize(360, 65);
 		b2.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange, root);
+			IqResultCheck.check();
 			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange, root);
 		});
 		b3.setMaxSize(360, 65);
 		

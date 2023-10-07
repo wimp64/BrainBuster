@@ -144,6 +144,7 @@ public class IqThree {
 		StackPane.setMargin(Mark, new Insets(150, 0, 0, 0));
 		Mark.getStyleClass().add("Nm_Btn");
 		Mark.setOnAction(e -> {
+			IqResultCheck.check();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
 		});

@@ -139,8 +139,9 @@ public class IqTen{
 		b3.getStyleClass().add("bButT");
 		
 		b2.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			IqResultCheck.check();
 			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		
 		StackPane.setAlignment(goalPostImg, Pos.BOTTOM_RIGHT);

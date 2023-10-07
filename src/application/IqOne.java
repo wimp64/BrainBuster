@@ -147,8 +147,9 @@ public class IqOne {
 		no.setMaxSize(230, 115);
 		StackPane.setMargin(no, new Insets(400, -700, 0, 0));
 		no.setOnAction(e -> {
+			IqResultCheck.check();
 			timeLine.stop();
-			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			IqQuestions.switchToIqQuestions(e, languageChange,root);		
 		});
 		
 		timeImg.setFitWidth(85);

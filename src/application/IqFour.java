@@ -20,7 +20,7 @@ import javafx.util.Duration;
 public class IqFour {
 	Timeline timeLine;
 
-	int Counter = 30;
+	int Counter = 15;
 	int remain_counter = Counter;
 
 	Scene scene1;
@@ -151,6 +151,11 @@ public class IqFour {
 		StackPane.setMargin(b3, new Insets(0, 25, 0, 0));
 
 		b4.setMaxSize(83, 77);
+		b4.setOnAction(e -> {
+			IqResultCheck.check();
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		b4.getStyleClass().add("b_hover");
 		StackPane.setAlignment(b4, Pos.BOTTOM_CENTER);
 		StackPane.setMargin(b4, new Insets(0, 0, 25, 0));

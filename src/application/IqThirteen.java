@@ -148,8 +148,9 @@ public class IqThirteen{
 		b4.getStyleClass().add("choiceButTh");
 		b4.setGraphic(b4Img);
 		b4.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			IqResultCheck.check();
 			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		StackPane.setMargin(b4, new Insets(75,-1000,0,0));
 		

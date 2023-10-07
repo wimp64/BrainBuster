@@ -21,7 +21,7 @@ import javafx.scene.control.*;
 public class IqSeven extends Application{
 	Timeline timeLine;
 
-	int Counter = 45;
+	int Counter = 3;
 	int remain_counter = Counter;
 	
 	Scene scene1;
@@ -294,8 +294,9 @@ public class IqSeven extends Application{
 			dBut8.setGraphic(QuestionImg);
 		});
 		dBut7A.setOnAction(e->{
-			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			IqResultCheck.check();
 			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		
 		dBut0A.setGraphic(Q5AImg);

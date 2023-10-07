@@ -28,7 +28,7 @@ import javafx.util.StringConverter;
 public class IqFourteen{
 	Timeline timeLine;
 
-	int Counter = 15;
+	int Counter = 22;
 	int remain_counter = Counter;
 
 	Scene scene1;
@@ -172,6 +172,11 @@ public class IqFourteen{
 		submit.setMaxSize(125, 50);
 		StackPane.setMargin(submit, new Insets(300, 0, 0, 300));
 		submit.setOnAction(e -> {
+			String a = ans.getText();
+			System.out.println(a);
+			if(a.equals("BB") || a.equals("bb") || a.equals("B") || a.equals("b")) {
+				IqResultCheck.check();
+			}
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
