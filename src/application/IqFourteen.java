@@ -25,7 +25,7 @@ import javafx.util.Duration;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.StringConverter;
 
-public class IqTwo{
+public class IqFourteen{
 	Timeline timeLine;
 
 	int Counter = 15;
@@ -37,38 +37,31 @@ public class IqTwo{
 	Scene sc;
 
 	Button back;
-	Button lan_button;
 	Button timer = new Button();
 	Button submit = new Button();
 
-	Text Myanmar;
-	Text English;
-	Text Lan;
 	Text timeT = new Text();
 	Text submitT = new Text();
 
-	Label two = new Label();
-	Label five = new Label();
-	Label ten = new Label();
-	Label seventeen = new Label();
 	Label quest = new Label();
 
-	Image Lang = new Image("lang.png");
+
 	Image Arrow = new Image("arrow.png");
-	Image balloon1 = new Image("IqTwo/balloon1.png");
-	Image balloon2 = new Image("IqTwo/balloon2.png");
-	Image clock = new Image("IqTwo/clock.png");
-	Image girl = new Image("IqTwo/girl.png");
-	Image pencil = new Image("IqTwo/pencil.png");
-
-	ImageView langText = new ImageView(Lang);
+	Image rec = new Image("IqFourteen/rec.png");
+	Image doodle = new Image("IqFourteen/doodle.png");
+	Image clock = new Image("IqFourteen/clock.png");
+	Image plus = new Image("IqFourteen/plus.png");
+	Image circle = new Image("IqFourteen/circle.png");
+	Image ques = new Image("IqFourteen/quesImg.png");
+	
 	ImageView backArrow = new ImageView(Arrow);
-	ImageView balloon1Img = new ImageView(balloon1);
-	ImageView balloon2Img = new ImageView(balloon2);
+	ImageView recImg = new ImageView(rec);
+	ImageView doodleImg = new ImageView(doodle);
 	ImageView clockImg = new ImageView(clock);
-	ImageView girlImg = new ImageView(girl);
-	ImageView pencilImg = new ImageView(pencil);
-
+	ImageView plusImg = new ImageView(plus);
+	ImageView circleImg = new ImageView(circle);
+	ImageView quesImg = new ImageView(ques);
+	
 	TextField ans = new TextField();
 
 	StackPane root;
@@ -81,7 +74,7 @@ public class IqTwo{
 		remain_counter = Counter;
 		this.languageChange = languageChange;
 		root = new StackPane();
-		root.setStyle("-fx-background-color: #23844C");
+		root.setStyle("-fx-background-color: WHITE");
 
 		Counting();
 		elements();
@@ -100,7 +93,7 @@ public class IqTwo{
 	/* This is only for developing part */
 //	public void start(Stage primaryStage) throws Exception {
 //		root = new StackPane();
-//		root.setStyle("-fx-background-color: #23844C");
+//		root.setStyle("-fx-background-color: WHITE");
 //		Counting();
 //		elements();
 //		lan_change();
@@ -131,33 +124,15 @@ public class IqTwo{
 		StackPane.setAlignment(back, Pos.TOP_LEFT);
 		StackPane.setMargin(back, new Insets(30, 0, 0, 30));// top right bottom left
 
-		lan_button = new Button();
-		lan_button.setPrefSize(78, 39);
-		lan_button.getStyleClass().add("lets_start");
-		StackPane.setAlignment(lan_button, Pos.TOP_LEFT);
-		StackPane.setMargin(lan_button, new Insets(100, 0, 0, 210));
-		lan_button.setOnAction(e -> lan_click());
 
 		rectangle = new StackPane();
-		rectangle.setStyle("-fx-background-color:black;" + "-fx-background-radius:25px;");
-		rectangle.setMaxWidth(586);
-		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
+		rectangle.setStyle("-fx-background-color:white;");
+		rectangle.setMaxWidth(800);
+		StackPane.setMargin(rectangle, new Insets(0, 0, 250, 0));
 		rectangle.setMaxHeight(87);
 
-		Rotate rt = new Rotate(180 + 90 + 45, 0, 0);
-		two.getTransforms().add(rt);
-		StackPane.setMargin(two, new Insets(200, 700, 0, 0));
-
-		Rotate rt1 = new Rotate(25, 0, 0);
-		five.getTransforms().add(rt1);
-		StackPane.setMargin(five, new Insets(200, 300, 0, 0));
-
-		StackPane.setMargin(ten, new Insets(100, 0, 0, 0));
-
-		Rotate rt2 = new Rotate(180 + 90 + 75, 0, 0);
-		seventeen.getTransforms().add(rt2);
-		StackPane.setMargin(seventeen, new Insets(200, -400, 0, 0));
-
+		StackPane.setAlignment(quesImg, Pos.CENTER);
+		
 		ans.setMaxWidth(90);
 		ans.setMaxHeight(90);
 		Platform.runLater(() -> {
@@ -165,56 +140,63 @@ public class IqTwo{
 			ans.positionCaret(0);
 		});
 		ans.getStyleClass().add("ansText");
-		TextFormatter<Integer> tf = new TextFormatter<>(new IntegerStringConverter(), null, change -> {
+		StringConverter<String> converter = new StringConverter<String>() {
+			public String toString(String s) {
+				return s;
+			}
+			public String fromString(String s) {
+				return s;
+			}
+		};
+		TextFormatter<String> tf = new TextFormatter<>(converter, null, change -> {
 			String newText = change.getControlNewText();
-			if (newText.matches("\\d{0,2}")) {
+			if (newText.matches("[ABCDabcd]?")) {
+				newText = newText.toUpperCase();
+				change.setText(newText);
 				return change;
 			}
 			return null;
 		});
-		ans.setAlignment(Pos.CENTER_RIGHT);
+		ans.setAlignment(Pos.CENTER);
 		ans.setTextFormatter(tf);
-		StackPane.setMargin(ans, new Insets(180, -800, 0, 0));
+		StackPane.setMargin(ans, new Insets(300, 0, 0, 0));
 
-		submit.getStyleClass().add("subBut");
-		submitT.setFill(Color.BLACK);
+		submit.getStyleClass().add("subButFourteen");
+		submitT.setFill(Color.WHITE);
 		submit.setOnMouseEntered(e -> {
-			submitT.setFill(Color.WHITE);
-		});
-		submit.setOnMouseExited(e -> {
 			submitT.setFill(Color.BLACK);
 		});
+		submit.setOnMouseExited(e -> {
+			submitT.setFill(Color.WHITE);
+		});
 		submit.setMaxSize(125, 50);
-		StackPane.setMargin(submit, new Insets(350, -800, 0, 0));
+		StackPane.setMargin(submit, new Insets(300, 0, 0, 300));
 		submit.setOnAction(e -> {
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
-		balloon1Img = new ImageView(balloon1);
-		StackPane.setAlignment(balloon1Img, Pos.TOP_RIGHT);
+		recImg = new ImageView(rec);
+		StackPane.setAlignment(recImg, Pos.TOP_RIGHT);
 
-		balloon2Img = new ImageView(balloon2);
-		StackPane.setAlignment(balloon2Img, Pos.TOP_LEFT);
-		StackPane.setMargin(balloon2Img, new Insets(200, 0, 0, 0));
+		doodleImg = new ImageView(doodle);
+		StackPane.setAlignment(doodleImg, Pos.BOTTOM_CENTER);
+		StackPane.setMargin(doodleImg, new Insets(0, 0, 0, 0));
 
 		clockImg = new ImageView(clock);
-		clockImg.setFitWidth(90);
-		clockImg.setFitHeight(100);
-		StackPane.setMargin(clockImg, new Insets(0, 100, 450, 0));
+		StackPane.setMargin(clockImg, new Insets(0, 0, 565, 0));
 
-		timer.getStyleClass().add("timer");
+		timer.getStyleClass().add("timerFourteen");
 		timer.setMaxSize(140, 60);
 		StackPane.setMargin(timer, new Insets(0, 0, 450, 0));
 
-		girlImg = new ImageView(girl);
-		StackPane.setAlignment(girlImg, Pos.BOTTOM_RIGHT);
+		plusImg = new ImageView(plus);
+		StackPane.setAlignment(plusImg, Pos.BOTTOM_RIGHT);
 
-		pencilImg = new ImageView(pencil);
-		StackPane.setAlignment(pencilImg, Pos.BOTTOM_LEFT);
-		StackPane.setMargin(pencilImg, new Insets(0, 0, 100, 100));
+		circleImg = new ImageView(circle);
+		StackPane.setAlignment(circleImg, Pos.BOTTOM_LEFT);
 
-		root.getChildren().addAll(lan_button, back, rectangle, ans, balloon1Img, balloon2Img, girlImg, pencilImg,
-				submit, timer, clockImg);
+		root.getChildren().addAll( back, rectangle, ans, recImg, doodleImg, plusImg, circleImg,
+				submit, timer,clockImg,quesImg);
 	}
 
 	void lan_click() {
@@ -253,42 +235,10 @@ public class IqTwo{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-			langText.setVisible(false);
-
-			Lan = new Text("Language:");
-			Font lan_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Lan.setFont(lan_font);
-			Lan.setFill(Color.WHITE);
-			StackPane.setAlignment(Lan, Pos.TOP_LEFT);
-			StackPane.setMargin(Lan, new Insets(105, 0, 0, 90));
-
-			English = new Text("ENG");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			English.setFont(English_font);
-			English.setFill(Color.WHITE);
-			lan_button.setGraphic(English);
-
-			two.setText("2");
-			Font num_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 80);
-			two.setFont(num_font);
-			two.setTextFill(Color.WHITE);
-
-			five.setText("5");
-			five.setFont(num_font);
-			five.setTextFill(Color.WHITE);
-
-			ten.setText("10");
-			ten.setFont(num_font);
-			ten.setTextFill(Color.WHITE);
-
-			seventeen.setText("17");
-			seventeen.setFont(num_font);
-			seventeen.setTextFill(Color.WHITE);
-
-			quest.setText("Complete the sequence");
-			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 40);
+			quest.setText("Which of the following shapes is the odd one out?");
+			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 			quest.setFont(quest_font);
-			quest.setTextFill(Color.WHITE);
+			quest.setTextFill(Color.BLACK);
 			rectangle.getChildren().add(quest);
 
 			Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
@@ -303,25 +253,15 @@ public class IqTwo{
 					submit.fire();
 				}
 			});
-			root.getChildren().addAll(Lan, two, five, ten, seventeen);
+			root.getChildren().addAll();
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				Lan.setVisible(false);
+
 			}
-			langText = new ImageView(Lang);
-			langText.setFitWidth(130);
-			langText.setFitHeight(20);
-			StackPane.setAlignment(langText, Pos.TOP_LEFT);
-			StackPane.setMargin(langText, new Insets(110, 0, 0, 70));
 
-			Myanmar = new Text("Myan");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Myanmar.setFont(English_font);
-			Myanmar.setFill(Color.WHITE);
-			lan_button.setGraphic(Myanmar);
 
-			root.getChildren().addAll(langText);
+			root.getChildren().addAll();
 		}
 	}
 }

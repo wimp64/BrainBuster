@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.StackPane;
 
 public class IqQuestions {
-	static int NOQ = 11;
+	static int NOQ = 14;
 	static IqOne iqOne = new IqOne();
 	static IqTwo iqTwo = new IqTwo();
 	static IqThree iqThree = new IqThree();
@@ -21,6 +21,9 @@ public class IqQuestions {
 	static IqNine iqNine = new IqNine();
 	static IqTen iqTen = new IqTen();
 	static IqEleven iqEleven = new IqEleven();
+	static IqTwelve iqTwelve = new IqTwelve();
+	static IqThirteen iqThirteen = new IqThirteen();
+	static IqFourteen iqFourteen = new IqFourteen();
 	
 	static Difficulty df = new Difficulty();
 	static Random random = new Random();
@@ -90,6 +93,15 @@ public class IqQuestions {
 				break;
 			case 11:
 				iqEleven.switchToIqQuestions(e, languageChange, proot);
+				break;
+			case 12:
+				iqTwelve.switchToIqQuestions(e, languageChange, proot);
+				break;
+			case 13:
+				iqThirteen.switchToIqQuestions(e, languageChange, proot);
+				break;
+			case 14:
+				iqFourteen.switchToIqQuestions(e, languageChange, proot);
 				break;
 			default:
 				System.out.println("error generated");

@@ -42,6 +42,11 @@
 	-fx-background-color:BLACK;
 	-fx-padding:0 0 0 30;
 }
+.timerFourteen{
+	-fx-border-radius:20px;
+	-fx-border-color:BLACK;
+	-fx-background-color:WHITE;
+}
 .ansText{
 	-fx-background-color:rgba(0,0,0,0.3);
 	-fx-text-fill:white;
@@ -50,6 +55,16 @@
 	-fx-background-color:WHITE;
 	-fx-background-radius:50px;
 	-fx-cursor:hand;
+}
+.subButFourteen{
+	-fx-background-color:BLACK;
+	-fx-background-radius:50px;
+	-fx-cursor:hand;
+}
+.subButFourteen:hover{
+	-fx-background-color:WHITE;
+	-fx-border-color:BLACK;
+	-fx-border-radius:50px;
 }
 .subButFive{
 	-fx-background-color:#FF4444;
@@ -142,4 +157,35 @@
 .bButT:pressed{
 	-fx-scale-x:1;
 	-fx-scale-y:1;
+}
+/*Iq Twelve buttons */
+.bButTw{
+	-fx-background-color:#EBF8FE;
+	-fx-background-radius:25px;
+	-fx-border-color:BLACK;
+	-fx-border-radius:25px;
+	-fx-border-width:2px;
+	-fx-cursor:hand;
+}
+.bButTw:hover{
+	-fx-border-color:#167820;
+	-fx-border-radius:25px;
+	-fx-border-width:4px;
+}
+.bButTw:pressed{
+	-fx-scale-x:0.9;
+	-fx-scale-y:0.9;
+}
+/*Iq Thirteen choice buttons */
+.choiceButTh{
+	-fx-background-color:WHITE;
+	-fx-cursor:hand;
+	-fx-background-radius:15px;
+}
+.choiceButTh:hover{
+	-fx-background-color:#E7F2D6;
+}
+.choiceButTh:pressed{
+	-fx-scale-x:0.97;
+	-fx-scale-y:0.97;
 }
