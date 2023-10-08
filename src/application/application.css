@@ -143,3 +143,19 @@
 	-fx-background-color:WHITE;
 	-fx-background-radius:35px;
 }
+/*IqRsult*/
+.lets_startR {
+    -fx-background-color: WHITE;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 200;
+    -fx-cursor:hand;
+}
+.lets_startR:pressed{
+	-fx-scale-x:0.86;
+	-fx-scale-y:0.86;
+}
+.lets_startR:hover{
+	-fx-background-color: #20AB2E;
+}
+
+

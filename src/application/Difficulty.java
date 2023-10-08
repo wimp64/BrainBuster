@@ -1,5 +1,8 @@
 package application;
 
+import application.Mathematics.switchingQuestionForDiffMath;
+import application.Mathematics.switchingQuestionForEasyMath;
+import application.Mathematics.switchingQuestionForNormalMath;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
@@ -70,9 +73,10 @@ public class Difficulty {
 
 	boolean languageChange;///////////////////////// to delete true
 	boolean nonesense = false;
-
-	public void switchToDifficulty(ActionEvent event, boolean languageChange,StackPane proot) {
+	boolean choose;
+	public void switchToDifficulty(ActionEvent event, boolean languageChange,StackPane proot,boolean choose) {
 		this.languageChange = languageChange;
+		this.choose = choose;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #2385C4");
 
@@ -206,7 +210,14 @@ public class Difficulty {
 		ez.setPrefSize(370, 94);
 		StackPane.setAlignment(ez, Pos.CENTER_LEFT);
 		StackPane.setMargin(ez, new Insets(0, 0, 300, 150));
-
+		ez.setOnAction(e->{
+			if(choose) {
+				switchingQuestionForEasyMath.switchToQuestions(e, languageChange, root);
+			}
+			else {
+				System.out.println("LogicE");
+			}
+		});
 		Rectangle line = new Rectangle();
 		line.setWidth(250);
 		line.setHeight(10);
@@ -246,6 +257,14 @@ public class Difficulty {
 		nm = new Button();
 		nm.getStyleClass().add("Nm_Btn");
 		nm.setPrefSize(370, 94);
+		nm.setOnAction(e->{
+			if(choose) {
+				switchingQuestionForNormalMath.switchToQuestions(e, languageChange, root);
+			}
+			else {
+				System.out.println("LogicN");
+			}
+		});
 		StackPane.setAlignment(nm, Pos.CENTER_LEFT);
 		StackPane.setMargin(nm, new Insets(0, 0, 0, 150));
 
@@ -288,6 +307,14 @@ public class Difficulty {
 		df = new Button();
 		df.getStyleClass().add("Df_Btn");
 		df.setPrefSize(370, 94);
+		df.setOnAction(e->{
+			if(choose) {
+				switchingQuestionForDiffMath.switchToQuestions(e, languageChange, root);
+			}
+			else {
+				System.out.println("LogicD");
+			}
+		});
 		StackPane.setAlignment(df, Pos.CENTER_LEFT);
 		StackPane.setMargin(df, new Insets(0, 0, -300, 150));
 

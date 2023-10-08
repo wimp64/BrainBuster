@@ -312,7 +312,7 @@ public class Category {
 
 		math_button.setOnAction(event -> {
 			Difficulty d = new Difficulty();
-			d.switchToDifficulty(event, languageChange,root);
+			d.switchToDifficulty(event, languageChange,root,true);
 		});
 		root.getChildren().addAll(math_button);
 	}
@@ -350,7 +350,7 @@ public class Category {
 
 		lg_button.setOnAction(event -> {
 			Difficulty d = new Difficulty();
-			d.switchToDifficulty(event, languageChange,root);
+			d.switchToDifficulty(event, languageChange,root,false);
 			root.getChildren().clear();
 		});
 

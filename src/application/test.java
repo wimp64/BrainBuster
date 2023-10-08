@@ -1,113 +1,43 @@
-package application;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
-import javafx.animation.PauseTransition;
-import javafx.animation.TranslateTransition;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
+package application;  
+import javafx.application.Application;  
+import javafx.scene.Scene;  
+import javafx.scene.control.ProgressIndicator;  
+import javafx.scene.layout.StackPane;  
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import javafx.util.Duration;  
+import javafx.animation.*;
+public class test extends Application{  
+  
+    @Override  
+    public void start(Stage primaryStage) throws Exception {  
+    	
 
-public class test extends Application {
-	private Pane notificationPane;
-	private TranslateTransition notificationTransition;
-	Stage primaryStage;
+        // TODO Auto-generated method stub  
+    
+        StackPane root = new StackPane();  
+          
+        Scene scene = new Scene(root,300,200);  
+        scene.getStylesheets().add(getClass().getResource("IqQuestion.css").toExternalForm());
+        ProgressIndicator PI=new ProgressIndicator();  
+        PI.setMaxSize(500, 500);
+        root.getChildren().add(PI);
+        PI.getStyleClass().add("cpi");
+        primaryStage.setScene(scene);  
+        primaryStage.setTitle("Progress Indicator Example");  
+        primaryStage.show();  
+        double targetValue = 0.7;
+        Duration duration = Duration.seconds(2); // Animation duration (in this case, 3 seconds)
 
-	@Override
-	public void start(Stage primaryStage) {
-		this.primaryStage = primaryStage; // Declare and initialize primaryStage
-
-		Pane root = new Pane();
-		Scene scene = new Scene(root, 400, 300);
-
-		Button showNotificationButton = new Button("Show Notification");
-		showNotificationButton.setOnAction(event -> ran());
-
-		notificationPane = createNotificationPane();
-		root.getChildren().addAll(showNotificationButton, notificationPane);
-
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("Custom Notification App");
-		primaryStage.show();
-	}
-
-	boolean checker = true;
-	List<Integer> check = new ArrayList<>();
-	int point = -1;
-
-	void ran() {
-		point++;
-		if (checker == true) {
-			int maxNumber = 4; // Maximum number to generate (exclusive)
-			int numberOfNumbers = 4; // Number of unique random numbers to generate
-
-			Random random = new Random();
-
-			while (check.size() < numberOfNumbers) {
-				int randomNumber = random.nextInt(maxNumber) + 1;
-				if (!check.contains(randomNumber)) {
-					check.add(randomNumber);
-				}
-			}
-
-			// Shuffle the list to get random order
-			Collections.shuffle(check);
-			System.out.println(check.get(point));
-			checker = false;
-		} else {
-			System.out.println(check.get(point));
-		}
-	}
-
-	private Pane createNotificationPane() {
-		Pane pane = new Pane();
-		pane.setPrefSize(400, 40);
-		pane.setStyle("-fx-background-color: #2196F3; -fx-background-radius: 5;");
-
-		Text text = new Text("You answered correctly! Yay!");
-		text.setFill(Color.WHITE);
-		text.setFont(Font.font(16));
-		text.setLayoutX(10);
-		text.setLayoutY(25);
-
-		pane.getChildren().add(text);
-		pane.setLayoutX((400 - pane.getPrefWidth()) / 2);
-		pane.setLayoutY(-pane.getPrefHeight());
-
-		return pane;
-	}
-
-	private void showNotification() {
-		notificationTransition = new TranslateTransition(Duration.seconds(1), notificationPane);
-		notificationTransition.setFromY(-notificationPane.getPrefHeight());
-		notificationTransition.setToY(0);
-
-		notificationTransition.setOnFinished(event -> {
-			PauseTransition delay = new PauseTransition(Duration.seconds(5));
-			delay.setOnFinished(e -> hideNotification());
-			delay.play();
-		});
-
-		notificationTransition.play();
-	}
-
-	private void hideNotification() {
-		notificationTransition.setFromY(0);
-		notificationTransition.setToY(-notificationPane.getPrefHeight());
-
-		notificationTransition.play();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-}
+        // Create a Timeline to animate the ProgressIndicator to the target value
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(PI.progressProperty(), 0)),
+                new KeyFrame(duration, new KeyValue(PI.progressProperty(), targetValue))
+        );
+        timeline.play();
+          
+    }  
+    public static void main(String[] args) {  
+        launch(args);  
+    }  
+  
+}  
