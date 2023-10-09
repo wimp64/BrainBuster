@@ -59,6 +59,7 @@ public class IqThirteen{
 	ImageView b2Img = new ImageView(b2s);
 	ImageView b3Img = new ImageView(b3s);
 	ImageView b4Img = new ImageView(b4s);
+	ImageView iq13MMImg = new ImageView(new Image("IqThirteen/iq13MM.png"));
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -112,7 +113,9 @@ public class IqThirteen{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -132,16 +135,31 @@ public class IqThirteen{
 		b1.setMaxSize(256, 223);
 		b1.getStyleClass().add("choiceButTh");
 		b1.setGraphic(b1Img);
+		b1.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		StackPane.setMargin(b1, new Insets(75,1000,0,0));
 		
 		b2.setMaxSize(256, 223);
 		b2.getStyleClass().add("choiceButTh");
 		b2.setGraphic(b2Img);
+		b2.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		StackPane.setMargin(b2, new Insets(75,330,0,0));
 		
 		b3.setMaxSize(256, 223);
 		b3.getStyleClass().add("choiceButTh");
 		b3.setGraphic(b3Img);
+		b3.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		StackPane.setMargin(b3, new Insets(75,-330,0,0));
 		
 		b4.setMaxSize(256, 223);
@@ -151,6 +169,7 @@ public class IqThirteen{
 			IqResultCheck.check();
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		StackPane.setMargin(b4, new Insets(75,-1000,0,0));
 		
@@ -165,6 +184,7 @@ public class IqThirteen{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -214,7 +234,8 @@ public class IqThirteen{
 			if (nonesense == true) {
 				
 			}
-
+			quest.setGraphic(iq13MMImg);
+			rectangle.getChildren().add(quest);
 			root.getChildren().addAll();
 		}
 	}

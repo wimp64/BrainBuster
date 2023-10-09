@@ -157,5 +157,10 @@
 .lets_startR:hover{
 	-fx-background-color: #20AB2E;
 }
+/*MathRsult*/
+.display {
+    -fx-background-color: #A1C5C4;
+    -fx-background-radius: 25px;
+}
 
 

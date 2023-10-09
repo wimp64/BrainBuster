@@ -53,6 +53,10 @@ public class IqTen{
 	ImageView goalImg = new ImageView(goal);
 	ImageView bootsImg = new ImageView(boots);
 	ImageView QEngImg = new ImageView(QEng);
+	ImageView iq10MMImg = new ImageView(new Image("IqTen/iq10MM.png"));
+	ImageView a1Img = new ImageView(new Image("IqTen/a1.png"));
+	ImageView a2Img = new ImageView(new Image("IqTen/a2.png"));
+	ImageView a3Img = new ImageView(new Image("IqTen/a3.png"));
 	
 	StackPane root;
 	StackPane rectangle;
@@ -106,7 +110,9 @@ public class IqTen{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -138,12 +144,22 @@ public class IqTen{
 		b2.getStyleClass().add("bButT");
 		b3.getStyleClass().add("bButT");
 		
+		b1.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		b2.setOnAction(e->{
 			IqResultCheck.check();
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
-		
+		b3.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		StackPane.setAlignment(goalPostImg, Pos.BOTTOM_RIGHT);
 		StackPane.setAlignment(bootsImg, Pos.BOTTOM_LEFT);
 		StackPane.setAlignment(goalImg, Pos.TOP_RIGHT);
@@ -159,6 +175,7 @@ public class IqTen{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -168,7 +185,7 @@ public class IqTen{
 		timer.getStyleClass().add("timer");
 		timer.setMaxSize(140, 60);
 		StackPane.setMargin(timer, new Insets(0, 0, 450, 550));
-		
+		timeT.setFill(Color.BLACK);
 		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
@@ -219,7 +236,10 @@ public class IqTen{
 			if (nonesense == true) {
 				
 			}
-
+			rectangle.getChildren().add(iq10MMImg);
+			b1.setGraphic(a1Img);
+			b2.setGraphic(a2Img);
+			b3.setGraphic(a3Img);
 			root.getChildren().addAll();
 		}
 	}

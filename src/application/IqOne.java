@@ -44,16 +44,24 @@ public class IqOne {
 	Image flowerTwo = new Image("IqOne/flowerTwo.png");
 	Image flowerG = new Image("IqOne/flowerG.png");
 	Image flowerB = new Image("IqOne/flowerB.png");
-
+	Image yesMM = new Image("IqOne/yesMM.png");
+	Image noMM = new Image("IqOne/noMM.png");
+	Image iqMM = new Image("IqONe/IqOneMM.png");
+	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView timeImg = new ImageView(time);
-	ImageView IqOneEngImg = new ImageView(IqOneEng);
 	ImageView flowerOneImg = new ImageView(flowerOne);
 	ImageView flowerTwoImg = new ImageView(flowerTwo);
 	ImageView flowerGImg = new ImageView(flowerG);
 	ImageView flowerBImg = new ImageView(flowerB);
+	ImageView IqOneEngImg = new ImageView(IqOneEng);
+	ImageView yesMMImg = new ImageView(yesMM);
+	ImageView noMMImg = new ImageView(noMM);
+	ImageView iqOneMMImg = new ImageView(iqMM);
+	
 	StackPane root;
-
+	StackPane rectangle;
+	
 	boolean languageChange;// delete true
 	boolean nonesense = false;
 
@@ -102,7 +110,7 @@ public class IqOne {
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 		});
 		backArrow.setFitWidth(40);
@@ -112,16 +120,12 @@ public class IqOne {
 		StackPane.setAlignment(back, Pos.TOP_LEFT);
 		StackPane.setMargin(back, new Insets(30, 0, 0, 30));// top right bottom left
 
-		StackPane rectangle = new StackPane();
+		rectangle = new StackPane();
 		rectangle.setStyle("-fx-background-color:white;" + "-fx-background-radius:25px;");
 		rectangle.setMaxWidth(1212);
 		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
 		rectangle.setMaxHeight(307);
 
-		IqOneEngImg = new ImageView(IqOneEng);
-		IqOneEngImg.setFitWidth(1150);
-		IqOneEngImg.setFitHeight(200);
-		rectangle.getChildren().add(IqOneEngImg);
 
 		flowerOneImg.setFitWidth(180);
 		flowerOneImg.setFitHeight(128);
@@ -141,6 +145,10 @@ public class IqOne {
 
 		yes.getStyleClass().add("yesBut");
 		yes.setMaxSize(230, 115);
+		yes.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		StackPane.setMargin(yes, new Insets(400, 700, 0, 0)); 
 
 		no.getStyleClass().add("noBut");
@@ -170,6 +178,12 @@ public class IqOne {
 	}
 
 	void Counting() {
+		Button over = new Button();
+		over.setOnAction(e->{
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
+		over.setVisible(false);
+		root.getChildren().add(over);
 		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
@@ -184,7 +198,7 @@ public class IqOne {
 			}
 			if (remain_counter <= 0) {
 				timeLine.stop();
-				no.fire();
+				over.fire();
 			}
 		}));
 		timeLine.setCycleCount(Counter);
@@ -193,25 +207,47 @@ public class IqOne {
 
 	private void lan_change() {
 		if (languageChange) {
+			IqOneEngImg.setVisible(true);
+		
+			
+			
+			yesMMImg.setVisible(false);
+			noMMImg.setVisible(false);
+			iqOneMMImg.setVisible(false);
+			
 			Font Yes_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 40);
 			yesT = new Text("YES");
+			yesT.setVisible(true);
 			yesT.setFont(Yes_font);
 			yesT.setFill(Color.WHITE);
 			yes.setGraphic(yesT);
 
 			noT = new Text("NO");
+			noT.setVisible(true);
 			noT.setFont(Yes_font);
 			noT.setFill(Color.WHITE);
 			no.setGraphic(noT);
-
+			
+			IqOneEngImg.setFitWidth(1150);
+			IqOneEngImg.setFitHeight(200);
+			rectangle.getChildren().add(IqOneEngImg);
+			
 			root.getChildren().addAll();
 
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-
+				yesMMImg.setVisible(true);
+				noMMImg.setVisible(true);
+				iqOneMMImg.setVisible(true);
+				
+				IqOneEngImg.setVisible(false);
+				noT.setVisible(false);
+				yesT.setVisible(false);
 			}
-			
+			yes.setGraphic(yesMMImg);
+			no.setGraphic(noMMImg);
+			rectangle.getChildren().add(iqOneMMImg);
 			root.getChildren().addAll();
 		}
 	}

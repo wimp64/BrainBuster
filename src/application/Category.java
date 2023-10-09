@@ -95,10 +95,12 @@ public class Category {
 
 	boolean languageChange;
 	boolean nonesense = false;
-
+	
+int selectValue;
 	public void switchToScene1(ActionEvent event, int SelectValue, boolean lanSwap) {
 		languageChange = lanSwap;
-
+		application.Mathematics.MathResult.scV = SelectValue;
+		this.selectValue = SelectValue;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #F79630");
 		profile();
@@ -312,7 +314,8 @@ public class Category {
 
 		math_button.setOnAction(event -> {
 			Difficulty d = new Difficulty();
-			d.switchToDifficulty(event, languageChange,root,true);
+			d.switchToDifficulty(event, languageChange,root,true,selectValue);
+			application.Mathematics.MathResult.modeFilter(true);
 		});
 		root.getChildren().addAll(math_button);
 	}
@@ -350,8 +353,9 @@ public class Category {
 
 		lg_button.setOnAction(event -> {
 			Difficulty d = new Difficulty();
-			d.switchToDifficulty(event, languageChange,root,false);
+			d.switchToDifficulty(event, languageChange,root,false,selectValue);
 			root.getChildren().clear();
+			application.Mathematics.MathResult.modeFilter(false);
 		});
 
 		root.getChildren().addAll(lg_button);

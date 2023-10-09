@@ -49,6 +49,7 @@ public class IqSix {
 	Image b2s = new Image("IqSix/b2.png");
 	Image b3s = new Image("IqSix/b3.png");
 	Image b4s = new Image("IqSix/b4.png");
+	Image iq6MM = new Image("IqSix/iq6MM.png");
 	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView cloudImg = new ImageView(cloud);
@@ -59,6 +60,7 @@ public class IqSix {
 	ImageView b2Img = new ImageView(b2s);
 	ImageView b3Img = new ImageView(b3s);
 	ImageView b4Img = new ImageView(b4s);
+	ImageView iq6MMImg = new ImageView(iq6MM);
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -112,7 +114,9 @@ public class IqSix {
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -135,6 +139,7 @@ public class IqSix {
 		b1.setOnAction(e->{
 			IqResultCheck.check();
 			timeLine.stop();
+			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		StackPane.setMargin(b1, new Insets(75,1000,0,0));
@@ -142,16 +147,31 @@ public class IqSix {
 		b2.setMaxSize(256, 223);
 		b2.getStyleClass().add("choiceBut");
 		b2.setGraphic(b2Img);
+		b2.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		StackPane.setMargin(b2, new Insets(75,330,0,0));
 		
 		b3.setMaxSize(256, 223);
 		b3.getStyleClass().add("choiceBut");
 		b3.setGraphic(b3Img);
+		b3.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		StackPane.setMargin(b3, new Insets(75,-330,0,0));
 		
 		b4.setMaxSize(256, 223);
 		b4.getStyleClass().add("choiceBut");
 		b4.setGraphic(b4Img);
+		b4.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		StackPane.setMargin(b4, new Insets(75,-1000,0,0));
 		
 		root.getChildren().addAll( back,cloudImg,scissorImg,cubesImg,rectangle,b1,b2,b3,b4);
@@ -162,6 +182,13 @@ public class IqSix {
 		lan_change();
 	}
 	void Counting() {
+		Button over = new Button();
+		over.setOnAction(e->{
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
+		over.setVisible(false);
+		root.getChildren().add(over);
 		clockImg = new ImageView(clock);
 		StackPane.setMargin(clockImg, new Insets(0, 100, 550, 0));
 
@@ -183,7 +210,7 @@ public class IqSix {
 			}
 			if (remain_counter <= 0) {
 				timeLine.stop();
-				b1.fire();
+				over.fire();
 			}
 		}));
 		timeLine.setCycleCount(Counter);
@@ -199,7 +226,7 @@ public class IqSix {
 			quest.setText("Which of the following shapes can be folded into a cube?");
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 33);
 			quest.setFont(quest_font);
-			rectangle.getChildren().add(quest);
+			
 
 			root.getChildren().addAll();
 
@@ -208,7 +235,8 @@ public class IqSix {
 			if (nonesense == true) {
 				
 			}
-
+			quest.setGraphic(iq6MMImg);
+			rectangle.getChildren().add(quest);
 			root.getChildren().addAll();
 		}
 	}

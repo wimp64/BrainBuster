@@ -36,13 +36,9 @@ public class IqEleven{
 	Scene sc;
 
 	Button back;
-	Button lan_button;
 	Button timer = new Button();
 	Button submit = new Button();
 
-	Text Myanmar;
-	Text English;
-	Text Lan;
 	Text timeT = new Text();
 	Text submitT = new Text();
 
@@ -52,27 +48,39 @@ public class IqEleven{
 	Label seventeen = new Label();
 	Label quest = new Label();
 
-	Image Lang = new Image("lang.png");
 	Image Arrow = new Image("arrow.png");
 	Image lightbulb = new Image("IqEleven/lightbulb.png");
 	Image bottom = new Image("IqEleven/bottom.png");
 	Image clock = new Image("IqEleven/clock.png");
 	Image haha = new Image("IqEleven/haha.png");
 	Image pen = new Image("IqEleven/pen.png");
-
-	ImageView langText = new ImageView(Lang);
+	Image iq11MM = new Image("IqEleven/iq11MM.png");
+	Image a1 = new Image("IqEleven/a1.png");
+	Image a2 = new Image("IqEleven/a2.png");
+	Image a3 = new Image("IqEleven/a3.png");
+	Image a4 = new Image("IqEleven/a4.png");
+	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView lightbulbImg = new ImageView(lightbulb);
 	ImageView bottomImg = new ImageView(bottom);
 	ImageView clockImg = new ImageView(clock);
 	ImageView hahaImg = new ImageView(haha);
 	ImageView penImg = new ImageView(pen);
-
+	ImageView iq11MMImg = new ImageView(iq11MM);
+	ImageView a1Img = new ImageView(a1);
+	ImageView a2Img = new ImageView(a2);
+	ImageView a3Img = new ImageView(a3);
+	ImageView a4Img = new ImageView(a4);
+	
 	TextField ans = new TextField();
 
 	StackPane root;
 	StackPane rectangle;
-
+	
+	Rotate rt;
+	Rotate rt1;
+	Rotate rt2;
+	
 	boolean languageChange=true;// delete true
 	boolean nonesense = false;
 
@@ -116,12 +124,24 @@ public class IqEleven{
 	/* This is only for developing part */
 
 	private void elements() {
+		Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
+		ans.setFont(ans_font);
+		root.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				submit.fire();
+			}
+		});
 		back = new Button();
 		back.getStyleClass().add("lets_start");
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rt.setAngle(0);
+			rt1.setAngle(0);
+			rt2.setAngle(0);
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -130,30 +150,23 @@ public class IqEleven{
 		StackPane.setAlignment(back, Pos.TOP_LEFT);
 		StackPane.setMargin(back, new Insets(30, 0, 0, 30));// top right bottom left
 
-		lan_button = new Button();
-		lan_button.setPrefSize(78, 39);
-		lan_button.getStyleClass().add("lets_start");
-		StackPane.setAlignment(lan_button, Pos.TOP_LEFT);
-		StackPane.setMargin(lan_button, new Insets(100, 0, 0, 210));
-		lan_button.setOnAction(e -> lan_click());
-
 		rectangle = new StackPane();
 		rectangle.setStyle("-fx-background-color:white;" + "-fx-background-radius:25px;");
 		rectangle.setMaxWidth(950);
 		StackPane.setMargin(rectangle, new Insets(0, 0, 200, 0));
 		rectangle.setMaxHeight(87);
 
-		Rotate rt = new Rotate(180 + 90 +75, 0, 0);
+		rt = new Rotate(180 + 90 +75, 0, 0);
 		two.getTransforms().add(rt);
 		StackPane.setMargin(two, new Insets(200, 700, 0, 0));
 
-		Rotate rt1 = new Rotate(25, 0, 0);
+		rt1 = new Rotate(25, 0, 0);
 		five.getTransforms().add(rt1);
 		StackPane.setMargin(five, new Insets(200, 300, 0, 0));
 
 		StackPane.setMargin(ten, new Insets(100, 0, 0, 0));
 
-		Rotate rt2 = new Rotate(180 + 90 + 75, 0, 0);
+		rt2 = new Rotate(180 + 90 + 75, 0, 0);
 		seventeen.getTransforms().add(rt2);
 		StackPane.setMargin(seventeen, new Insets(200, -400, 0, 0));
 
@@ -191,6 +204,10 @@ public class IqEleven{
 				IqResultCheck.check();
 			}
 			timeLine.stop();
+			rt.setAngle(0);
+			rt1.setAngle(0);
+			rt2.setAngle(0);
+			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		lightbulbImg = new ImageView(lightbulb);
@@ -217,7 +234,7 @@ public class IqEleven{
 		StackPane.setAlignment(penImg, Pos.BOTTOM_LEFT);
 		StackPane.setMargin(penImg, new Insets(0, 0, 100, 100));
 
-		root.getChildren().addAll(lan_button, back, rectangle, ans, lightbulbImg, bottomImg, hahaImg, penImg,
+		root.getChildren().addAll( back, rectangle, ans, lightbulbImg, bottomImg, hahaImg, penImg,
 				submit, timer, clockImg);
 	}
 
@@ -257,20 +274,6 @@ public class IqEleven{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-			langText.setVisible(false);
-
-			Lan = new Text("Language:");
-			Font lan_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Lan.setFont(lan_font);
-			Lan.setFill(Color.WHITE);
-			StackPane.setAlignment(Lan, Pos.TOP_LEFT);
-			StackPane.setMargin(Lan, new Insets(105, 0, 0, 90));
-
-			English = new Text("ENG");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			English.setFont(English_font);
-			English.setFill(Color.WHITE);
-			lan_button.setGraphic(English);
 
 			two.setText("1");
 			Font num_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 80);
@@ -295,37 +298,29 @@ public class IqEleven{
 			quest.setTextFill(Color.BLACK);
 			rectangle.getChildren().add(quest);
 
-			Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
-			ans.setFont(ans_font);
-
 			submitT.setText("Submit");
 			submit.setGraphic(submitT);
 			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
 			submitT.setFont(sub_font);
-			root.setOnKeyPressed(event -> {
-				if (event.getCode() == KeyCode.ENTER) {
-					submit.fire();
-				}
-			});
-			root.getChildren().addAll(Lan, two, five, ten, seventeen);
+
+			root.getChildren().addAll(two, five, ten, seventeen);
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				Lan.setVisible(false);
+				
 			}
-			langText = new ImageView(Lang);
-			langText.setFitWidth(130);
-			langText.setFitHeight(20);
-			StackPane.setAlignment(langText, Pos.TOP_LEFT);
-			StackPane.setMargin(langText, new Insets(110, 0, 0, 70));
-
-			Myanmar = new Text("Myan");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Myanmar.setFont(English_font);
-			Myanmar.setFill(Color.WHITE);
-			lan_button.setGraphic(Myanmar);
-
-			root.getChildren().addAll(langText);
+			quest.setGraphic(iq11MMImg);
+			rectangle.getChildren().add(quest);
+			two.setGraphic(a1Img);
+			five.setGraphic(a2Img);
+			ten.setGraphic(a3Img);
+			seventeen.setGraphic(a4Img);
+			
+			submitT.setText("Submit");
+			submit.setGraphic(submitT);
+			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
+			submitT.setFont(sub_font);
+			root.getChildren().addAll();
 		}
 	}
 }

@@ -54,6 +54,10 @@ public class IqEighteen{
 	ImageView boatImg = new ImageView(boat);
 	ImageView riverImg = new ImageView(river);
 	ImageView quesEngImg = new ImageView(quesEng);
+	ImageView iq18MMImg = new ImageView(new Image("IqEighteen/iq18MM.png"));
+	ImageView a1Img = new ImageView(new Image("IqEighteen/a1.png"));
+	ImageView a2Img = new ImageView(new Image("IqEighteen/a2.png"));
+	ImageView a3Img = new ImageView(new Image("IqEighteen/a3.png"));
 	
 	StackPane root;
 	
@@ -109,7 +113,10 @@ public class IqEighteen{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			sq.stop();
+			boatImg.setTranslateX(0);
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -123,11 +130,18 @@ public class IqEighteen{
 		StackPane.setMargin(riverImg, new Insets(450, 0, 0, 0));
 		
 		StackPane.setMargin(quesEngImg, new Insets(0,0,300,0));
+		StackPane.setMargin(iq18MMImg, new Insets(0,0,300,0));
 		StackPane.setMargin(b1, new Insets(100,500,0,0));
 		StackPane.setMargin(b2, new Insets(100,0,0,0));
 		StackPane.setMargin(b3, new Insets(100,-500,0,0));
 		
 		b1.setMaxSize(230, 66);
+		b1.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			sq.stop();
+			boatImg.setTranslateX(0);
+		});
 		b2.setMaxSize(230, 66);
 		b2.setOnAction(e->{
 			timeLine.stop();
@@ -137,7 +151,12 @@ public class IqEighteen{
 			boatImg.setTranslateX(0);
 		});
 		b3.setMaxSize(230, 66);
-		
+		b3.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			sq.stop();
+			boatImg.setTranslateX(0);
+		});
 		b1.getStyleClass().add("bButFift");
 		b2.getStyleClass().add("bButFift");
 		b3.getStyleClass().add("bButFift");
@@ -158,7 +177,7 @@ public class IqEighteen{
 		sq.setCycleCount(SequentialTransition.INDEFINITE);
 		sq.setNode(boatImg);
 		sq.play();
-		root.getChildren().addAll( back,riverImg,boatImg,quesEngImg,b1,b2,b3);
+		root.getChildren().addAll( back,riverImg,boatImg,b1,b2,b3);
 	}
 
 	void lan_click() {
@@ -181,7 +200,7 @@ public class IqEighteen{
 		timer.getStyleClass().add("timer");
 		timer.setMaxSize(140, 60);
 		StackPane.setMargin(timer, new Insets(0, 0, 300, 900));
-		
+		timeT.setFill(Color.BLACK);
 		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
@@ -206,6 +225,14 @@ public class IqEighteen{
 	
 	private void lan_change() {
 		if (languageChange) {
+			b1T.setVisible(true);
+			b2T.setVisible(true);
+			b3T.setVisible(true);
+			quesEngImg.setVisible(true);
+			iq18MMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 			
 			b1T.setText("More");
@@ -223,15 +250,25 @@ public class IqEighteen{
 			b3T.setFill(Color.WHITE);
 			b3.setGraphic(b3T);
 			
-			root.getChildren().addAll();
+			root.getChildren().addAll(quesEngImg);
 
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				
+				b1T.setVisible(false);
+				b2T.setVisible(false);
+				b3T.setVisible(false);
+				quesEngImg.setVisible(false);
+				iq18MMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
 			}
-
-			root.getChildren().addAll();
+			b1.setGraphic(a1Img);
+			b2.setGraphic(a2Img);
+			b3.setGraphic(a3Img);
+			
+			root.getChildren().addAll(iq18MMImg);
 		}
 	}
 }

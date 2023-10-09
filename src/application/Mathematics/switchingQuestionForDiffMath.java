@@ -44,8 +44,8 @@ public class switchingQuestionForDiffMath {
 			checker = true;
 			point = -1;
 			if (conditionToStopLoop()) {
-				application.Difficulty cat = new application.Difficulty();
-				cat.switchToDifficulty(e, languageChange, proot, languageChange);
+				MathResult mr = new MathResult();
+				mr.switchToDifficulty(e, languageChange, proot);
 				return;
 			}
 		}

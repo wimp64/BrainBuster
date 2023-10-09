@@ -48,13 +48,22 @@ public class IqEight{
 	Image clock = new Image("IqSix/clock.png");
 	Image play = new Image("IqEight/play.png");
 	Image easy = new Image("IqEight/Easy.png");
-
+	Image iq8MM = new Image("IqEight/iq8MM.png");
+	Image a1 = new Image("IqEight/a1.png");
+	Image a2 = new Image("IqEight/a2.png");
+	Image a3 = new Image("IqEight/a3.png");
+	Image a4 = new Image("IqEight/a4.png");
 	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView boyImg = new ImageView(boy);
 	ImageView clockImg = new ImageView(clock);
 	ImageView playImg = new ImageView(play);
 	ImageView easyImg = new ImageView(easy);
+	ImageView iq8MMImg = new ImageView(iq8MM);
+	ImageView a1Img = new ImageView(a1);
+	ImageView a2Img = new ImageView(a2);
+	ImageView a3Img = new ImageView(a3);
+	ImageView a4Img = new ImageView(a4);
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -108,7 +117,9 @@ public class IqEight{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -133,14 +144,30 @@ public class IqEight{
 		b4.setMaxSize(514, 80);
 
 		b1.getStyleClass().add("bBut");
+		b1.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		b2.getStyleClass().add("bBut");
+		b2.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		b3.getStyleClass().add("bBut");
 		b3.setOnAction(e->{
 			IqResultCheck.check();
 			timeLine.stop();
+			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		b4.getStyleClass().add("bBut");
+		b4.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		
 		StackPane.setAlignment(boyImg, Pos.BOTTOM_RIGHT);
 		StackPane.setAlignment(easyImg, Pos.BOTTOM_LEFT);
@@ -157,8 +184,8 @@ public class IqEight{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
-			IqResultCheck.check();
 			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -229,7 +256,13 @@ public class IqEight{
 			if (nonesense == true) {
 				
 			}
-
+			quest.setGraphic(iq8MMImg);
+			rectangle.getChildren().add(quest);
+			b1.setGraphic(a1Img);
+			b2.setGraphic(a2Img);
+			b3.setGraphic(a3Img);
+			b4.setGraphic(a4Img);
+			
 			root.getChildren().addAll();
 		}
 	}

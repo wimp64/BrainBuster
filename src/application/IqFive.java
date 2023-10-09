@@ -61,7 +61,10 @@ public class IqFive {
 	Image eaistein = new Image("Profile/eaistein.png");
 	Image cele1 = new Image("IqFive/cele1.png");
 	Image cele2 = new Image("IqFive/cele2.png");
-
+	Image iq5MM = new Image("IqFive/iq5MM.png");
+	Image notiMM = new Image("IqFive/notiMM.png");
+	Image mileMM = new Image("IqFive/mileMM.png");
+	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView clockImg = new ImageView(clock);
 	ImageView roadImg = new ImageView(road);
@@ -72,7 +75,10 @@ public class IqFive {
 	ImageView eaisteinImg = new ImageView(eaistein);
 	ImageView cele1Img = new ImageView(cele1);
 	ImageView cele2Img = new ImageView(cele2);
-
+	ImageView iq5MMImg = new ImageView(iq5MM);
+	ImageView notiMMImg = new ImageView(notiMM);
+	ImageView mileMMImg = new ImageView(mileMM);
+	
 	TextField ans = new TextField();
 
 	StackPane root;
@@ -127,7 +133,8 @@ public class IqFive {
 	/* This is only for developing part */
 
 	private void elements() {
-
+		Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
+		ans.setFont(ans_font);
 		root.setOnKeyPressed(event -> {
 			if (event.getCode() == KeyCode.ENTER) {
 				submit.fire();
@@ -139,7 +146,10 @@ public class IqFive {
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			parallelTransition.stop();
+			carImg.setTranslateX(0);
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -191,12 +201,14 @@ public class IqFive {
 					timeLine.stop();
 					parallelTransition.stop();
 					carImg.setTranslateX(0);
+					noti.getChildren().clear();
 				}
 			} else {
 				IqQuestions.switchToIqQuestions(e, languageChange,root);
 				timeLine.stop();
 				parallelTransition.stop();
 				carImg.setTranslateX(0);
+				noti.getChildren().clear();
 				return;
 			}
 		});
@@ -375,31 +387,29 @@ public class IqFive {
 		pause.setOnFinished(e -> up.play());
 		down.play();
 		up.setOnFinished(e -> {
-			
 			IqQuestions.switchToIqQuestions(ea, languageChange,root);
 			timeLine.stop();
 			parallelTransition.stop();
 			carImg.setTranslateX(0);
+			noti.getChildren().clear();
 		});
 	}
 
 	private void lan_change() {
+		submitT.setText("Submit");
+		submit.setGraphic(submitT);
+		Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
+		submitT.setFont(sub_font);
+
 		if (languageChange) {
-			Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
-			ans.setFont(ans_font);
-
-			submitT.setText("Submit");
-			submit.setGraphic(submitT);
-			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
-			submitT.setFont(sub_font);
-
-			quest.setText("If a car travels at a speed of 60 mph for 2 hours,\n\t\t\thow far does it travel?");
-			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 36);
-			quest.setFont(quest_font);
-
+			
 			miles.setText("miles");
 			miles.setFont(sub_font);
 			miles.setTextFill(Color.WHITE);
+			
+			quest.setText("If a car travels at a speed of 60 mph for 2 hours,\n\t\t\thow far does it travel?");
+			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 36);
+			quest.setFont(quest_font);
 
 			awardT.setText("Congratulation!\r\n" + " Little Eaistein...");
 			Font award_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 26);
@@ -412,8 +422,10 @@ public class IqFive {
 			if (nonesense == true) {
 
 			}
-
-			root.getChildren().addAll();
+			miles.setGraphic(mileMMImg);
+			noti.getChildren().add(notiMMImg);
+			quest.setGraphic(iq5MMImg);
+			root.getChildren().addAll(quest,miles);
 		}
 	}
 }

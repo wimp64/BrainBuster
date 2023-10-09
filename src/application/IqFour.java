@@ -49,13 +49,25 @@ public class IqFour {
 	Image clock = new Image("IqFour/clock.png");
 	Image ease = new Image("IqFour/ease.png");
 	Image markers = new Image("IqFour/markers.png");
-
+	Image iq4MM = new Image("IqFour/iq4MM.png");
+	Image a1 =new Image("IqFour/a1.png");
+	Image a2 = new Image("IqFour/a2.png");
+	Image a3 = new Image("IqFour/a3.png");
+	Image a4 = new Image("IqFour/a4.png");
+	Image choMM = new Image("IqFour/cho.png");
+	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView rulerImg = new ImageView(ruler);
 	ImageView clockImg = new ImageView(clock);
 	ImageView easeImg = new ImageView(ease);
 	ImageView markersImg = new ImageView(markers);
-
+	ImageView iq4MMImg = new ImageView(iq4MM);
+	ImageView a1Img = new ImageView(a1);
+	ImageView a2Img = new ImageView(a2);
+	ImageView a3Img = new ImageView(a3);
+	ImageView a4Img = new ImageView(a4);
+	ImageView choMMImg = new ImageView(choMM);
+	
 	StackPane root;
 	StackPane rectangle;
 	StackPane recS;
@@ -108,7 +120,9 @@ public class IqFour {
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -139,22 +153,38 @@ public class IqFour {
 		b1.setOnAction(e -> {
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
+			rectangle.getChildren().clear();
+			recS.getChildren().clear();
 		});
 		b2.setMaxSize(155, 77);
 		b2.getStyleClass().add("strange_b");
 		StackPane.setAlignment(b2, Pos.CENTER_LEFT);
 		StackPane.setMargin(b2, new Insets(0, 0, 0, 25));
-
+		b2.setOnAction(e -> {
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			recS.getChildren().clear();
+		});
+		
 		b3.setMaxSize(83, 77);
 		b3.getStyleClass().add("b_hover");
 		StackPane.setAlignment(b3, Pos.CENTER_RIGHT);
 		StackPane.setMargin(b3, new Insets(0, 25, 0, 0));
-
+		b3.setOnAction(e -> {
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			recS.getChildren().clear();
+		});
+		
 		b4.setMaxSize(83, 77);
 		b4.setOnAction(e -> {
 			IqResultCheck.check();
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+			recS.getChildren().clear();
 		});
 		b4.getStyleClass().add("b_hover");
 		StackPane.setAlignment(b4, Pos.BOTTOM_CENTER);
@@ -190,6 +220,7 @@ public class IqFour {
 		auto.setOnAction(e -> {
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		auto.setVisible(false);
 		root.getChildren().add(auto);
@@ -254,8 +285,14 @@ public class IqFour {
 			if (nonesense == true) {
 
 			}
-
-			root.getChildren().addAll();
+			quest.setGraphic(iq4MMImg);
+			recS.getChildren().add(choMMImg);
+			b1.setGraphic(a1Img);
+			b2.setGraphic(a2Img);
+			b3.setGraphic(a3Img);
+			b4.setGraphic(a4Img);
+			
+			root.getChildren().addAll(quest);
 		}
 	}
 }

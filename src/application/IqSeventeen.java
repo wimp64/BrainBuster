@@ -28,7 +28,7 @@ import javafx.util.StringConverter;
 public class IqSeventeen{
 	Timeline timeLine;
 
-	int Counter = 10;
+	int Counter = 13;
 	int remain_counter = Counter;
 
 	Scene scene1;
@@ -60,7 +60,12 @@ public class IqSeventeen{
 	ImageView clockImg = new ImageView(clock);
 	ImageView book2Img = new ImageView(book2);
 	ImageView book1Img = new ImageView(book1);
-
+	ImageView iq10MMImg = new ImageView(new Image("IqSeventeen/iq17MM.png"));
+	ImageView a1Img = new ImageView(new Image("IqSeventeen/a1.png"));
+	ImageView a2Img = new ImageView(new Image("IqSeventeen/a2.png"));
+	ImageView a3Img = new ImageView(new Image("IqSeventeen/a3.png"));
+	ImageView a4Img = new ImageView(new Image("IqSeventeen/a4.png"));
+	
 	TextField ans = new TextField();
 
 	StackPane root;
@@ -117,7 +122,12 @@ public class IqSeventeen{
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rt.setAngle(0);
+			rt1.setAngle(0);
+			rt2.setAngle(0);
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -248,6 +258,14 @@ public class IqSeventeen{
 	}
 
 	private void lan_change() {
+		Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
+		ans.setFont(ans_font);
+
+		submitT.setText("Submit");
+		submit.setGraphic(submitT);
+		Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
+		submitT.setFont(sub_font);
+		
 		quest = new Label();
 		if (languageChange) {
 
@@ -274,22 +292,19 @@ public class IqSeventeen{
 			quest.setTextFill(Color.BLACK);
 			rectangle.getChildren().add(quest);
 
-			Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
-			ans.setFont(ans_font);
-
-			submitT.setText("Submit");
-			submit.setGraphic(submitT);
-			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
-			submitT.setFont(sub_font);
-			
 			root.getChildren().addAll( two, five, ten, seventeen);
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
 				
 			}
+			quest.setGraphic(iq10MMImg);
+			two.setGraphic(a1Img);
+			five.setGraphic(a2Img);
+			ten.setGraphic(a3Img);
+			seventeen.setGraphic(a4Img);
 			
-			root.getChildren().addAll();
+			root.getChildren().addAll(two,five,ten,seventeen);
 		}
 	}
 }

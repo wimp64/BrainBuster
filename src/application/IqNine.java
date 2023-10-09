@@ -43,6 +43,9 @@ public class IqNine{
 	Image paws = new Image("IqNine/paws.png");
 	Image dog = new Image("IqNine/dog.png");
 	Image IqNine = new Image("IqNine/IqNineEng.png");
+	Image iq9MM = new Image("IqNine/iq9MM.png");
+	Image yesMM = new Image("IqNine/yes.png");
+	Image noMM = new Image("IqNine/no.png");
 	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView dogsImg = new ImageView(dogs);
@@ -50,6 +53,9 @@ public class IqNine{
 	ImageView pawsImg = new ImageView(paws);
 	ImageView dogImg = new ImageView(dog);
 	ImageView IqNineEng = new ImageView(IqNine);
+	ImageView iq9MMImg =  new ImageView(iq9MM);
+	ImageView yesMMImg = new ImageView(yesMM);
+	ImageView noMMImg = new ImageView(noMM);
 	
 	StackPane root;
 	StackPane rectangle;
@@ -103,7 +109,9 @@ public class IqNine{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -121,7 +129,11 @@ public class IqNine{
 		yes.getStyleClass().add("yesButN");
 		yes.setMaxSize(230, 115);
 		StackPane.setMargin(yes, new Insets(300, 700, 0, 0));
-
+		yes.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		no.getStyleClass().add("noButN");
 		no.setMaxSize(230, 115);
 		StackPane.setMargin(no, new Insets(300, -700, 0, 0));
@@ -129,6 +141,7 @@ public class IqNine{
 			timeLine.stop();
 			IqResultCheck.check();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		
 		StackPane.setAlignment(dogsImg, Pos.BOTTOM_RIGHT);
@@ -146,6 +159,7 @@ public class IqNine{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -163,6 +177,7 @@ public class IqNine{
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
 		timer.setGraphic(timeT);
+		timeT.setFill(Color.BLACK);
 		timeLine = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			remain_counter--;
 			timeT.setText(Integer.toString(remain_counter));
@@ -202,7 +217,9 @@ public class IqNine{
 			if (nonesense == true) {
 				
 			}
-
+			rectangle.getChildren().add(iq9MMImg);
+			yes.setGraphic(yesMMImg);
+			no.setGraphic(noMMImg);
 			root.getChildren().addAll();
 		}
 	}

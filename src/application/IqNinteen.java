@@ -56,6 +56,11 @@ public class IqNinteen{
 	ImageView clockImg = new ImageView(clock);
 	ImageView tiredImg = new ImageView(tired);
 	ImageView hungryImg = new ImageView(hungry);
+	ImageView iq19MMImg = new ImageView(new Image("IqNinteen/iq19MM.png"));
+	ImageView a1Img = new ImageView(new Image("IqNinteen/a1.png"));
+	ImageView a2Img = new ImageView(new Image("IqNinteen/a2.png"));
+	ImageView a3Img = new ImageView(new Image("IqNinteen/a3.png"));
+	ImageView a4Img = new ImageView(new Image("IqNinteen/a4.png"));
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -109,7 +114,9 @@ public class IqNinteen{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -128,16 +135,31 @@ public class IqNinteen{
 		StackPane.setMargin(b4, new Insets(80,0,-300,0));
 		
 		b1.setMaxSize(514, 80);
-		
+		b1.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		b2.setMaxSize(514, 80);
+		b2.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		b3.setMaxSize(514, 80);
 		b3.setOnAction(e->{
 			IqResultCheck.check();
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		b4.setMaxSize(514, 80);
-
+		b4.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
+		
 		b1.getStyleClass().add("bButNin");
 		b2.getStyleClass().add("bButNin");
 		b3.getStyleClass().add("bButNin");
@@ -195,7 +217,16 @@ public class IqNinteen{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
+			b1T.setVisible(true);
+			b2T.setVisible(true);
+			b3T.setVisible(true);
+			b4T.setVisible(true);
 			
+			iq19MMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
+			a4Img.setVisible(false);
 			quest.setText("Choose the word that best completes the sentence: \r\n"
 					+ "\tShe was feeling quite ___ after her long walk.");
 			Font quest_font1 = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 22);
@@ -228,9 +259,25 @@ public class IqNinteen{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				quest.setText(null);
+				b1T.setVisible(false);
+				b2T.setVisible(false);
+				b3T.setVisible(false);
+				b4T.setVisible(false);
 				
+				iq19MMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
+				a4Img.setVisible(true);
 			}
-
+			quest.setGraphic(iq19MMImg);
+			rectangle.getChildren().add(quest);
+			b1.setGraphic(a1Img);
+			b2.setGraphic(a2Img);
+			b3.setGraphic(a3Img);
+			b4.setGraphic(a4Img);
+			
 			root.getChildren().addAll();
 		}
 	}

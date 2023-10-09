@@ -250,7 +250,9 @@ public class _1MathN extends Application {
 		b3.setDisable(true);
 		b4.setDisable(true);
 	}
+	boolean checker = false;
 	private void clickCorrect() {
+		checker = true;
 		clickCommon();
 		mark = 1;
 		if(languageChange) {
@@ -260,6 +262,7 @@ public class _1MathN extends Application {
 		}
 	}
 	private void clickWrong() {
+		checker = false;
 		clickCommon();
 		mark = 0;
 		if(languageChange) {
@@ -269,6 +272,9 @@ public class _1MathN extends Application {
 		}
 	}
 	private void clickForward(ActionEvent e) {
+		if(checker) {
+			MathResultCheck.check();
+		}
 		rectangle1.getChildren().clear();
 		rectangle2.getChildren().clear();
 		switchingQuestionForNormalMath.switchToQuestions(e, languageChange, root);

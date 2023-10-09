@@ -29,15 +29,11 @@ public class IqThree {
 	Scene sc;
 
 	Button back;
-	Button lan_button;
 	Button timer = new Button();
 	Button John = new Button();
 	Button Mark = new Button();
 	Button Alex = new Button();
 
-	Text Myanmar;
-	Text English;
-	Text Lan;
 	Text timeT = new Text();
 	Text JohnT = new Text();
 	Text MarkT = new Text();
@@ -51,14 +47,21 @@ public class IqThree {
 	Image clock = new Image("IqTwo/clock.png");
 	Image twoBoys = new Image("IqThree/twoBoys.png");
 	Image girl = new Image("IqThree/girl.png");
-
-	ImageView langText = new ImageView(Lang);
+	Image iqThreeMM = new Image("IqThree/iq3MM.png");
+	Image a1 =new Image("IqThree/a1.png");
+	Image a2 = new Image("IqThree/a2.png");
+	Image a3 = new Image("IqThree/a3.png");
+	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView graffiImg = new ImageView(graffi);
 	ImageView clockImg = new ImageView(clock);
 	ImageView twoBoysImg = new ImageView(twoBoys);
 	ImageView girlImg = new ImageView(girl);
-
+	ImageView iqThreeMMImg = new ImageView(iqThreeMM);
+	ImageView a1Img = new ImageView(a1);
+	ImageView a2Img = new ImageView(a2);
+	ImageView a3Img = new ImageView(a3);
+	
 	StackPane root;
 	StackPane rectangle;
 
@@ -110,7 +113,9 @@ public class IqThree {
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -118,13 +123,6 @@ public class IqThree {
 		back.setGraphic(backArrow);
 		StackPane.setAlignment(back, Pos.TOP_LEFT);
 		StackPane.setMargin(back, new Insets(30, 0, 0, 30));// top right bottom left
-
-		lan_button = new Button();
-		lan_button.setPrefSize(78, 39);
-		lan_button.getStyleClass().add("lets_start");
-		StackPane.setAlignment(lan_button, Pos.TOP_LEFT);
-		StackPane.setMargin(lan_button, new Insets(100, 0, 0, 210));
-		lan_button.setOnAction(e -> lan_click());
 
 		rectangle = new StackPane();
 		rectangle.setStyle("-fx-background-color:WHITE;" + "-fx-background-radius:25px;");
@@ -138,6 +136,7 @@ public class IqThree {
 		John.setOnAction(e -> {
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 
 		Mark.setMaxSize(257, 87);
@@ -147,6 +146,7 @@ public class IqThree {
 			IqResultCheck.check();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 
 		Alex.setMaxSize(257, 87);
@@ -155,6 +155,7 @@ public class IqThree {
 		Alex.setOnAction(e -> {
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 
 		clockImg = new ImageView(clock);
@@ -172,7 +173,7 @@ public class IqThree {
 
 		StackPane.setAlignment(girlImg, Pos.BOTTOM_LEFT);
 
-		root.getChildren().addAll(John, Alex, Mark, lan_button, back, rectangle, graffiImg, twoBoysImg, girlImg, timer,
+		root.getChildren().addAll(John, Alex, Mark, back, rectangle, graffiImg, twoBoysImg, girlImg, timer,
 				clockImg);
 	}
 
@@ -206,20 +207,6 @@ public class IqThree {
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-			langText.setVisible(false);
-
-			Lan = new Text("Language:");
-			Font lan_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Lan.setFont(lan_font);
-			Lan.setFill(Color.WHITE);
-			StackPane.setAlignment(Lan, Pos.TOP_LEFT);
-			StackPane.setMargin(Lan, new Insets(105, 0, 0, 90));
-
-			English = new Text("ENG");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			English.setFont(English_font);
-			English.setFill(Color.WHITE);
-			lan_button.setGraphic(English);
 
 			quest.setText("If John is taller than Mark, and Mark is shorter than Alex, \r\n"
 					+ "\t\t\twho is the shortest among the three?");
@@ -243,25 +230,18 @@ public class IqThree {
 			AlexT.setFont(person_font);
 			Alex.setGraphic(AlexT);
 
-			root.getChildren().addAll(Lan);
+			root.getChildren().addAll();
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				Lan.setVisible(false);
+				
 			}
-			langText = new ImageView(Lang);
-			langText.setFitWidth(130);
-			langText.setFitHeight(20);
-			StackPane.setAlignment(langText, Pos.TOP_LEFT);
-			StackPane.setMargin(langText, new Insets(110, 0, 0, 70));
-
-			Myanmar = new Text("Myan");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Myanmar.setFont(English_font);
-			Myanmar.setFill(Color.WHITE);
-			lan_button.setGraphic(Myanmar);
-
-			root.getChildren().addAll(langText);
+			rectangle.getChildren().add(iqThreeMMImg);
+			John.setGraphic(a1Img);
+			Mark.setGraphic(a2Img);
+			Alex.setGraphic(a3Img);
+			
+			root.getChildren().addAll();
 		}
 	}
 }

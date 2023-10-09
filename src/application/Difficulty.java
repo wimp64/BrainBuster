@@ -1,8 +1,17 @@
 package application;
 
+import application.Logic.switchingQuestionForDiffLogic;
+import application.Logic.switchingQuestionForEasyLogic;
+import application.Logic.switchingQuestionForNormalLogic;
+import application.LogicAdult.switchingQuestionForDiffLogicAdult;
+import application.LogicAdult.switchingQuestionForEasyLogicAdult;
+import application.LogicAdult.switchingQuestionForNormalLogicAdult;
 import application.Mathematics.switchingQuestionForDiffMath;
 import application.Mathematics.switchingQuestionForEasyMath;
 import application.Mathematics.switchingQuestionForNormalMath;
+import application.MathematicsAdult.switchingQuestionForDiffMathA;
+import application.MathematicsAdult.switchingQuestionForEasyMathA;
+import application.MathematicsAdult.switchingQuestionForNormalMathA;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
@@ -52,7 +61,7 @@ public class Difficulty {
 	Image SKid = new Image("Difficult/SKid.png");
 	Image Pyramid = new Image("pyramid.png");
 	Image Question = new Image("question.png");
-
+	
 	ImageView langText = new ImageView(Lang);
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView BeImg = new ImageView(Be);
@@ -74,9 +83,11 @@ public class Difficulty {
 	boolean languageChange;///////////////////////// to delete true
 	boolean nonesense = false;
 	boolean choose;
-	public void switchToDifficulty(ActionEvent event, boolean languageChange,StackPane proot,boolean choose) {
+	int selectValue;
+	public void switchToDifficulty(ActionEvent event, boolean languageChange,StackPane proot,boolean choose,int SelectValue) {
 		this.languageChange = languageChange;
 		this.choose = choose;
+		this.selectValue = SelectValue;
 		root = new StackPane();
 		root.setStyle("-fx-background-color: #2385C4");
 
@@ -211,11 +222,24 @@ public class Difficulty {
 		StackPane.setAlignment(ez, Pos.CENTER_LEFT);
 		StackPane.setMargin(ez, new Insets(0, 0, 300, 150));
 		ez.setOnAction(e->{
+			application.Mathematics.MathResult.lvlFilter(0);
 			if(choose) {
-				switchingQuestionForEasyMath.switchToQuestions(e, languageChange, root);
+				if(selectValue<=18 && selectValue>=12) {
+					System.out.println("Adult");
+					switchingQuestionForEasyMathA.switchToQuestions(e, languageChange, root);
+				}else {
+					System.out.println("child");
+					switchingQuestionForEasyMath.switchToQuestions(e, languageChange, root);
+				}
 			}
 			else {
-				System.out.println("LogicE");
+				if(selectValue<=18 && selectValue>=12) {
+					System.out.println("Adult");
+					switchingQuestionForEasyLogicAdult.switchToQuestions(e, languageChange, root);
+				}else {
+					System.out.println("child");
+					switchingQuestionForEasyLogic.switchToQuestions(e, languageChange, root);
+				}
 			}
 		});
 		Rectangle line = new Rectangle();
@@ -258,11 +282,24 @@ public class Difficulty {
 		nm.getStyleClass().add("Nm_Btn");
 		nm.setPrefSize(370, 94);
 		nm.setOnAction(e->{
+			application.Mathematics.MathResult.lvlFilter(1);
 			if(choose) {
-				switchingQuestionForNormalMath.switchToQuestions(e, languageChange, root);
+				if(selectValue<=18 && selectValue>=12) {
+					System.out.println("Adult");
+					switchingQuestionForNormalMathA.switchToQuestions(e, languageChange, root);
+				}else {
+					System.out.println("child");
+					switchingQuestionForNormalMath.switchToQuestions(e, languageChange, root);
+				}
 			}
 			else {
-				System.out.println("LogicN");
+				if(selectValue<=18 && selectValue>=12) {
+					System.out.println("Adult");
+					switchingQuestionForNormalLogicAdult.switchToQuestions(e, languageChange, root);
+				}else {
+					System.out.println("child");
+					switchingQuestionForNormalLogic.switchToQuestions(e, languageChange, root);
+				}
 			}
 		});
 		StackPane.setAlignment(nm, Pos.CENTER_LEFT);
@@ -308,11 +345,24 @@ public class Difficulty {
 		df.getStyleClass().add("Df_Btn");
 		df.setPrefSize(370, 94);
 		df.setOnAction(e->{
+			application.Mathematics.MathResult.lvlFilter(2);
 			if(choose) {
-				switchingQuestionForDiffMath.switchToQuestions(e, languageChange, root);
+				if(selectValue<=18 && selectValue>=12) {
+					System.out.println("Adult");
+					switchingQuestionForDiffMathA.switchToQuestions(e, languageChange, root);
+				}else {
+					System.out.println("child");
+					switchingQuestionForDiffMath.switchToQuestions(e, languageChange, root);
+				}
 			}
 			else {
-				System.out.println("LogicD");
+				if(selectValue<=18 && selectValue>=12) {
+					System.out.println("Adult");
+					switchingQuestionForDiffLogicAdult.switchToQuestions(e, languageChange, root);
+				}else {
+					System.out.println("child");
+					switchingQuestionForDiffLogic.switchToQuestions(e, languageChange, root);
+				}
 			}
 		});
 		StackPane.setAlignment(df, Pos.CENTER_LEFT);

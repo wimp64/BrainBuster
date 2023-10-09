@@ -22,6 +22,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 
 public class _5MathD extends Application {
+	boolean checker = false;
 	Timeline timeLine;
 	
 	int Counter = 20;
@@ -313,6 +314,7 @@ public class _5MathD extends Application {
 		b4.setDisable(true);
 	}
 	private void clickCorrect() {
+		checker = true;
 		clickCommon();
 		mark = 1;
 		if(languageChange) {
@@ -322,6 +324,7 @@ public class _5MathD extends Application {
 		}
 	}
 	private void clickWrong() {
+		checker = false;
 		clickCommon();
 		mark = 0;
 		if(languageChange) {
@@ -331,6 +334,9 @@ public class _5MathD extends Application {
 		}
 	}
 	private void clickForward(ActionEvent e) {
+		if(checker) {
+			MathResultCheck.check();
+		}
 		timeLine.stop();
 		rectangle1.getChildren().clear();
 		rectangle2.getChildren().clear();

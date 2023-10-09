@@ -21,7 +21,7 @@ import javafx.scene.control.*;
 public class IqSeven extends Application{
 	Timeline timeLine;
 
-	int Counter = 3;
+	int Counter = 30;
 	int remain_counter = Counter;
 	
 	Scene scene1;
@@ -71,6 +71,7 @@ public class IqSeven extends Application{
 	Image A5 = new Image("IqSeven/A5.png");
 	Image A7 = new Image("IqSeven/A7.png");
 	Image Question = new Image("IqSeven/QuestionMark.png");
+	Image iq7MM = new Image("IqSeven/iq7MM.png");
 	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView boyImg = new ImageView(boy);
@@ -100,6 +101,7 @@ public class IqSeven extends Application{
 	ImageView A5Img = new ImageView(A5);
 	ImageView A5CloneImg = new ImageView(A5);
 	ImageView QuestionImg = new ImageView(Question);
+	ImageView iq7MMImg = new ImageView(iq7MM);
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -152,7 +154,9 @@ public class IqSeven extends Application{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -296,15 +300,46 @@ public class IqSeven extends Application{
 		dBut7A.setOnAction(e->{
 			IqResultCheck.check();
 			timeLine.stop();
+			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		
 		dBut0A.setGraphic(Q5AImg);
+		dBut0A.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		dBut1A.setGraphic(Q2AImg);
+		dBut1A.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		dBut2A.setGraphic(Q3AImg);
+		dBut2A.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		dBut3A.setGraphic(Q7AImg);
+		dBut3A.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		dBut4A.setGraphic(Q4AImg);
+		dBut4A.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		dBut5A.setGraphic(A5Img);
+		dBut5A.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		dBut7A.setGraphic(A7Img);
 		
 		dBut0A.getStyleClass().add("ButA");
@@ -322,6 +357,13 @@ public class IqSeven extends Application{
 		lan_change();
 	}
 	void Counting() {
+		Button over = new Button();
+		over.setOnAction(e->{
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
+		over.setVisible(false);
+		root.getChildren().add(over);
 		clockImg = new ImageView(clock);
 		StackPane.setMargin(clockImg, new Insets(0, 650, 550, 0));
 
@@ -343,7 +385,7 @@ public class IqSeven extends Application{
 			}
 			if (remain_counter <= 0) {
 				timeLine.stop();
-				dBut7A.fire();
+				over.fire();
 			}
 		}));
 		timeLine.setCycleCount(Counter);
@@ -368,7 +410,8 @@ public class IqSeven extends Application{
 			if (nonesense == true) {
 				
 			}
-
+			quest.setGraphic(iq7MMImg);
+			rectangle.getChildren().add(quest);
 			root.getChildren().addAll();
 		}
 	}

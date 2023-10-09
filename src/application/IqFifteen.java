@@ -54,6 +54,10 @@ public class IqFifteen{
 	ImageView clockImg = new ImageView(clock);
 	ImageView cylinderImg = new ImageView(cylinder);
 	ImageView triangleImg = new ImageView(triangle);
+	ImageView iq15MMImg = new ImageView(new Image("IqFifteen/iq15MM.png"));
+	ImageView a1Img = new ImageView(new Image("IqFifteen/a1.png"));
+	ImageView a2Img = new ImageView(new Image("IqFifteen/a2.png"));
+	ImageView a3Img = new ImageView(new Image("IqFifteen/a3.png"));
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -107,7 +111,9 @@ public class IqFifteen{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -125,10 +131,21 @@ public class IqFifteen{
 		StackPane.setMargin(b3, new Insets(350,-500,0,0));
 
 		b1.setMaxSize(230, 66);
+		b1.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
 		b2.setMaxSize(230, 66);
 		b2.setOnAction(e->{
 			timeLine.stop();
 			IqResultCheck.check();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+		});
+		b3.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		b3.setMaxSize(230, 66);
@@ -152,6 +169,7 @@ public class IqFifteen{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -161,7 +179,7 @@ public class IqFifteen{
 		timer.getStyleClass().add("timer");
 		timer.setMaxSize(140, 60);
 		StackPane.setMargin(timer, new Insets(0, 0, 450, 0));
-		
+		timeT.setFill(Color.BLACK);
 		Font Mathematics_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 		timeT.setFont(Mathematics_font);
 		timeT.setText(Integer.toString(Counter));
@@ -217,7 +235,12 @@ public class IqFifteen{
 			if (nonesense == true) {
 				
 			}
-
+			quest.setGraphic(iq15MMImg);
+			rectangle.getChildren().add(quest);
+			b1.setGraphic(a1Img);
+			b2.setGraphic(a2Img);
+			b3.setGraphic(a3Img);
+			
 			root.getChildren().addAll();
 		}
 	}

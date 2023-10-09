@@ -61,6 +61,7 @@ public class IqFourteen{
 	ImageView plusImg = new ImageView(plus);
 	ImageView circleImg = new ImageView(circle);
 	ImageView quesImg = new ImageView(ques);
+	ImageView iq14MMImg = new ImageView(new Image("IqFourteen/iq14MM.png"));
 	
 	TextField ans = new TextField();
 
@@ -110,12 +111,26 @@ public class IqFourteen{
 	/* This is only for developing part */
 
 	private void elements() {
+		Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
+		ans.setFont(ans_font);
+
+		submitT.setText("Submit");
+		submit.setGraphic(submitT);
+		Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
+		submitT.setFont(sub_font);
+		root.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				submit.fire();
+			}
+		});
 		back = new Button();
 		back.getStyleClass().add("lets_start");
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -178,6 +193,7 @@ public class IqFourteen{
 				IqResultCheck.check();
 			}
 			timeLine.stop();
+			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
 		});
 		recImg = new ImageView(rec);
@@ -246,26 +262,15 @@ public class IqFourteen{
 			quest.setTextFill(Color.BLACK);
 			rectangle.getChildren().add(quest);
 
-			Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
-			ans.setFont(ans_font);
-
-			submitT.setText("Submit");
-			submit.setGraphic(submitT);
-			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
-			submitT.setFont(sub_font);
-			root.setOnKeyPressed(event -> {
-				if (event.getCode() == KeyCode.ENTER) {
-					submit.fire();
-				}
-			});
 			root.getChildren().addAll();
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
 
 			}
-
-
+			quest.setGraphic(iq14MMImg);
+			rectangle.getChildren().add(quest);
+			
 			root.getChildren().addAll();
 		}
 	}

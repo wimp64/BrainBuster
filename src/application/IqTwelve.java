@@ -55,6 +55,10 @@ public class IqTwelve{
 	ImageView cubesImg = new ImageView(cubes);
 	ImageView scissorImg = new ImageView(scissor);
 	ImageView QuesImg = new ImageView(Ques);
+	ImageView iq12MMImg = new ImageView(new Image("IqTwelve/iq12MM.png"));
+	ImageView a1Img = new ImageView(new Image("IqTwelve/a1.png"));
+	ImageView a2Img = new ImageView(new Image("IqTwelve/a2.png"));
+	ImageView a3Img = new ImageView(new Image("IqTwelve/a3.png"));
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -108,7 +112,9 @@ public class IqTwelve{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -135,14 +141,24 @@ public class IqTwelve{
 		StackPane.setAlignment(b3, Pos.CENTER);
 		
 		b1.setMaxSize(360, 65);
+		b1.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange, root);
+		});
 		b2.setMaxSize(360, 65);
 		b2.setOnAction(e->{
 			IqResultCheck.check();
 			timeLine.stop();
+			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange, root);
 		});
 		b3.setMaxSize(360, 65);
-		
+		b3.setOnAction(e->{
+			timeLine.stop();
+			rectangle.getChildren().clear();
+			IqQuestions.switchToIqQuestions(e, languageChange, root);
+		});
 		b1.getStyleClass().add("bButTw");
 		b2.getStyleClass().add("bButTw");
 		b3.getStyleClass().add("bButTw");
@@ -158,6 +174,7 @@ public class IqTwelve{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -219,7 +236,12 @@ public class IqTwelve{
 			if (nonesense == true) {
 				
 			}
-
+			quest.setGraphic(iq12MMImg);
+			rectangle.getChildren().add(quest);
+			b1.setGraphic(a1Img);
+			b2.setGraphic(a2Img);
+			b3.setGraphic(a3Img);
+			
 			root.getChildren().addAll();
 		}
 	}

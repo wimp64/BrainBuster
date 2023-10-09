@@ -19,6 +19,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 
 public class _3MathN extends Application {
+	boolean checker = false;
 	Scene scene1;
 	Stage currentStage;
 	Stage s;
@@ -251,6 +252,7 @@ public class _3MathN extends Application {
 		b4.setDisable(true);
 	}
 	private void clickCorrect() {
+		checker = true;
 		clickCommon();
 		mark = 1;
 		if(languageChange) {
@@ -260,6 +262,7 @@ public class _3MathN extends Application {
 		}
 	}
 	private void clickWrong() {
+		checker = false;
 		clickCommon();
 		mark = 0;
 		if(languageChange) {
@@ -269,6 +272,9 @@ public class _3MathN extends Application {
 		}
 	}
 	private void clickForward(ActionEvent e) {
+		if(checker) {
+			MathResultCheck.check();
+		}
 		rectangle1.getChildren().clear();
 		rectangle2.getChildren().clear();
 		switchingQuestionForNormalMath.switchToQuestions(e, languageChange, root);

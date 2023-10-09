@@ -37,13 +37,9 @@ public class IqTwo{
 	Scene sc;
 
 	Button back;
-	Button lan_button;
 	Button timer = new Button();
 	Button submit = new Button();
 
-	Text Myanmar;
-	Text English;
-	Text Lan;
 	Text timeT = new Text();
 	Text submitT = new Text();
 
@@ -53,22 +49,30 @@ public class IqTwo{
 	Label seventeen = new Label();
 	Label quest = new Label();
 
-	Image Lang = new Image("lang.png");
 	Image Arrow = new Image("arrow.png");
 	Image balloon1 = new Image("IqTwo/balloon1.png");
 	Image balloon2 = new Image("IqTwo/balloon2.png");
 	Image clock = new Image("IqTwo/clock.png");
 	Image girl = new Image("IqTwo/girl.png");
 	Image pencil = new Image("IqTwo/pencil.png");
-
-	ImageView langText = new ImageView(Lang);
+	Image iqTwoMM = new Image("IqTwo/iqTwoMM.png");
+	Image a1 = new Image("IqTwo/a1.png");
+	Image a2 = new Image("IqTwo/a2.png");
+	Image a3 = new Image("IqTwo/a3.png");
+	Image a4 = new Image("IqTwo/a4.png");
+	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView balloon1Img = new ImageView(balloon1);
 	ImageView balloon2Img = new ImageView(balloon2);
 	ImageView clockImg = new ImageView(clock);
 	ImageView girlImg = new ImageView(girl);
 	ImageView pencilImg = new ImageView(pencil);
-
+	ImageView iqTwoMMImg = new ImageView(iqTwoMM);
+	ImageView a1Img = new ImageView(a1);
+	ImageView a2Img = new ImageView(a2);
+	ImageView a3Img = new ImageView(a3);
+	ImageView a4Img = new ImageView(a4);
+	
 	TextField ans = new TextField();
 
 	StackPane root;
@@ -78,8 +82,11 @@ public class IqTwo{
 	boolean nonesense = false;
 	
 	Rotate rt;
+	Rotate rtM;
 	Rotate rt1;
+	Rotate rt1M;
 	Rotate rt2;
+	Rotate rt2M;
 	public void switchToIqQuestions(ActionEvent event, boolean languageChange,StackPane proot) {
 		remain_counter = Counter;
 		this.languageChange = languageChange;
@@ -120,12 +127,24 @@ public class IqTwo{
 	/* This is only for developing part */
 
 	private void elements() {
+		Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
+		ans.setFont(ans_font);
+		root.setOnKeyPressed(event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				submit.fire();
+			}
+		});
 		back = new Button();
 		back.getStyleClass().add("lets_start");
 		back.setPrefSize(60, 60);
 		Category cat = new Category();
 		back.setOnAction(a -> {
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			timeLine.stop();
+			rt.setAngle(0);
+			rt1.setAngle(0);
+			rt2.setAngle(0);
+			rectangle.getChildren().clear();
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -133,13 +152,6 @@ public class IqTwo{
 		back.setGraphic(backArrow);
 		StackPane.setAlignment(back, Pos.TOP_LEFT);
 		StackPane.setMargin(back, new Insets(30, 0, 0, 30));// top right bottom left
-
-		lan_button = new Button();
-		lan_button.setPrefSize(78, 39);
-		lan_button.getStyleClass().add("lets_start");
-		StackPane.setAlignment(lan_button, Pos.TOP_LEFT);
-		StackPane.setMargin(lan_button, new Insets(100, 0, 0, 210));
-		lan_button.setOnAction(e -> lan_click());
 
 		rectangle = new StackPane();
 		rectangle.setStyle("-fx-background-color:black;" + "-fx-background-radius:25px;");
@@ -223,7 +235,7 @@ public class IqTwo{
 		StackPane.setAlignment(pencilImg, Pos.BOTTOM_LEFT);
 		StackPane.setMargin(pencilImg, new Insets(0, 0, 100, 100));
 
-		root.getChildren().addAll(lan_button, back, rectangle, ans, balloon1Img, balloon2Img, girlImg, pencilImg,
+		root.getChildren().addAll(back, rectangle, ans, balloon1Img, balloon2Img, girlImg, pencilImg,
 				submit, timer, clockImg);
 	}
 
@@ -239,6 +251,7 @@ public class IqTwo{
 			rt.setAngle(0);
 			rt1.setAngle(0);
 			rt2.setAngle(0);
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -266,20 +279,6 @@ public class IqTwo{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-			langText.setVisible(false);
-
-			Lan = new Text("Language:");
-			Font lan_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Lan.setFont(lan_font);
-			Lan.setFill(Color.WHITE);
-			StackPane.setAlignment(Lan, Pos.TOP_LEFT);
-			StackPane.setMargin(Lan, new Insets(105, 0, 0, 90));
-
-			English = new Text("ENG");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			English.setFont(English_font);
-			English.setFill(Color.WHITE);
-			lan_button.setGraphic(English);
 
 			two.setText("2");
 			Font num_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 80);
@@ -304,37 +303,31 @@ public class IqTwo{
 			quest.setTextFill(Color.WHITE);
 			rectangle.getChildren().add(quest);
 
-			Font ans_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 36);
-			ans.setFont(ans_font);
+			
 
 			submitT.setText("Submit");
 			submit.setGraphic(submitT);
 			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
 			submitT.setFont(sub_font);
-			root.setOnKeyPressed(event -> {
-				if (event.getCode() == KeyCode.ENTER) {
-					submit.fire();
-				}
-			});
-			root.getChildren().addAll(Lan, two, five, ten, seventeen);
+			
+			root.getChildren().addAll( two, five, ten, seventeen);
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				Lan.setVisible(false);
+				
 			}
-			langText = new ImageView(Lang);
-			langText.setFitWidth(130);
-			langText.setFitHeight(20);
-			StackPane.setAlignment(langText, Pos.TOP_LEFT);
-			StackPane.setMargin(langText, new Insets(110, 0, 0, 70));
-
-			Myanmar = new Text("Myan");
-			Font English_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 20);
-			Myanmar.setFont(English_font);
-			Myanmar.setFill(Color.WHITE);
-			lan_button.setGraphic(Myanmar);
-
-			root.getChildren().addAll(langText);
+			two.setGraphic(a1Img);
+			five.setGraphic(a2Img);
+			ten.setGraphic(a3Img);
+			seventeen.setGraphic(a4Img);
+			rectangle.getChildren().add(iqTwoMMImg);
+			
+			submitT.setText("Submit");
+			submit.setGraphic(submitT);
+			Font sub_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 26);
+			submitT.setFont(sub_font);
+			
+			root.getChildren().addAll(two,five, ten, seventeen);
 		}
 	}
 }

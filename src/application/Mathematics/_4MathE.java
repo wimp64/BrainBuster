@@ -19,6 +19,7 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 
 public class _4MathE extends Application {
+	boolean checker = false;
 	Scene scene1;
 	Stage currentStage;
 	Stage s;
@@ -243,6 +244,7 @@ public class _4MathE extends Application {
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				tryAgainImg.setVisible(true);
 				qMMImg.setVisible(true);
 				a1Img.setVisible(true);
 				a2Img.setVisible(true);
@@ -270,6 +272,7 @@ public class _4MathE extends Application {
 		b4.setDisable(true);
 	}
 	private void clickCorrect() {
+		checker = true;
 		clickCommon();
 		mark = 1;
 		if(languageChange) {
@@ -279,6 +282,7 @@ public class _4MathE extends Application {
 		}
 	}
 	private void clickWrong() {
+		checker = false;
 		clickCommon();
 		mark = 0;
 		if(languageChange) {
@@ -288,6 +292,7 @@ public class _4MathE extends Application {
 		}
 	}
 	private void clickTryAgain() {
+	
 		rectangle2.getChildren().clear();
 		mark = 0;
 		tryagain.setDisable(true);
@@ -297,6 +302,9 @@ public class _4MathE extends Application {
 		b4.setDisable(false);
 	}
 	private void clickForward(ActionEvent e) {
+		if(checker) {
+			MathResultCheck.check();
+		}
 		rectangle1.getChildren().clear();
 		rectangle2.getChildren().clear();
 		switchingQuestionForEasyMath.switchToQuestions(e, languageChange, root);

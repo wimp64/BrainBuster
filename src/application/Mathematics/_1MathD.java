@@ -309,9 +309,10 @@ public class _1MathD extends Application {
 		b3.setDisable(true);
 		b4.setDisable(true);
 	}
+	boolean checker = false;
 	private void clickCorrect() {
 		clickCommon();
-		mark = 1;
+		checker = true;
 		if(languageChange) {
 			rectangle2.getChildren().add(corImg);
 		}else {
@@ -320,7 +321,7 @@ public class _1MathD extends Application {
 	}
 	private void clickWrong() {
 		clickCommon();
-		mark = 0;
+		checker = false;
 		if(languageChange) {
 			rectangle2.getChildren().add(wroImg);
 		}else {
@@ -328,11 +329,13 @@ public class _1MathD extends Application {
 		}
 	}
 	private void clickForward(ActionEvent e) {
+		if(checker) {
+			MathResultCheck.check();
+		}
 		timeLine.stop();
 		rectangle1.getChildren().clear();
 		rectangle2.getChildren().clear();
 		switchingQuestionForDiffMath.switchToQuestions(e, languageChange, root);
-		System.out.println(mark);
 		b1.setDisable(false);
 		b2.setDisable(false);
 		b3.setDisable(false);
