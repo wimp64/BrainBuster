@@ -142,7 +142,7 @@ public class _3LogicD extends Application {
 			MathResultCheck.correct=0;
 			MathResultCheck.percent=0;
 			MathResultCheck.result=0;
-			switchingQuestionForDiffLogic.point=-1;;
+			switchingQuestionForDiffLogic.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
