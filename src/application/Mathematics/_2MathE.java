@@ -292,6 +292,7 @@ public class _2MathE extends Application {
 		}
 	}
 	private void clickTryAgain() {
+		checker = false;
 		rectangle2.getChildren().clear();
 		mark = 0;
 		tryagain.setDisable(true);
