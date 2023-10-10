@@ -1,9 +1,9 @@
 package application.Mathematics;
 
 public class MathResultCheck {
-	static double correct=0;
-	static double result=0;
-	static double percent=0;
+	public static double correct=0;
+	public static double result=0;
+	public static double percent=0;
 	public static void check() {
 		++correct;
 		result = correct;

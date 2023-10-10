@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -37,6 +38,7 @@ public class IqThirteen{
 	Button b4 = new Button();
 	
 	Text timeT = new Text();
+	Text EngT = new Text();
 	
 	Label quest;
 	
@@ -116,6 +118,10 @@ public class IqThirteen{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -221,10 +227,13 @@ public class IqThirteen{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
+			iq13MMImg.setVisible(false);
+			EngT.setVisible(true);
 			
-			quest.setText("Choose which is least like the others:");
+			EngT.setText("Choose which is least like the others:");
+			quest.setGraphic(EngT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 33);
-			quest.setFont(quest_font);
+			EngT.setFont(quest_font);
 			rectangle.getChildren().add(quest);
 
 			root.getChildren().addAll();
@@ -232,7 +241,8 @@ public class IqThirteen{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				
+				iq13MMImg.setVisible(true);
+				EngT.setVisible(false);
 			}
 			quest.setGraphic(iq13MMImg);
 			rectangle.getChildren().add(quest);

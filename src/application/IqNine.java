@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -112,6 +113,10 @@ public class IqNine{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -198,6 +203,14 @@ public class IqNine{
 	
 	private void lan_change() {
 		if (languageChange) {
+			iq9MMImg.setVisible(false);
+			yesMMImg.setVisible(false);
+			noMMImg.setVisible(false);
+			
+			IqNineEng.setVisible(true);
+			yesT.setVisible(true);
+			noT.setVisible(true);
+			
 			Font Yes_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 40);
 			yesT = new Text("YES");
 			yesT.setFont(Yes_font);
@@ -215,7 +228,13 @@ public class IqNine{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				iq9MMImg.setVisible(true);
+				yesMMImg.setVisible(true);
+				noMMImg.setVisible(true);
 				
+				IqNineEng.setVisible(false);
+				yesT.setVisible(false);
+				noT.setVisible(false);
 			}
 			rectangle.getChildren().add(iq9MMImg);
 			yes.setGraphic(yesMMImg);

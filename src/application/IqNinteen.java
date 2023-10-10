@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -41,6 +42,7 @@ public class IqNinteen{
 	Text b2T = new Text();
 	Text b3T = new Text();
 	Text b4T = new Text();
+	Text EngT = new Text();
 	
 	Label quest = new Label();
 	
@@ -117,6 +119,10 @@ public class IqNinteen{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -221,17 +227,20 @@ public class IqNinteen{
 			b2T.setVisible(true);
 			b3T.setVisible(true);
 			b4T.setVisible(true);
+			EngT.setVisible(true);
 			
 			iq19MMImg.setVisible(false);
 			a1Img.setVisible(false);
 			a2Img.setVisible(false);
 			a3Img.setVisible(false);
 			a4Img.setVisible(false);
-			quest.setText("Choose the word that best completes the sentence: \r\n"
+			
+			EngT.setText("Choose the word that best completes the sentence: \r\n"
 					+ "\tShe was feeling quite ___ after her long walk.");
+			quest.setGraphic(EngT);
 			Font quest_font1 = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 22);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
-			quest.setFont(quest_font1);
+			EngT.setFont(quest_font1);
 			rectangle.getChildren().add(quest);
 			
 			b1T.setText("Hungry");
@@ -259,7 +268,7 @@ public class IqNinteen{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				quest.setText(null);
+				EngT.setVisible(false);
 				b1T.setVisible(false);
 				b2T.setVisible(false);
 				b3T.setVisible(false);
@@ -271,6 +280,9 @@ public class IqNinteen{
 				a3Img.setVisible(true);
 				a4Img.setVisible(true);
 			}
+			iq19MMImg.setFitWidth(564);
+			iq19MMImg.setFitHeight(95);
+			
 			quest.setGraphic(iq19MMImg);
 			rectangle.getChildren().add(quest);
 			b1.setGraphic(a1Img);

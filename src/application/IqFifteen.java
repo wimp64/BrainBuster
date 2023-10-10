@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -39,6 +40,7 @@ public class IqFifteen{
 	Text b1T = new Text();
 	Text b2T = new Text();
 	Text b3T = new Text();
+	Text EngT = new Text();
 	
 	Label quest = new Label();
 	
@@ -135,6 +137,10 @@ public class IqFifteen{
 			timeLine.stop();
 			rectangle.getChildren().clear();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		b2.setMaxSize(230, 66);
 		b2.setOnAction(e->{
@@ -204,15 +210,26 @@ public class IqFifteen{
 	
 	private void lan_change() {
 		if (languageChange) {
+			iq15MMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
 			
-			quest.setText("\t\t\tIdentify the pattern: \r\n"
+			EngT.setVisible(true);
+			b1T.setVisible(true);
+			b2T.setVisible(true);
+			b3T.setVisible(true);
+			
+			EngT.setText("\t\t\tIdentify the pattern: \r\n"
 					+ "Triangle is to pyramid as circle is to _____.");
+			quest.setGraphic(EngT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
-			quest.setFont(quest_font);
-			quest.setTextFill(Color.WHITE);
+			EngT.setFont(quest_font);
+			EngT.setFill(Color.WHITE);
 			if (!rectangle.getChildren().contains(quest)) {
 			    rectangle.getChildren().add(quest);
 			}
+			
 			b1T.setText("Cycle");
 			b1T.setFont(quest_font);
 			b1T.setFill(Color.WHITE);
@@ -233,7 +250,15 @@ public class IqFifteen{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				iq15MMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
 				
+				EngT.setVisible(false);
+				b1T.setVisible(false);
+				b2T.setVisible(false);
+				b3T.setVisible(false);
 			}
 			quest.setGraphic(iq15MMImg);
 			rectangle.getChildren().add(quest);

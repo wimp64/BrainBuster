@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -113,6 +114,11 @@ public class IqTen{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -210,6 +216,15 @@ public class IqTen{
 	
 	private void lan_change() {
 		if (languageChange) {
+			iq10MMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
+			
+			QEngImg.setVisible(true);
+			b1T.setVisible(true);
+			b2T.setVisible(true);
+			b3T.setVisible(true);
 			
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
 			
@@ -234,7 +249,15 @@ public class IqTen{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				iq10MMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
 				
+				QEngImg.setVisible(false);
+				b1T.setVisible(false);
+				b2T.setVisible(false);
+				b3T.setVisible(false);
 			}
 			rectangle.getChildren().add(iq10MMImg);
 			b1.setGraphic(a1Img);

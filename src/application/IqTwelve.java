@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -39,6 +40,7 @@ public class IqTwelve{
 	Text b1T = new Text();
 	Text b2T = new Text();
 	Text b3T = new Text();
+	Text EngT = new Text();
 	
 	Label quest;
 	
@@ -115,6 +117,10 @@ public class IqTwelve{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -211,10 +217,20 @@ public class IqTwelve{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
+			iq12MMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
 			
-			quest.setText("Which of the following images continue the pattern?");
+			EngT.setVisible(true);
+			b1T.setVisible(true);
+			b2T.setVisible(true);
+			b3T.setVisible(true);
+			
+			EngT.setText("Which of the following images continue the pattern?");
+			quest.setGraphic(EngT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 33);
-			quest.setFont(quest_font);
+			EngT.setFont(quest_font);
 			rectangle.getChildren().add(quest);
 			
 			b1T.setText("Only A");
@@ -234,7 +250,15 @@ public class IqTwelve{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				iq12MMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
 				
+				EngT.setVisible(false);
+				b1T.setVisible(false);
+				b2T.setVisible(false);
+				b3T.setVisible(false);
 			}
 			quest.setGraphic(iq12MMImg);
 			rectangle.getChildren().add(quest);

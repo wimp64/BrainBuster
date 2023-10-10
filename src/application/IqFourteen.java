@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -42,7 +43,8 @@ public class IqFourteen{
 
 	Text timeT = new Text();
 	Text submitT = new Text();
-
+	Text EngT = new Text();
+	
 	Label quest = new Label();
 
 
@@ -131,6 +133,10 @@ public class IqFourteen{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -256,17 +262,22 @@ public class IqFourteen{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-			quest.setText("Which of the following shapes is the odd one out?");
+			iq14MMImg.setVisible(false);
+			EngT.setVisible(true);
+			
+			EngT.setText("Which of the following shapes is the odd one out?");
+			quest.setGraphic(EngT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 30);
-			quest.setFont(quest_font);
-			quest.setTextFill(Color.BLACK);
+			EngT.setFont(quest_font);
+			EngT.setFill(Color.BLACK);
 			rectangle.getChildren().add(quest);
 
 			root.getChildren().addAll();
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-
+				iq14MMImg.setVisible(true);
+				EngT.setVisible(false);
 			}
 			quest.setGraphic(iq14MMImg);
 			rectangle.getChildren().add(quest);

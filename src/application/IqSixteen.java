@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -42,7 +43,12 @@ public class IqSixteen{
 
 	Text timeT = new Text();
 	Text submitT = new Text();
-
+	Text a1T = new Text();
+	Text a2T = new Text();
+	Text a3T = new Text();
+	Text a4T = new Text();
+	Text EngT = new Text();
+	
 	Label two = new Label();
 	Label five = new Label();
 	Label ten = new Label();
@@ -125,6 +131,13 @@ public class IqSixteen{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			rt.setAngle(0);
+			rt1.setAngle(0);
+			rt2.setAngle(0);
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -264,35 +277,62 @@ public class IqSixteen{
 		submitT.setFont(sub_font);
 		quest = new Label();
 		if (languageChange) {
-
-			two.setText("2");
-			Font num_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 80);
-			two.setFont(num_font);
-			two.setTextFill(Color.WHITE);
-
-			five.setText("6");
-			five.setFont(num_font);
-			five.setTextFill(Color.WHITE);
-
-			ten.setText("12");
-			ten.setFont(num_font);
-			ten.setTextFill(Color.WHITE);
-
-			seventeen.setText("20");
-			seventeen.setFont(num_font);
-			seventeen.setTextFill(Color.WHITE);
-
-			quest.setText("Complete the number series:");
-			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 35);
-			quest.setFont(quest_font);
-			quest.setTextFill(Color.BLACK);
-			rectangle.getChildren().add(quest);
+			iq16MMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
+			a4Img.setVisible(false);
 			
+			EngT.setVisible(true);
+			a1T.setVisible(true);
+			a2T.setVisible(true);
+			a3T.setVisible(true);
+			a4T.setVisible(true);
+			
+			Font num_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 80);
+			a1T.setText("2");
+			a1T.setFill(Color.WHITE);
+			a2T.setText("6");
+			a2T.setFill(Color.WHITE);
+			a3T.setText("12");
+			a3T.setFill(Color.WHITE);
+			a4T.setText("20");
+			a4T.setFill(Color.WHITE);
+			a1T.setFont(num_font);
+			a2T.setFont(num_font);
+			a3T.setFont(num_font);
+			a4T.setFont(num_font);
+			
+			two.setGraphic(a1T);
+
+			five.setGraphic(a2T);
+		
+			ten.setGraphic(a3T);
+
+			seventeen.setGraphic(a4T);
+			
+			EngT.setText("Which number comes next:");
+			quest.setGraphic(EngT);
+			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 35);
+			EngT.setFont(quest_font);
+			EngT.setFill(Color.BLACK);
+			rectangle.getChildren().add(quest);
+
 			root.getChildren().addAll( two, five, ten, seventeen);
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				iq16MMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
+				a4Img.setVisible(true);
 				
+				EngT.setVisible(false);
+				a1T.setVisible(false);
+				a2T.setVisible(false);
+				a3T.setVisible(false);
+				a4T.setVisible(false);
 			}
 			quest.setGraphic(iq16MMImg);
 			rectangle.getChildren().add(quest);
@@ -301,7 +341,7 @@ public class IqSixteen{
 			ten.setGraphic(a3Img);
 			seventeen.setGraphic(a4Img);
 			
-			root.getChildren().addAll();
+			root.getChildren().addAll(two,five,ten,seventeen);
 		}
 	}
 }

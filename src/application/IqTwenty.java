@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -36,6 +37,7 @@ public class IqTwenty{
 	Button b3 = new Button();
 	
 	Text timeT = new Text();
+	Text engT = new Text();
 	
 	Label quest;
 	
@@ -48,6 +50,7 @@ public class IqTwenty{
 	Image b1s = new Image("IqTwenty/block1.png");
 	Image b2s = new Image("IqTwenty/block2.png");
 	Image b3s = new Image("IqTwenty/block3.png");
+	Image iq20MM = new Image("IqTwenty/iq20MM.png");
 	
 	ImageView backArrow = new ImageView(Arrow);
 	ImageView clockImg = new ImageView(clock);
@@ -58,6 +61,7 @@ public class IqTwenty{
 	ImageView b1Img = new ImageView(b1s);
 	ImageView b2Img = new ImageView(b2s);
 	ImageView b3Img = new ImageView(b3s);
+	ImageView iq20MMImg = new ImageView(iq20MM);
 	
 	StackPane root;
 	StackPane rectangle = new StackPane();
@@ -112,7 +116,13 @@ public class IqTwenty{
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 			Category cat = new Category();
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
+			rectangle.getChildren().clear();
+			timeLine.stop();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -141,6 +151,11 @@ public class IqTwenty{
 		b1.setMaxSize(200, 170);
 		b1.getStyleClass().add("choiceButTw");
 		b1.setGraphic(b1Img);
+		b1.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		StackPane.setMargin(b1, new Insets(0,0,410,850));
 		
 		b2.setMaxSize(200, 170);
@@ -148,6 +163,7 @@ public class IqTwenty{
 			IqResultCheck.check();
 			timeLine.stop();
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		b2.getStyleClass().add("choiceButTw");
 		b2.setGraphic(b2Img);
@@ -156,6 +172,11 @@ public class IqTwenty{
 		b3.setMaxSize(200, 170);
 		b3.getStyleClass().add("choiceButTw");
 		b3.setGraphic(b3Img);
+		b3.setOnAction(e->{
+			timeLine.stop();
+			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
+		});
 		StackPane.setMargin(b3, new Insets(0,0,-410,850));
 		
 		
@@ -170,6 +191,7 @@ public class IqTwenty{
 		Button over = new Button();
 		over.setOnAction(e->{
 			IqQuestions.switchToIqQuestions(e, languageChange,root);
+			rectangle.getChildren().clear();
 		});
 		over.setVisible(false);
 		root.getChildren().add(over);
@@ -206,15 +228,18 @@ public class IqTwenty{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-			quest.setText("Choose the 3D"
+			iq20MMImg.setVisible(false);
+			engT.setVisible(true);
+			engT.setText("Choose the 3D"
 					+ "\nshape formed "
 					+ "\nfrom the provided "
 					+ "\noptions "
 					+ " by folding "
 					+ "\nthe given flat "
 					+ "\npattern .");
+			quest.setGraphic(engT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 24);
-			quest.setFont(quest_font);
+			engT.setFont(quest_font);
 			rectangle.getChildren().add(quest);
 
 			root.getChildren().addAll();
@@ -222,9 +247,11 @@ public class IqTwenty{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				
+				iq20MMImg.setVisible(true);
+				engT.setVisible(false);
 			}
-
+			quest.setGraphic(iq20MMImg);
+			rectangle.getChildren().add(quest);
 			root.getChildren().addAll();
 		}
 	}

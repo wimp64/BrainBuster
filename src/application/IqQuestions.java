@@ -35,7 +35,7 @@ public class IqQuestions {
 	static IqResult iqr = new IqResult();
 	
 	static Random random = new Random();
-	static int point = -1;
+	public static int point = -1;
 	static List<Integer> check = new ArrayList<>();
 	static boolean checker = true;
 
