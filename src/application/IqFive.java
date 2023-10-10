@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.ParallelTransition;
@@ -46,7 +47,9 @@ public class IqFive {
 
 	Text timeT = new Text();
 	Text submitT = new Text();
-
+	Text EngT = new Text();
+	Text mileT = new Text();
+	
 	Label quest = new Label();
 	Label miles = new Label();
 	Label awardT = new Label();
@@ -150,6 +153,10 @@ public class IqFive {
 			timeLine.stop();
 			parallelTransition.stop();
 			carImg.setTranslateX(0);
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -402,14 +409,23 @@ public class IqFive {
 		submitT.setFont(sub_font);
 
 		if (languageChange) {
+			mileMMImg.setVisible(false);
+			notiMMImg.setVisible(false);
+			iq5MMImg.setVisible(false);
 			
-			miles.setText("miles");
-			miles.setFont(sub_font);
-			miles.setTextFill(Color.WHITE);
+			mileT.setVisible(true);
+			EngT.setVisible(true);
+			awardT.setVisible(true);
 			
-			quest.setText("If a car travels at a speed of 60 mph for 2 hours,\n\t\t\thow far does it travel?");
+			mileT.setText("miles");
+			miles.setGraphic(mileT);
+			mileT.setFont(sub_font);
+			mileT.setFill(Color.WHITE);
+			
+			EngT.setText("If a car travels at a speed of 60 mph for 2 hours,\n\t\t\thow far does it travel?");
+			quest.setGraphic(EngT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 36);
-			quest.setFont(quest_font);
+			EngT.setFont(quest_font);
 
 			awardT.setText("Congratulation!\r\n" + " Little Eaistein...");
 			Font award_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 26);
@@ -420,7 +436,13 @@ public class IqFive {
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-
+				mileMMImg.setVisible(true);
+				notiMMImg.setVisible(true);
+				iq5MMImg.setVisible(true);
+				
+				mileT.setVisible(false);
+				EngT.setVisible(false);
+				awardT.setVisible(false);
 			}
 			miles.setGraphic(mileMMImg);
 			noti.getChildren().add(notiMMImg);

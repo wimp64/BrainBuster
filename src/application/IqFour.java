@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -40,7 +41,8 @@ public class IqFour {
 	Text b2T = new Text();
 	Text b3T = new Text();
 	Text b4T = new Text();
-
+	Text EngT = new Text();
+	
 	Label quest = new Label();
 	Label choose = new Label();
 
@@ -123,6 +125,10 @@ public class IqFour {
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -247,11 +253,26 @@ public class IqFour {
 
 	private void lan_change() {
 		if (languageChange) {
-			quest.setText("Solve\n" + "\t3 x (8 + 4) - 6 / 2");
+			iq4MMImg.setVisible(false);
+			choMMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
+			a4Img.setVisible(false);
+			
+			EngT.setVisible(true);
+			b1T.setVisible(true);
+			b2T.setVisible(true);
+			b3T.setVisible(true);
+			b4T.setVisible(true);
+			choose.setVisible(true);
+			
+			EngT.setText("Solve\n" + "\t3 x (8 + 4) - 6 / 2");
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 55);
-			quest.setFont(quest_font);
-			quest.setTextFill(Color.web("#124BFF"));
-
+			EngT.setFont(quest_font);
+			EngT.setFill(Color.web("#124BFF"));
+			quest.setGraphic(EngT);
+			
 			choose.setText("Choose Answer:");
 			Font choose_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 35);
 			choose.setFont(choose_font);
@@ -283,7 +304,19 @@ public class IqFour {
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-
+				iq4MMImg.setVisible(true);
+				choMMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
+				a4Img.setVisible(true);
+				
+				EngT.setVisible(false);
+				b1T.setVisible(false);
+				b2T.setVisible(false);
+				b3T.setVisible(false);
+				b4T.setVisible(false);
+				choose.setVisible(false);
 			}
 			quest.setGraphic(iq4MMImg);
 			recS.getChildren().add(choMMImg);

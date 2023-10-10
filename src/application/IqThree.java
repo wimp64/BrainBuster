@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -38,7 +39,8 @@ public class IqThree {
 	Text JohnT = new Text();
 	Text MarkT = new Text();
 	Text AlexT = new Text();
-
+	Text EngT = new Text();
+	
 	Label quest = new Label();
 
 	Image Lang = new Image("lang.png");
@@ -116,6 +118,10 @@ public class IqThree {
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -207,11 +213,21 @@ public class IqThree {
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-
-			quest.setText("If John is taller than Mark, and Mark is shorter than Alex, \r\n"
+			iqThreeMMImg.setVisible(false);
+			a1Img.setVisible(false);
+			a2Img.setVisible(false);
+			a3Img.setVisible(false);
+			
+			EngT.setVisible(true);
+			JohnT.setVisible(true);
+			MarkT.setVisible(true);
+			AlexT.setVisible(true);
+			
+			EngT.setText("If John is taller than Mark, and Mark is shorter than Alex, \r\n"
 					+ "\t\t\twho is the shortest among the three?");
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 35);
-			quest.setFont(quest_font);
+			EngT.setFont(quest_font);
+			quest.setGraphic(EngT);
 			rectangle.getChildren().add(quest);
 
 			JohnT.setText("John");
@@ -234,6 +250,15 @@ public class IqThree {
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
+				iqThreeMMImg.setVisible(true);
+				a1Img.setVisible(true);
+				a2Img.setVisible(true);
+				a3Img.setVisible(true);
+				
+				EngT.setVisible(false);
+				JohnT.setVisible(false);
+				MarkT.setVisible(false);
+				AlexT.setVisible(false);
 				
 			}
 			rectangle.getChildren().add(iqThreeMMImg);

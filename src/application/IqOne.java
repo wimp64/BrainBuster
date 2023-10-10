@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -112,6 +113,10 @@ public class IqOne {
 		back.setOnAction(a -> {
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);

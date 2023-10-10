@@ -1,5 +1,6 @@
 package application;
 
+import application.Mathematics.MathResultCheck;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -53,6 +54,7 @@ public class IqSeven extends Application{
 	Button dBut7A = new Button();
 	
 	Text timeT = new Text();
+	Text EngT = new Text();
 	Label quest = new Label();
 	
 	Image Arrow = new Image("arrow.png");
@@ -157,6 +159,10 @@ public class IqSeven extends Application{
 			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			rectangle.getChildren().clear();
+			MathResultCheck.correct=0;
+			MathResultCheck.percent=0;
+			MathResultCheck.result=0;
+			IqQuestions.point=-1;
 		});
 		backArrow.setFitWidth(40);
 		backArrow.setFitHeight(30);
@@ -397,10 +403,13 @@ public class IqSeven extends Application{
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
-			quest.setText("\tWhich of the following figures \r\n"
+			iq7MMImg.setVisible(false);
+			EngT.setVisible(true);
+			EngT.setText("\tWhich of the following figures \r\n"
 					+ "should be replaced at question mark?");
+			quest.setGraphic(EngT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 20);
-			quest.setFont(quest_font);
+			EngT.setFont(quest_font);
 			rectangle.getChildren().add(quest);
 			
 			root.getChildren().addAll();
@@ -408,7 +417,8 @@ public class IqSeven extends Application{
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				
+				iq7MMImg.setVisible(true);
+				EngT.setVisible(false);
 			}
 			quest.setGraphic(iq7MMImg);
 			rectangle.getChildren().add(quest);

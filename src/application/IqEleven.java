@@ -351,7 +351,7 @@ public class IqEleven{
 			five.setGraphic(a2Img);
 			ten.setGraphic(a3Img);
 			seventeen.setGraphic(a4Img);
-			
+			root.getChildren().addAll(two, five, ten, seventeen);
 			root.getChildren().addAll();
 		}
 	}

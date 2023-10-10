@@ -37,6 +37,7 @@ public class IqSix {
 	Button b4 = new Button();
 	
 	Text timeT = new Text();
+	Text EngT = new Text();
 	
 	Label quest;
 	
@@ -222,18 +223,21 @@ public class IqSix {
 	private void lan_change() {
 		quest = new Label();
 		if (languageChange) {
+			iq6MMImg.setVisible(false);
+			EngT.setVisible(true);
 			
-			quest.setText("Which of the following shapes can be folded into a cube?");
+			EngT.setText("Which of the following shapes can be folded into a cube?");
+			quest.setGraphic(EngT);
 			Font quest_font = Font.loadFont(getClass().getResourceAsStream("/Poppin.ttf"), 33);
-			quest.setFont(quest_font);
-			
-
+			EngT.setFont(quest_font);
+			rectangle.getChildren().add(quest);
 			root.getChildren().addAll();
 
 			nonesense = true;
 		} else {
 			if (nonesense == true) {
-				
+				iq6MMImg.setVisible(true);
+				EngT.setVisible(false);
 			}
 			quest.setGraphic(iq6MMImg);
 			rectangle.getChildren().add(quest);

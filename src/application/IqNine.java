@@ -202,6 +202,8 @@ public class IqNine{
 	}
 	
 	private void lan_change() {
+		yesT = new Text("YES");
+		noT = new Text("NO");
 		if (languageChange) {
 			iq9MMImg.setVisible(false);
 			yesMMImg.setVisible(false);
@@ -212,12 +214,12 @@ public class IqNine{
 			noT.setVisible(true);
 			
 			Font Yes_font = Font.loadFont(getClass().getResourceAsStream("/PoppinB.ttf"), 40);
-			yesT = new Text("YES");
+			
 			yesT.setFont(Yes_font);
 			yesT.setFill(Color.WHITE);
 			yes.setGraphic(yesT);
 
-			noT = new Text("NO");
+
 			noT.setFont(Yes_font);
 			noT.setFill(Color.WHITE);
 			no.setGraphic(noT);
