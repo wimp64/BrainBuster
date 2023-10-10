@@ -137,7 +137,7 @@ public class _3LogicD extends Application {
 		back.setPrefSize(60, 60);
 		back.setOnAction(a -> {
 
-			cat.switchToScene1(a, 1, languageChange);
+			cat.switchToScene1(a, application.Mathematics.MathResult.scV, languageChange);
 			timeLine.stop();
 			MathResultCheck.correct=0;
 			MathResultCheck.percent=0;
